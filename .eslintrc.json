@@ -1,0 +1,117 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "prettier",
+    "import",
+    "react-refresh",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "no-var": "warn",
+    "max-lines": "warn",
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "prefer-const": "warn",
+    "prettier/prettier": "warn",
+    "no-multiple-empty-lines": "warn",
+    "react/jsx-uses-react:": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/display-name": "off",
+    "react-hooks/rules-of-hooks": "warn",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-non-null-assertion": "warn",
+    "react/jsx-no-useless-fragment": ["warn", { "allowExpressions": true }],
+    "react/jsx-no-target-blank": "off",
+    "react-refresh/only-export-components": [
+      "warn",
+      { "allowConstantExport": true }
+    ],
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "noSortAlphabetically": false
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          "@api/*/**",
+          "@app/*",
+          "@assets/*",
+          "@components/*",
+          "@constants/*/**",
+          "@layouts/*/**",
+          "@modules/*/**",
+          "@pages/*/**",
+          "@utils/*/**",
+          "../**/@api",
+          "../**/@app",
+          "../**/@assets",
+          "../**/@components",
+          "../**/@constants",
+          "../**/@layouts",
+          "../**/@modules",
+          "../**/@pages",
+          "../**/@utils"
+        ]
+      }
+    ],
+    "import/order": [
+      "warn",
+      {
+        "newlines-between": "always",
+        "pathGroups": [
+          { "group": "external", "position": "before", "pattern": "react" },
+          { "group": "internal", "position": "after", "pattern": "@app/**" },
+          { "group": "internal", "position": "after", "pattern": "@pages/**" },
+          {
+            "group": "internal",
+            "position": "after",
+            "pattern": "@layouts/**"
+          },
+          {
+            "group": "internal",
+            "position": "after",
+            "pattern": "@modules/**"
+          },
+          {
+            "group": "internal",
+            "position": "after",
+            "pattern": "@components/**"
+          },
+          { "group": "internal", "position": "after", "pattern": "@api/**" },
+          { "group": "internal", "position": "after", "pattern": "@utils/**" },
+          {
+            "group": "internal",
+            "position": "after",
+            "pattern": "@constants/**"
+          },
+          { "group": "internal", "position": "after", "pattern": "@assets/**" }
+        ],
+        "distinctGroup": false,
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ]
+      }
+    ]
+  }
+}
