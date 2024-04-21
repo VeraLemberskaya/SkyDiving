@@ -49,7 +49,6 @@
       {
         "patterns": [
           "@api/*/**",
-          "@app/*",
           "@assets/*",
           "@components/*",
           "@constants/*/**",
