@@ -50,7 +50,7 @@
         "patterns": [
           "@api/*/**",
           "@assets/*",
-          "@components/*",
+          "@components/*/**",
           "@constants/*/**",
           "@layouts/*/**",
           "@modules/*/**",
