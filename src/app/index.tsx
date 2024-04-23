@@ -1,18 +1,21 @@
-import { App, ConfigProvider } from 'antd';
+import { ConfigProvider, ThemeConfig } from 'antd';
 
 import { withProviders } from './providers';
 import { Router } from './router';
 
-ConfigProvider.config({
-  theme: { token: { colorPrimary: '#004ab4' } },
-});
+const theme: ThemeConfig = {
+  token: { colorPrimary: '#004ab4' },
+  components: {
+    Layout: {
+      headerBg: '#004ab4',
+    },
+  },
+};
 
 export const MyApp = withProviders(() => {
   return (
-    <ConfigProvider componentSize="middle">
-      <App>
-        <Router />
-      </App>
+    <ConfigProvider componentSize="middle" theme={theme}>
+      <Router />
     </ConfigProvider>
   );
 });
