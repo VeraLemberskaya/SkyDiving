@@ -1,0 +1,17 @@
+@import '@app/styles/vars';
+
+.formItem {
+  position: relative;
+}
+
+.label {
+  line-height: 1.5em;
+  position: relative;
+
+  span {
+    display: inline-block;
+    color: $error;
+    position: absolute;
+    transform: translateX(-150%);
+  }
+}

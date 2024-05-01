@@ -1,3 +1,5 @@
+import { CreateCompetitionForm } from '@modules/create-competition';
+
 export const NewCompetition = () => {
-  return <div>New Competition</div>;
+  return <CreateCompetitionForm />;
 };

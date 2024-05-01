@@ -14,7 +14,7 @@ const theme: ThemeConfig = {
 
 export const MyApp = withProviders(() => {
   return (
-    <ConfigProvider componentSize="middle" theme={theme}>
+    <ConfigProvider componentSize="large" theme={theme}>
       <Router />
     </ConfigProvider>
   );
