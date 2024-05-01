@@ -1,33 +1,25 @@
-import { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { Outlet } from 'react-router-dom';
 
 import { Header } from '@components/header';
+import { Sider } from '@components/sider';
 
 import styles from './assistant-layout.module.scss';
-import { menuItems } from './constants';
+import { menuItems } from './assistant-layout.config';
 
 export const AssistantLayout = () => {
-  const [collapsed, setCollapsed] = useState(false);
-
   return (
     <Layout className={styles.layout}>
       <Header />
       <Layout>
-        <Layout.Sider
-          collapsible
-          className={styles.sider}
-          collapsed={collapsed}
-          theme="light"
-          onCollapse={(value) => setCollapsed(value)}
-        >
+        <Sider>
           <Menu
             defaultSelectedKeys={['competitions']}
             items={menuItems}
             mode="inline"
           />
-        </Layout.Sider>
-        <Layout.Content>
+        </Sider>
+        <Layout.Content className={styles.content}>
           <Outlet />
         </Layout.Content>
       </Layout>
