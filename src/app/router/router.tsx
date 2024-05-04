@@ -7,9 +7,7 @@ import { routes } from '@constants/routes';
 
 const Login = lazy(() => import('@pages/login'));
 const NewCompetition = lazy(() => import('@pages/new-competition'));
-const AddCompetitionJudges = lazy(
-  () => import('@pages/add-competition-judges'),
-);
+const CompetitionJudges = lazy(() => import('@pages/competition-judges'));
 
 const { LOGIN, NEW_COMPETITION, COMPETITION_JUDGES } = routes;
 
@@ -20,7 +18,7 @@ export const Router = () => {
         <Route element={<Login />} path={LOGIN} />
         <Route element={<AssistantLayout />}>
           <Route element={<NewCompetition />} path={NEW_COMPETITION} />
-          <Route element={<AddCompetitionJudges />} path={COMPETITION_JUDGES} />
+          <Route element={<CompetitionJudges />} path={COMPETITION_JUDGES} />
         </Route>
       </Routes>
     </Suspense>
