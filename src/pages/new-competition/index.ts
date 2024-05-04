@@ -1,1 +1,1 @@
-export * from './new-competition';
+export { NewCompetition as default } from './new-competition';
