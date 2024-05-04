@@ -35,7 +35,7 @@ export const CreateCompetitionForm = () => {
     <>
       <Typography.Title level={5}>Новое соревнование</Typography.Title>
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <Flex vertical className={styles.fields} gap="large">
+        <Flex vertical className={styles.fields} gap="small">
           <InputField
             componentProps={{
               placeholder: 'Введите название соревнования',

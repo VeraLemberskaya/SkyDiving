@@ -75,3 +75,21 @@ export const judgesData: JudgeDataType[] = [
     category: 'Судья по спорту',
   },
 ];
+
+export const judges = [
+  {
+    id: 1,
+    fullName: 'Глевский Олег Михайлович',
+    category: 'Судья по спорту',
+  },
+  {
+    id: 2,
+    fullName: 'Никитюк Наталья Николаевна',
+    category: 'Судья по спорту первой категории',
+  },
+  {
+    id: 3,
+    fullName: 'Духанина Ольга Александровна',
+    category: 'Судья по спорту первой категории',
+  },
+];
