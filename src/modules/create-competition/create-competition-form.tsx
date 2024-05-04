@@ -1,12 +1,14 @@
 import { Button, Flex, Typography } from 'antd';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate } from 'react-router-dom';
 
 import {
   InputField,
   InputNumberField,
   RangeField,
 } from '@components/form-fields';
+import { getCompetitionJudgesRoute } from '@constants/routes';
 
 import styles from './create-competition-form.module.scss';
 import { CreateCompetitionData } from './create-competition-form.types';
@@ -22,8 +24,11 @@ export const CreateCompetitionForm = () => {
     resolver: zodResolver(createCompetitionSchema),
   });
 
+  const navigate = useNavigate();
+
   const onSubmit = () => {
     //submit
+    navigate(getCompetitionJudgesRoute(1));
   };
 
   return (
