@@ -5,3 +5,13 @@ export interface JudgeDataType {
   fullName: string;
   category: string;
 }
+
+export interface AddJudgeFormValues {
+  judgeId?: number;
+  work: string;
+}
+
+export interface AddJudgeModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}

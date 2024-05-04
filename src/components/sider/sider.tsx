@@ -8,7 +8,7 @@ interface SiderProps {
 }
 
 export const Sider = ({ children }: SiderProps) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   return (
     <Layout.Sider

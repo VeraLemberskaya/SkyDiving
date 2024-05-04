@@ -15,7 +15,7 @@ const theme: ThemeConfig = {
 //TODO: add Error Boundary
 export const App = withProviders(() => {
   return (
-    <ConfigProvider componentSize="large" theme={theme}>
+    <ConfigProvider componentSize="middle" theme={theme}>
       <Router />
     </ConfigProvider>
   );

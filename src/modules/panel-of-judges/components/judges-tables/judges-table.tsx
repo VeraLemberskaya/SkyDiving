@@ -7,9 +7,10 @@ import { DeleteJudgeButton } from '../delete-judge-button';
 interface JudgesTableProps {
   data: JudgeDataType[];
   title: string;
+  onAddJudge: () => void;
 }
 
-export const JudgesTable = ({ data, title }: JudgesTableProps) => {
+export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
   return (
     <Table bordered dataSource={data} pagination={false} size="small">
       <Table.ColumnGroup
@@ -21,6 +22,7 @@ export const JudgesTable = ({ data, title }: JudgesTableProps) => {
               shape="circle"
               size="middle"
               type="primary"
+              onClick={onAddJudge}
             />
           </Flex>
         }
