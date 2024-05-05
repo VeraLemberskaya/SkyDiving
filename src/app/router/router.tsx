@@ -8,8 +8,12 @@ import { routes } from '@constants/routes';
 const Login = lazy(() => import('@pages/login'));
 const NewCompetition = lazy(() => import('@pages/new-competition'));
 const CompetitionJudges = lazy(() => import('@pages/competition-judges'));
+const CompetitionParticipants = lazy(
+  () => import('@pages/competition-participants'),
+);
 
-const { LOGIN, NEW_COMPETITION, COMPETITION_JUDGES } = routes;
+const { LOGIN, NEW_COMPETITION, COMPETITION_JUDGES, COMPETITION_PARTICIPANTS } =
+  routes;
 
 export const Router = () => {
   return (
@@ -19,6 +23,10 @@ export const Router = () => {
         <Route element={<AssistantLayout />}>
           <Route element={<NewCompetition />} path={NEW_COMPETITION} />
           <Route element={<CompetitionJudges />} path={COMPETITION_JUDGES} />
+          <Route
+            element={<CompetitionParticipants />}
+            path={COMPETITION_PARTICIPANTS}
+          />
         </Route>
       </Routes>
     </Suspense>
