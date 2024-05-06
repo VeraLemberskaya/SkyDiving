@@ -1,0 +1,18 @@
+@import '@app/styles/vars.scss';
+
+.form {
+  width: 500px;
+  border-radius: 6px;
+  padding: 32px;
+  border: solid 1px $border;
+
+  &_item {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  &_button {
+    width: 150px;
+  }
+}
