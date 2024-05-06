@@ -1,7 +1,7 @@
 import { DeleteTwoTone } from '@ant-design/icons';
 import { Flex, Button, theme } from 'antd';
 
-import { ParticipantNodeProps } from '../../participants-tree.types';
+import { ParticipantNodeProps } from '../../manage-participants-tree.types';
 
 export const ParticipantNode = ({ participant }: ParticipantNodeProps) => {
   const { token } = theme.useToken();

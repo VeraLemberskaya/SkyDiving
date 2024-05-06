@@ -1,9 +1,9 @@
-import { Breadcrumb, Flex, Tabs, TabsProps, Typography } from 'antd';
+import { Flex, Tabs, TabsProps } from 'antd';
 
 import { PanelOfJudges } from '@modules/panel-of-judges';
 
 import styles from './competition-judges.module.scss';
-import { breadcrumbItems } from './competition-judges.config';
+import { CompetitionDetails } from './components/competition-details';
 
 const items: TabsProps['items'] = [
   {
@@ -21,8 +21,7 @@ const items: TabsProps['items'] = [
 export const CompetitionJudges = () => {
   return (
     <Flex vertical gap="small">
-      <Breadcrumb items={breadcrumbItems} />
-      <Typography.Title level={4}>Чемпионат РБ</Typography.Title>
+      <CompetitionDetails />
       <div className={styles.content}>
         <Tabs defaultActiveKey="1" items={items} />
       </div>

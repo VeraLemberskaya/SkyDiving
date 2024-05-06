@@ -1,14 +1,8 @@
 import { Button, Flex, Table } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
-import { JudgeDataType } from '../../panel-of-judges.types';
+import { JudgesTableProps } from '../../panel-of-judges.types';
 import { DeleteJudgeButton } from '../delete-judge-button';
-
-interface JudgesTableProps {
-  data: JudgeDataType[];
-  title: string;
-  onAddJudge: () => void;
-}
 
 export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
   return (

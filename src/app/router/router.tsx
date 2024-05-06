@@ -17,7 +17,7 @@ const { LOGIN, NEW_COMPETITION, COMPETITION_JUDGES, COMPETITION_PARTICIPANTS } =
 
 export const Router = () => {
   return (
-    <Suspense fallback={<Spin size="large" />}>
+    <Suspense fallback={<Spin fullscreen size="large" />}>
       <Routes>
         <Route element={<Login />} path={LOGIN} />
         <Route element={<AssistantLayout />}>

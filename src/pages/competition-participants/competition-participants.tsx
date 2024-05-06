@@ -1,17 +1,29 @@
-import { Breadcrumb, Flex, Typography } from 'antd';
+import { Flex, Tabs, TabsProps } from 'antd';
 
-import { ParticipantsTree } from '@modules/participants-tree';
+import { ManageParticipantsTree } from '@modules/manage-participants-tree';
 
-import { breadcrumbItems } from './competition-participants.config';
 import styles from './competition-participants.module.scss';
+import { CompetitionDetails } from './components/competition-details';
+
+const items: TabsProps['items'] = [
+  {
+    key: '1',
+    label: '1 этап:',
+    children: <ManageParticipantsTree />,
+  },
+  {
+    key: '2',
+    label: '2 этап:',
+    children: <ManageParticipantsTree />,
+  },
+];
 
 export const CompetitionParticipants = () => {
   return (
     <Flex vertical gap="small">
-      <Breadcrumb items={breadcrumbItems} />
-      <Typography.Title level={4}>Чемпионат РБ</Typography.Title>
+      <CompetitionDetails />
       <div className={styles.content}>
-        <ParticipantsTree />
+        <Tabs defaultActiveKey="1" items={items} />
       </div>
     </Flex>
   );
