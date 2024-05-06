@@ -8,7 +8,7 @@ import {
   InputNumberField,
   RangeField,
 } from '@components/form-fields';
-import { getCompetitionJudgesRoute } from '@constants/routes';
+import { routes } from '@constants/routes';
 
 import styles from './create-competition-form.module.scss';
 import { CreateCompetitionData } from './create-competition-form.types';
@@ -28,7 +28,7 @@ export const CreateCompetitionForm = () => {
 
   const onSubmit = () => {
     //submit
-    navigate(getCompetitionJudgesRoute(1));
+    navigate(routes.COMPETITION_JUDGES_BY_ID(1));
   };
 
   return (
