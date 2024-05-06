@@ -26,6 +26,11 @@ export const AddJudgeModal = ({ isOpen, onClose }: AddJudgeModalProps) => {
     onClose();
   };
 
+  const onCancel = () => {
+    reset();
+    onClose();
+  };
+
   const selectOptions = judges.map((judge) => ({
     value: judge.id,
     label: `${judge.fullName} (${judge.category})`,
@@ -34,11 +39,11 @@ export const AddJudgeModal = ({ isOpen, onClose }: AddJudgeModalProps) => {
   return (
     <Modal
       centered
-      destroyOnClose={true}
+      destroyOnClose
       maskClosable={false}
       open={isOpen}
       title="Добавление судьи"
-      onCancel={onClose}
+      onCancel={onCancel}
       onOk={handleSubmit(onSubmit)}
     >
       <form className={styles.form}>

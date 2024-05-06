@@ -1,24 +1,24 @@
 import { Flex, Tabs, TabsProps } from 'antd';
 
-import { PanelOfJudges } from '@modules/panel-of-judges';
+import { ManageParticipantsTree } from '@modules/manage-participants-tree';
 
-import styles from './competition-judges.module.scss';
+import styles from './competition-participants.module.scss';
 import { CompetitionDetails } from './components/competition-details';
 
 const items: TabsProps['items'] = [
   {
     key: '1',
     label: '1 этап:',
-    children: <PanelOfJudges />,
+    children: <ManageParticipantsTree />,
   },
   {
     key: '2',
     label: '2 этап:',
-    children: <PanelOfJudges />,
+    children: <ManageParticipantsTree />,
   },
 ];
 
-export const CompetitionJudges = () => {
+export const CompetitionParticipants = () => {
   return (
     <Flex vertical gap="small">
       <CompetitionDetails />

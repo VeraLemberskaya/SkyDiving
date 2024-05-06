@@ -15,3 +15,9 @@ export interface AddJudgeModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+export interface JudgesTableProps {
+  data: JudgeDataType[];
+  title: string;
+  onAddJudge: () => void;
+}
