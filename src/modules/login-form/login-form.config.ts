@@ -8,6 +8,6 @@ export const defaultValues = {
 };
 
 export const loginSchema = z.object({
-  login: z.string().min(5, validationMessages.REQUIRED),
-  password: z.string().min(5, validationMessages.REQUIRED),
+  login: z.string().min(1, validationMessages.REQUIRED),
+  password: z.string().min(1, validationMessages.REQUIRED),
 });
