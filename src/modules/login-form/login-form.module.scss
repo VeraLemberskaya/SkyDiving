@@ -2,17 +2,13 @@
 
 .form {
   width: 500px;
-  border-radius: 6px;
-  padding: 32px;
+  border-radius: $sp-1;
+  padding: $sp-4;
+  margin: 0 $sp-2;
   border: solid 1px $border;
 
-  &_item {
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-  }
-
   &_button {
+    align-self: center;
     width: 150px;
   }
 }

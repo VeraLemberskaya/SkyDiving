@@ -1,21 +1,52 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Flex } from 'antd';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { InputField, PasswordField } from '@components/form-fields';
 
 import styles from './login-form.module.scss';
+import { LoginData } from './login-form.types';
+import { defaultValues, loginSchema } from './login-form.config';
 
 export const LoginForm = () => {
+  const { handleSubmit, control } = useForm<LoginData>({
+    defaultValues,
+    mode: 'onChange',
+    resolver: zodResolver(loginSchema),
+  });
+
+  const onSubmit = () => {
+    //submit
+  };
+
   return (
-    <Form className={styles.form} layout="vertical">
-      <Form.Item label="Логин:" name="login">
-        <Input size="large" />
-      </Form.Item>
-      <Form.Item label="Пароль:" name="password">
-        <Input.Password size="large" />
-      </Form.Item>
-      <Form.Item className={styles.form_item}>
-        <Button className={styles.form_button} size="large" type="primary">
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <Flex vertical gap="middle">
+        <InputField
+          componentProps={{
+            label: 'Логин',
+            required: true,
+          }}
+          control={control}
+          name="login"
+        />
+        <PasswordField
+          componentProps={{
+            label: 'Пароль',
+            required: true,
+          }}
+          control={control}
+          name="password"
+        />
+        <Button
+          className={styles.form_button}
+          htmlType="submit"
+          size="large"
+          type="primary"
+        >
           Войти
         </Button>
-      </Form.Item>
-    </Form>
+      </Flex>
+    </form>
   );
 };
