@@ -10,3 +10,11 @@ export interface Team {
   name: string;
   participants: Participant[];
 }
+
+export interface JudgeDataType {
+  key: string;
+  serialNumber: number;
+  work: string;
+  fullName: string;
+  category: string;
+}

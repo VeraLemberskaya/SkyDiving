@@ -1,10 +1,4 @@
-export interface JudgeDataType {
-  key: string;
-  serialNumber: number;
-  work: string;
-  fullName: string;
-  category: string;
-}
+import { JudgeDataType } from '@api/types';
 
 export interface AddJudgeFormValues {
   judgeId?: number;

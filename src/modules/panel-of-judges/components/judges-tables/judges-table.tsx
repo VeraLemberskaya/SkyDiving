@@ -1,8 +1,9 @@
 import { Button, Flex, Table } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
+import { DeleteButton } from '@components/delete-button';
+
 import { JudgesTableProps } from '../../panel-of-judges.types';
-import { DeleteJudgeButton } from '../delete-judge-button';
 
 export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
   return (
@@ -30,7 +31,7 @@ export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
           render={(value) => (
             <Flex justify="space-between">
               {value}
-              <DeleteJudgeButton />
+              <DeleteButton />
             </Flex>
           )}
           title="Категория"
