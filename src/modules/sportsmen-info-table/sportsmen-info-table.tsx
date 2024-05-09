@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button, Flex, Table, TableProps } from 'antd';
 import { FilterTwoTone, PlusOutlined } from '@ant-design/icons';
 
@@ -6,30 +6,38 @@ import { DeleteButton } from '@components/delete-button';
 import { EditButton } from '@components/edit-button';
 import { paginationConfig } from '@constants/pagination';
 
-import { JudgeInfoTableProps, TableParams } from '../../panel-of-users.types';
+import {
+  SportsmenInfoDataType,
+  SportsmenInfoTableProps,
+} from './sportsmen-info-table.types';
+import { mapSportsmenToTableData } from './sportsmen-info-table.lib';
 
-export const JudgesInfoTable = ({
+const { current, pageSize } = paginationConfig;
+
+export const SportsmenInfoTable = ({
   start,
   loading,
   data,
-}: JudgeInfoTableProps) => {
-  const [tableParams, setTableParams] = useState<TableParams>({
-    pagination: paginationConfig,
-  });
+}: SportsmenInfoTableProps) => {
+  const [currentPage, setCurrentPage] = useState<number>(current);
 
-  const handleTableChange: TableProps['onChange'] = (pagination) => {
-    setTableParams({
-      pagination,
-    });
+  const handleTableChange: TableProps['onChange'] = ({ current }) => {
+    if (current) setCurrentPage(current);
   };
+
+  const tableData: SportsmenInfoDataType[] = useMemo(
+    () => mapSportsmenToTableData(data),
+    [data],
+  );
 
   return (
     <Table
       bordered
-      dataSource={data}
+      dataSource={tableData}
       loading={loading}
       pagination={{
-        ...tableParams.pagination,
+        current: currentPage,
+        pageSize,
         size: 'default',
       }}
       size="small"
@@ -38,7 +46,7 @@ export const JudgesInfoTable = ({
       <Table.ColumnGroup
         title={
           <Flex justify="space-between">
-            Список судей
+            Список спортсменов
             <Flex gap="small">
               <Button
                 icon={<PlusOutlined />}
@@ -64,8 +72,8 @@ export const JudgesInfoTable = ({
           title="ФИО"
         />
         <Table.Column
-          dataIndex="category"
-          key="category"
+          dataIndex="sportsRank"
+          key="sportsRank"
           render={(value) => (
             <Flex align="center" justify="space-between">
               {value}
@@ -75,7 +83,7 @@ export const JudgesInfoTable = ({
               </Flex>
             </Flex>
           )}
-          title="Категория"
+          title="Спортивное звание"
         />
       </Table.ColumnGroup>
     </Table>

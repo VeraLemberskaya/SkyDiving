@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button, Flex, Table, TableProps } from 'antd';
 import { FilterTwoTone, PlusOutlined } from '@ant-design/icons';
 
@@ -6,33 +6,32 @@ import { DeleteButton } from '@components/delete-button';
 import { EditButton } from '@components/edit-button';
 import { paginationConfig } from '@constants/pagination';
 
-import {
-  SportsmenInfoTableProps,
-  TableParams,
-} from '../../panel-of-users.types';
+import { JudgeInfoTableProps } from './judges-info-table.types';
+import { mapJudgesToTableData } from './judges-info-table.lib';
 
-export const SportsmenInfoTable = ({
+const { current, pageSize } = paginationConfig;
+
+export const JudgesInfoTable = ({
   start,
   loading,
   data,
-}: SportsmenInfoTableProps) => {
-  const [tableParams, setTableParams] = useState<TableParams>({
-    pagination: paginationConfig,
-  });
+}: JudgeInfoTableProps) => {
+  const [currentPage, setCurrentPage] = useState<number>(current);
 
-  const handleTableChange: TableProps['onChange'] = (pagination) => {
-    setTableParams({
-      pagination,
-    });
+  const handleTableChange: TableProps['onChange'] = ({ current }) => {
+    if (current) setCurrentPage(current);
   };
+
+  const tableData = useMemo(() => mapJudgesToTableData(data), [data]);
 
   return (
     <Table
       bordered
-      dataSource={data}
+      dataSource={tableData}
       loading={loading}
       pagination={{
-        ...tableParams.pagination,
+        current: currentPage,
+        pageSize,
         size: 'default',
       }}
       size="small"
@@ -41,7 +40,7 @@ export const SportsmenInfoTable = ({
       <Table.ColumnGroup
         title={
           <Flex justify="space-between">
-            Список спортсменов
+            Список судей
             <Flex gap="small">
               <Button
                 icon={<PlusOutlined />}
@@ -67,8 +66,8 @@ export const SportsmenInfoTable = ({
           title="ФИО"
         />
         <Table.Column
-          dataIndex="sportsRank"
-          key="sportsRank"
+          dataIndex="category"
+          key="category"
           render={(value) => (
             <Flex align="center" justify="space-between">
               {value}
@@ -78,7 +77,7 @@ export const SportsmenInfoTable = ({
               </Flex>
             </Flex>
           )}
-          title="Спортивное звание"
+          title="Категория"
         />
       </Table.ColumnGroup>
     </Table>

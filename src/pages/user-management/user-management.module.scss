@@ -1,7 +1,8 @@
 @import '@app/styles/vars';
 
-.tooltip {
-  font-size: $sp-2;
-  margin-bottom: $sp-1;
-  width: fit-content;
+.content {
+  background-color: $white;
+  padding: $sp-2;
+  border-radius: $sp-2;
+  margin-top: $sp-2;
 }

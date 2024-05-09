@@ -1,62 +1,40 @@
-import { useState } from 'react';
-import { Flex, Tabs, TabsProps, Tooltip, Typography } from 'antd';
-import { QuestionCircleTwoTone } from '@ant-design/icons';
+import { Flex, Tabs, TabsProps } from 'antd';
 
-import {
-  JudgesInfoTable,
-  ManageCredentialButton,
-  PanelOfUsers,
-  SportsmenInfoTable,
-} from '@modules/panel-of-users';
+import { JudgesInfoTable } from '@modules/judges-info-table';
+import { SportsmenInfoTable } from '@modules/sportsmen-info-table';
 
-import styles from './user-management.module.scss';
 import { judgesData, sportsmenData } from './mocks/data';
+import styles from './user-management.module.scss';
+import { ManageCredentialButton } from './components/manage-credential-button';
+import { UserManagementTitle } from './components/user-management-title';
 
 export const UserManagement = () => {
-  const [loading, setLoading] = useState(false);
-
   const items: TabsProps['items'] = [
     {
       key: '1',
       label: 'Судьи',
       children: (
-        <PanelOfUsers>
-          <JudgesInfoTable
-            data={judgesData}
-            loading={loading}
-            start={<ManageCredentialButton />}
-          />
-        </PanelOfUsers>
+        <JudgesInfoTable data={judgesData} start={<ManageCredentialButton />} />
       ),
     },
     {
       key: '2',
       label: 'Спортсмены',
       children: (
-        <PanelOfUsers>
-          <SportsmenInfoTable
-            data={sportsmenData}
-            loading={loading}
-            start={<ManageCredentialButton />}
-          />
-        </PanelOfUsers>
+        <SportsmenInfoTable
+          data={sportsmenData}
+          start={<ManageCredentialButton />}
+        />
       ),
     },
   ];
 
   return (
     <Flex vertical>
-      <Flex align="center" gap="small">
-        <Typography.Title level={5}>Список пользователей</Typography.Title>
-        <Tooltip
-          arrow={{ pointAtCenter: true }}
-          placement="bottomLeft"
-          title="ДОБАВИТЬ ОПИСАНИЕ СТРАНИЦЫ"
-        >
-          <QuestionCircleTwoTone className={styles.tooltip} />
-        </Tooltip>
-      </Flex>
-      <Tabs defaultActiveKey="1" items={items} size="middle" />
+      <UserManagementTitle />
+      <div className={styles.content}>
+        <Tabs defaultActiveKey="1" items={items} size="middle" />
+      </div>
     </Flex>
   );
 };
