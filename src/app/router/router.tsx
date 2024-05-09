@@ -11,9 +11,15 @@ const CompetitionJudges = lazy(() => import('@pages/competition-judges'));
 const CompetitionParticipants = lazy(
   () => import('@pages/competition-participants'),
 );
+const UserManagement = lazy(() => import('@pages/user-management'));
 
-const { LOGIN, NEW_COMPETITION, COMPETITION_JUDGES, COMPETITION_PARTICIPANTS } =
-  routes;
+const {
+  LOGIN,
+  NEW_COMPETITION,
+  COMPETITION_JUDGES,
+  USER_MANAGEMENT,
+  COMPETITION_PARTICIPANTS,
+} = routes;
 
 export const Router = () => {
   return (
@@ -27,6 +33,7 @@ export const Router = () => {
             element={<CompetitionParticipants />}
             path={COMPETITION_PARTICIPANTS}
           />
+          <Route element={<UserManagement />} path={USER_MANAGEMENT} />
         </Route>
       </Routes>
     </Suspense>

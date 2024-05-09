@@ -1,7 +1,12 @@
+import { MouseEventHandler } from 'react';
 import { DeleteTwoTone } from '@ant-design/icons';
 import { Button, theme } from 'antd';
 
-export const DeleteJudgeButton = () => {
+interface DeleteButtonProps {
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+}
+
+export const DeleteButton = ({ onClick }: DeleteButtonProps) => {
   const { token } = theme.useToken();
 
   return (
@@ -10,6 +15,7 @@ export const DeleteJudgeButton = () => {
       shape="circle"
       size="middle"
       type="text"
+      onClick={onClick}
     />
   );
 };

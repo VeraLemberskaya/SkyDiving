@@ -1,12 +1,23 @@
+import { useMemo } from 'react';
 import { Button, Flex, Table } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
+import { DeleteButton } from '@components/delete-button';
+
 import { JudgesTableProps } from '../../panel-of-judges.types';
-import { DeleteJudgeButton } from '../delete-judge-button';
 
 export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
+  const tableData = useMemo(
+    () =>
+      data.map(({ id, ...data }) => ({
+        key: id,
+        ...data,
+      })),
+    [data],
+  );
+
   return (
-    <Table bordered dataSource={data} pagination={false} size="small">
+    <Table bordered dataSource={tableData} pagination={false} size="small">
       <Table.ColumnGroup
         title={
           <Flex justify="space-between">
@@ -30,7 +41,7 @@ export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
           render={(value) => (
             <Flex justify="space-between">
               {value}
-              <DeleteJudgeButton />
+              <DeleteButton />
             </Flex>
           )}
           title="Категория"

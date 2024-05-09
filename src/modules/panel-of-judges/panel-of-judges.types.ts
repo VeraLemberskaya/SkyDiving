@@ -1,9 +1,7 @@
-export interface JudgeDataType {
-  key: string;
-  serialNumber: number;
-  work: string;
-  fullName: string;
-  category: string;
+import { CompetitionJudge } from '@api/types';
+
+export interface JudgeDataType extends Omit<CompetitionJudge, 'id'> {
+  key: string | number;
 }
 
 export interface AddJudgeFormValues {
@@ -17,7 +15,7 @@ export interface AddJudgeModalProps {
 }
 
 export interface JudgesTableProps {
-  data: JudgeDataType[];
+  data: CompetitionJudge[];
   title: string;
   onAddJudge: () => void;
 }
