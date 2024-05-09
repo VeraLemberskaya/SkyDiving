@@ -1,4 +1,8 @@
-import { JudgeDataType } from '@api/types';
+import { CompetitionJudge } from '@api/types';
+
+export interface JudgeDataType extends Omit<CompetitionJudge, 'id'> {
+  key: string | number;
+}
 
 export interface AddJudgeFormValues {
   judgeId?: number;
@@ -11,7 +15,7 @@ export interface AddJudgeModalProps {
 }
 
 export interface JudgesTableProps {
-  data: JudgeDataType[];
+  data: CompetitionJudge[];
   title: string;
   onAddJudge: () => void;
 }
