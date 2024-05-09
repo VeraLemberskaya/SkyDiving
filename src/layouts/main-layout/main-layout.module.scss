@@ -1,12 +1,9 @@
-@import '@app/styles/vars.scss';
+@import "@app/styles/vars.scss";
 
 .layout {
   min-height: 100vh;
 }
 
 .content {
-  padding-left: $sp-5;
-  padding-right: $sp-5;
-  padding-bottom: $sp-5;
-  padding-top: $sp-3;
+  padding: $sp-3 $sp-5 $sp-5 $sp-5;
 }

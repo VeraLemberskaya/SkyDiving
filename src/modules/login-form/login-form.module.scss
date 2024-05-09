@@ -1,11 +1,11 @@
-@import '@app/styles/vars.scss';
+@import "@app/styles/vars.scss";
 
 .form {
   width: 500px;
-  border-radius: $sp-1;
-  padding: $sp-4;
   margin: 0 $sp-2;
+  padding: $sp-4;
   border: solid 1px $border;
+  border-radius: $sp-1;
 
   &_button {
     align-self: center;

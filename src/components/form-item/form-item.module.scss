@@ -1,17 +1,17 @@
-@import '@app/styles/vars';
+@import "@app/styles/vars";
 
 .formItem {
   position: relative;
 }
 
 .label {
-  line-height: 2em;
   position: relative;
+  line-height: 2em;
 
   span {
+    position: absolute;
     display: inline-block;
     color: $error;
-    position: absolute;
     transform: translateX(-150%);
   }
 }
