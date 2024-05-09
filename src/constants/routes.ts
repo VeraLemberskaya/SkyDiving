@@ -4,5 +4,6 @@ export const routes = {
   COMPETITION_JUDGES: '/competition/:id/judges',
   COMPETITION_PARTICIPANTS: '/competition/:id/participants',
   USER_MANAGEMENT: '/user-management',
+  PARTICIPANTS: '/participants',
   COMPETITION_JUDGES_BY_ID: (id: number) => `/competition/${id}/judges`,
 };

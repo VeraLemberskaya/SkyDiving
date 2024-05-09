@@ -3,11 +3,13 @@ import { Route, Routes } from 'react-router-dom';
 import { Spin } from 'antd';
 
 import { AssistantLayout } from '@layouts/assistant-layout';
+import { AdminLayout } from '@layouts/admin-layout';
 import { routes } from '@constants/routes';
 
 const Login = lazy(() => import('@pages/login'));
 const NewCompetition = lazy(() => import('@pages/new-competition'));
 const CompetitionJudges = lazy(() => import('@pages/competition-judges'));
+const ManageParticipants = lazy(() => import('@pages/manage-participants'));
 const CompetitionParticipants = lazy(
   () => import('@pages/competition-participants'),
 );
@@ -19,6 +21,7 @@ const {
   COMPETITION_JUDGES,
   USER_MANAGEMENT,
   COMPETITION_PARTICIPANTS,
+  PARTICIPANTS,
 } = routes;
 
 export const Router = () => {
@@ -33,6 +36,9 @@ export const Router = () => {
             element={<CompetitionParticipants />}
             path={COMPETITION_PARTICIPANTS}
           />
+          <Route element={<ManageParticipants />} path={PARTICIPANTS} />
+        </Route>
+        <Route element={<AdminLayout />}>
           <Route element={<UserManagement />} path={USER_MANAGEMENT} />
         </Route>
       </Routes>
