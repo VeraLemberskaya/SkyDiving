@@ -1,8 +1,5 @@
-@import "@app/styles/vars";
+@import '@app/styles/mixins';
 
 .content {
-  margin-top: $sp-2;
-  padding: $sp-2;
-  border-radius: $sp-2;
-  background-color: $white;
+  @include main-template;
 }
