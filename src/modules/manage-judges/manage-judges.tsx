@@ -7,6 +7,7 @@ import { JudgesInfoTable } from './components/judges-info-table';
 import { AddJudgeModal } from './components/add-judge-modal';
 import { Modal } from './manage-judges.types';
 import { initialModal } from './manage-judges.config';
+import { EditJudgeModal } from './components/edit-judge-modal/edit-judge-modal';
 
 export const ManageJudges = () => {
   const [judgeId, setJudgeId] = useState<number | undefined>();
@@ -31,8 +32,16 @@ export const ManageJudges = () => {
         data={judgesData}
         start={<ManageCredentialButton />}
         onAdd={openAddModal}
+        onEdit={handleEdit}
       />
       <AddJudgeModal isOpen={isAddModalOpen} onClose={closeModal} />
+      {judge && (
+        <EditJudgeModal
+          isOpen={isEditModalOpen}
+          judge={judge}
+          onClose={closeModal}
+        />
+      )}
     </>
   );
 };

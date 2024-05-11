@@ -7,6 +7,7 @@ export interface JudgeInfoTableProps {
   loading?: boolean;
   data: Judge[];
   onAdd?: () => void;
+  onEdit?: (judgeId: number) => void;
 }
 
 export interface JudgeInfoDataType

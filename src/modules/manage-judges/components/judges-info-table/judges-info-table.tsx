@@ -6,7 +6,10 @@ import { DeleteButton } from '@components/delete-button';
 import { EditButton } from '@components/edit-button';
 import { paginationConfig } from '@constants/pagination';
 
-import { JudgeInfoTableProps } from '../../manage-judges.types';
+import {
+  JudgeInfoDataType,
+  JudgeInfoTableProps,
+} from '../../manage-judges.types';
 
 import { mapJudgesToTableData } from './judges-info-table.lib';
 
@@ -17,11 +20,18 @@ export const JudgesInfoTable = ({
   loading,
   data,
   onAdd,
+  onEdit,
 }: JudgeInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
 
   const handleTableChange: TableProps['onChange'] = ({ current }) => {
     if (current) setCurrentPage(current);
+  };
+
+  const handleEdit = (data: JudgeInfoDataType) => () => {
+    if (onEdit) {
+      onEdit(Number(data.key));
+    }
   };
 
   const tableData = useMemo(() => mapJudgesToTableData(data), [data]);
@@ -68,14 +78,14 @@ export const JudgesInfoTable = ({
           )}
           title="ФИО"
         />
-        <Table.Column
+        <Table.Column<JudgeInfoDataType>
           dataIndex="category"
           key="category"
-          render={(value) => (
+          render={(value, record) => (
             <Flex align="center" justify="space-between">
               {value}
               <Flex gap="small">
-                <EditButton />
+                <EditButton onClick={handleEdit(record)} />
                 <DeleteButton />
               </Flex>
             </Flex>

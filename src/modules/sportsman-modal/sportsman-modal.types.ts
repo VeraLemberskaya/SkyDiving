@@ -5,8 +5,6 @@ export interface AddSportsmanModalProps {
   onClose: () => void;
 }
 
-export interface EditSportsmanModalProps {
+export interface EditSportsmanModalProps extends AddSportsmanModalProps {
   sportsman: Sportsman;
-  isOpen: boolean;
-  onClose: () => void;
 }

@@ -19,3 +19,7 @@ export interface AddJudgeModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+export interface EditJudgeModalProps extends AddJudgeModalProps {
+  judge: Judge;
+}
