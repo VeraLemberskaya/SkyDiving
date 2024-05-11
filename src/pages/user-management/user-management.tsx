@@ -1,11 +1,11 @@
 import { Flex, Tabs, TabsProps } from 'antd';
 
-import { JudgesInfoTable } from '@modules/judges-info-table';
 import { SportsmenInfoTable } from '@modules/sportsmen-info-table';
-import { judgesData, sportsmenData } from '@api/mocks';
+import { ManageJudges } from '@modules/manage-judges';
+import { ManageCredentialButton } from '@components/manage-credential-button';
+import { sportsmenData } from '@api/mocks';
 
 import styles from './user-management.module.scss';
-import { ManageCredentialButton } from './components/manage-credential-button';
 import { UserManagementTitle } from './components/user-management-title';
 
 export const UserManagement = () => {
@@ -13,9 +13,7 @@ export const UserManagement = () => {
     {
       key: '1',
       label: 'Судьи',
-      children: (
-        <JudgesInfoTable data={judgesData} start={<ManageCredentialButton />} />
-      ),
+      children: <ManageJudges />,
     },
     {
       key: '2',

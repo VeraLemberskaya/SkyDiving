@@ -3,21 +3,24 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, SelectField } from '@components/form-fields';
-import { category } from '@api/mocks';
+import { categories } from '@api/mocks';
 
-import styles from './sportsman-modal.module.scss';
+import styles from './judges-modal.module.scss';
 import { JudgeFormValues, JudgesModalProps } from './judges-modal.types';
+import { getDefaultValues } from './judges-modal.lib';
+import { judgesSchema } from './judges-modal.config';
 
 export const JudgesModal = ({
   isOpen,
+  title,
   judge,
   onClose,
   onSubmit: onFormSubmit,
 }: JudgesModalProps) => {
   const { handleSubmit, reset, control } = useForm<JudgeFormValues>({
-    defaultValues: getDefaultValues(sportsman),
+    defaultValues: getDefaultValues(judge),
     mode: 'onChange',
-    resolver: zodResolver(sportsmanSchema),
+    resolver: zodResolver(judgesSchema),
   });
 
   const onSubmit = (values: JudgeFormValues) => {
@@ -31,9 +34,9 @@ export const JudgesModal = ({
     onClose();
   };
 
-  const selectOptions = category.map((degree) => ({
-    value: degree.name,
-    label: degree.name,
+  const selectOptions = categories.map((category) => ({
+    value: category.name,
+    label: category.name,
   }));
 
   return (
@@ -42,7 +45,7 @@ export const JudgesModal = ({
       destroyOnClose
       maskClosable={false}
       open={isOpen}
-      title="Добавление спорстмена"
+      title={title}
       onCancel={onCancel}
       onOk={handleSubmit(onSubmit)}
     >
@@ -81,11 +84,11 @@ export const JudgesModal = ({
             componentProps={{
               showSearch: true,
               options: selectOptions,
-              placeholder: 'Выберите спортивное звание',
-              label: 'Спортивное звание',
+              placeholder: 'Выберите судейскую категрию',
+              label: 'Судейская категория',
             }}
             control={control}
-            name="sportDegree"
+            name="category"
           />
         </Flex>
       </form>

@@ -16,6 +16,7 @@ export const JudgesInfoTable = ({
   start,
   loading,
   data,
+  onAdd,
 }: JudgeInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
 
@@ -48,6 +49,7 @@ export const JudgesInfoTable = ({
                 shape="circle"
                 size="middle"
                 type="primary"
+                onClick={onAdd}
               />
               <Button icon={<FilterTwoTone />} shape="circle" size="middle" />
             </Flex>

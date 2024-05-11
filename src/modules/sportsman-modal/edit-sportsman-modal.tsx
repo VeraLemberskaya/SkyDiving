@@ -15,6 +15,7 @@ export const EditSportsmanModal = ({
       isOpen={isOpen}
       key={sportsman.id}
       sportsman={sportsman}
+      title="Редактирование спортсмена"
       onClose={onClose}
       onSubmit={handleSubmit}
     />

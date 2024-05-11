@@ -10,6 +10,11 @@ export const AddSportsmanModal = ({
   };
 
   return (
-    <SportsmanModal isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit} />
+    <SportsmanModal
+      isOpen={isOpen}
+      title="Добавление спортсмена"
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    />
   );
 };

@@ -185,7 +185,7 @@ export const sportDegrees = [
   },
 ];
 
-export const category = [
+export const categories = [
   {
     id: 1,
     name: 'Судья по спорту',

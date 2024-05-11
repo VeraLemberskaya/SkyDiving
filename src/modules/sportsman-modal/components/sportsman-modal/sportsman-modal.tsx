@@ -16,6 +16,7 @@ import { sportsmanSchema } from './sportsman-modal.config';
 
 export const SportsmanModal = ({
   isOpen,
+  title,
   sportsman,
   onClose,
   onSubmit: onFormSubmit,
@@ -48,7 +49,7 @@ export const SportsmanModal = ({
       destroyOnClose
       maskClosable={false}
       open={isOpen}
-      title="Добавление спорстмена"
+      title={title}
       onCancel={onCancel}
       onOk={handleSubmit(onSubmit)}
     >
