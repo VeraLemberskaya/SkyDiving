@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Button, Flex, Table, TableProps } from 'antd';
+import { Button, Flex, Popconfirm, Table, TableProps } from 'antd';
 import { FilterTwoTone, PlusOutlined } from '@ant-design/icons';
 
 import { DeleteButton } from '@components/delete-button';
@@ -86,7 +86,16 @@ export const JudgesInfoTable = ({
               {value}
               <Flex gap="small">
                 <EditButton onClick={handleEdit(record)} />
-                <DeleteButton />
+                <Popconfirm
+                  arrow={{ pointAtCenter: true }}
+                  cancelText="Нет"
+                  icon={null}
+                  okText="Да"
+                  placement="topRight"
+                  title="Вы уверены, что хотите удалить этого судью?"
+                >
+                  <DeleteButton />
+                </Popconfirm>
               </Flex>
             </Flex>
           )}
