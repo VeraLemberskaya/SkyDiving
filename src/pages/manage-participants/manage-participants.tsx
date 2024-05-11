@@ -10,6 +10,7 @@ import { sportsmenData } from '@api/mocks';
 import { ManageParticipantsTitle } from './components/manage-participants-title';
 import { initialModal } from './manage-participants.config';
 import { Modal } from './manage-participants.types';
+import styles from './user-management.module.scss';
 
 export const ManageParticipants = () => {
   const [sportsmanId, setSportsmanId] = useState<number | undefined>();
@@ -31,11 +32,13 @@ export const ManageParticipants = () => {
   return (
     <>
       <ManageParticipantsTitle />
-      <SportsmenInfoTable
-        data={sportsmenData}
-        onAdd={openAddModal}
-        onEdit={handleEdit}
-      />
+      <div className={styles.content}>
+        <SportsmenInfoTable
+          data={sportsmenData}
+          onAdd={openAddModal}
+          onEdit={handleEdit}
+        />
+      </div>
       <AddSportsmanModal isOpen={isAddModalOpen} onClose={closeModal} />
       {sportsman && (
         <EditSportsmanModal
