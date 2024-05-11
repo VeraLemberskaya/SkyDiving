@@ -1,6 +1,6 @@
 import { Sportsman } from '@api/types';
 
-import { SportsmanFormValues } from '../sportsman-modal.types';
+import { SportsmanFormValues } from './external-sportsman-modal.types';
 
 export const getDefaultValues = (
   sportsman?: Sportsman,

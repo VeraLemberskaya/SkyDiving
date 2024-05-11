@@ -3,23 +3,24 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, SelectField } from '@components/form-fields';
-import { sportDegrees } from '@api/mocks';
+import { sportDegrees, sportsmenData } from '@api/mocks';
 
-import {
-  SportsmanFormValues,
-  SportsmanModalProps,
-} from '../sportsman-modal.types';
+import { SportsmanModalProps } from '../../../../manage-sportsmen.types';
 
-import styles from './sportsman-modal.module.scss';
-import { getDefaultValues } from './sportsman-modal.lib';
-import { sportsmanSchema } from './sportsman-modal.config';
+import { SportsmanFormValues } from './external-sportsman-modal.types';
+import { getDefaultValues } from './external-sportsman-modal.lib';
+import { sportsmanSchema } from './external-sportsman-modal.config';
+import styles from './external-sportsman-modal.module.scss';
 
-export const SportsmanModal = ({
+export const ExternalSportsmanModal = ({
+  title,
   isOpen,
-  sportsman,
+  sportsmanId,
   onClose,
   onSubmit: onFormSubmit,
-}: SportsmanModalProps) => {
+}: SportsmanModalProps<SportsmanFormValues>) => {
+  const sportsman = sportsmenData.find(({ id }) => id === sportsmanId);
+
   const { handleSubmit, reset, control } = useForm<SportsmanFormValues>({
     defaultValues: getDefaultValues(sportsman),
     mode: 'onChange',
@@ -48,7 +49,7 @@ export const SportsmanModal = ({
       destroyOnClose
       maskClosable={false}
       open={isOpen}
-      title="Добавление спорстмена"
+      title={title}
       onCancel={onCancel}
       onOk={handleSubmit(onSubmit)}
     >

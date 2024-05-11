@@ -9,7 +9,9 @@ import { paginationConfig } from '@constants/pagination';
 import {
   SportsmenInfoDataType,
   SportsmenInfoTableProps,
-} from './sportsmen-info-table.types';
+} from '../../manage-sportsmen.types';
+import { SportsmenSearch } from '../sportsmen-search';
+
 import { mapSportsmenToTableData } from './sportsmen-info-table.lib';
 
 const { current, pageSize } = paginationConfig;
@@ -54,7 +56,7 @@ export const SportsmenInfoTable = ({
       <Table.ColumnGroup
         title={
           <Flex justify="space-between">
-            Список спортсменов
+            <SportsmenSearch />
             <Flex gap="small">
               <Button
                 icon={<PlusOutlined />}
