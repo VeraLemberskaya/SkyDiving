@@ -10,7 +10,7 @@ import { sportsmenData } from '@api/mocks';
 import { ManageParticipantsTitle } from './components/manage-participants-title';
 import { initialModal } from './manage-participants.config';
 import { Modal } from './manage-participants.types';
-import styles from './user-management.module.scss';
+import styles from './manage-participants.module.scss';
 
 export const ManageParticipants = () => {
   const [sportsmanId, setSportsmanId] = useState<number | undefined>();
