@@ -1,4 +1,6 @@
-export const judgesData = [
+import { Judge, Sportsman } from '@api/types';
+
+export const judgesData: Judge[] = [
   {
     id: 1,
     serialNumber: 1,
@@ -73,53 +75,88 @@ export const judgesData = [
   },
 ];
 
-export const sportsmenData = [
+export const sportsmenData: Sportsman[] = [
   {
     id: 1,
     serialNumber: 1,
-    fullName: 'Лемберская Вера Игоревна',
-    sportsRank: 'КМС',
+    firstName: 'Вера',
+    secondName: 'Лемберская',
+    patronymic: 'Игоревна',
+    sportDegree: 'КМС',
   },
   {
     id: 2,
     serialNumber: 2,
-    fullName: 'Анашкевич Екатерина Игоревна',
-    sportsRank: 'III разряд',
+    firstName: 'Екатерина',
+    secondName: 'Анашкевич',
+    patronymic: 'Игоревна',
+    sportDegree: 'III разряд',
   },
   {
     id: 3,
     serialNumber: 3,
-    fullName: 'Маханько Максим Витальевич',
-    sportsRank: 'МС',
+    firstName: 'Максим',
+    secondName: 'Маханько',
+    patronymic: 'Витальевич',
+    sportDegree: 'МС',
   },
   {
     id: 4,
     serialNumber: 4,
-    fullName: 'Васько Кирилл Андреевич',
-    sportsRank: 'МС',
+    firstName: 'Кирилл',
+    secondName: 'Васько',
+    patronymic: 'Андреевич',
+    sportDegree: 'МС',
   },
   {
     id: 5,
     serialNumber: 5,
-    fullName: 'Стецкий Никита Алексеевич',
-    sportsRank: 'II разряд',
+    firstName: 'Никита',
+    secondName: 'Стецкий',
+    patronymic: 'Алексеевич',
+    sportDegree: 'II разряд',
   },
   {
     id: 6,
     serialNumber: 6,
-    fullName: 'Грищук Егор Андреевич',
-    sportsRank: 'КМС',
+    firstName: 'Егор',
+    secondName: 'Грищук',
+    patronymic: 'Андреевич',
+    sportDegree: 'КМС',
   },
   {
     id: 7,
     serialNumber: 7,
-    fullName: 'Карканица Анна Викторовна',
-    sportsRank: 'МСМК',
+    firstName: 'Анна',
+    secondName: 'Карканица',
+    patronymic: 'Викторовна',
+    sportDegree: 'МСМК',
   },
   {
     id: 8,
     serialNumber: 8,
-    fullName: 'Олизарович Петр Васильевич',
-    sportsRank: 'I разряд',
+    firstName: 'Петр',
+    secondName: 'Олизарович',
+    patronymic: 'Васильевич',
+    sportDegree: 'I разряд',
+  },
+];
+
+export const sportDegrees = [
+  {
+    id: 1,
+    name: 'МСМК',
+  },
+  {
+    id: 2,
+    name: 'КМС',
+  },
+  {
+    id: 3,
+    name: 'I разряд',
+  },
+  {
+    id: 4,
+    name: 'II разряд',
   },
 ];

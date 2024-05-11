@@ -18,11 +18,19 @@ export const SportsmenInfoTable = ({
   start,
   loading,
   data,
+  onAdd,
+  onEdit,
 }: SportsmenInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
 
   const handleTableChange: TableProps['onChange'] = ({ current }) => {
     if (current) setCurrentPage(current);
+  };
+
+  const handleEdit = (data: SportsmenInfoDataType) => () => {
+    if (onEdit) {
+      onEdit(Number(data.key));
+    }
   };
 
   const tableData: SportsmenInfoDataType[] = useMemo(
@@ -53,6 +61,7 @@ export const SportsmenInfoTable = ({
                 shape="circle"
                 size="middle"
                 type="primary"
+                onClick={onAdd}
               />
               <Button icon={<FilterTwoTone />} shape="circle" size="middle" />
             </Flex>
@@ -71,14 +80,14 @@ export const SportsmenInfoTable = ({
           )}
           title="ФИО"
         />
-        <Table.Column
-          dataIndex="sportsRank"
-          key="sportsRank"
-          render={(value) => (
+        <Table.Column<SportsmenInfoDataType>
+          dataIndex="sportDegree"
+          key="sportDegree"
+          render={(value, record) => (
             <Flex align="center" justify="space-between">
               {value}
               <Flex gap="small">
-                <EditButton />
+                <EditButton onClick={handleEdit(record)} />
                 <DeleteButton />
               </Flex>
             </Flex>

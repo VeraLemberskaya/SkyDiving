@@ -12,13 +12,13 @@ import {
 
 import { getDefaultValues } from './team-form.lib';
 import styles from './team-form.module.scss';
-import { addTeamSchema } from './team-form.config';
+import { teamSchema } from './team-form.config';
 
 export const TeamForm = ({ team, title }: TeamFormProps) => {
   const { handleSubmit, control, formState } = useForm<TeamFormValues>({
     defaultValues: getDefaultValues(team),
     mode: 'onChange',
-    resolver: zodResolver(addTeamSchema),
+    resolver: zodResolver(teamSchema),
   });
 
   const onSubmit = () => {

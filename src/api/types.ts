@@ -20,9 +20,11 @@ export interface Judge {
 
 export interface Sportsman {
   id: number;
-  fullName: string;
+  firstName: string;
+  secondName: string;
+  patronymic: string;
   serialNumber: number;
-  sportsRank: string;
+  sportDegree: string;
 }
 
 export interface CompetitionJudge extends Judge {
