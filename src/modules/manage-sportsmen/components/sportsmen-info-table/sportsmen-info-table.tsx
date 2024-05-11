@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react';
 import { Button, Flex, Table, TableProps } from 'antd';
 import { FilterTwoTone, PlusOutlined } from '@ant-design/icons';
 
-import { DeleteButton } from '@components/delete-button';
 import { EditButton } from '@components/edit-button';
+import { DeletePopConfirm } from '@components/delete-popconfirm';
 import { paginationConfig } from '@constants/pagination';
 
 import {
@@ -90,7 +90,7 @@ export const SportsmenInfoTable = ({
               {value}
               <Flex gap="small">
                 <EditButton onClick={handleEdit(record)} />
-                <DeleteButton />
+                <DeletePopConfirm title="Вы уверены что хотите удалить спортсмена?" />
               </Flex>
             </Flex>
           )}
