@@ -6,7 +6,8 @@ import { DeleteButton } from '@components/delete-button';
 import { EditButton } from '@components/edit-button';
 import { paginationConfig } from '@constants/pagination';
 
-import { JudgeInfoTableProps } from './judges-info-table.types';
+import { JudgeInfoTableProps } from '../../manage-judges.types';
+
 import { mapJudgesToTableData } from './judges-info-table.lib';
 
 const { current, pageSize } = paginationConfig;
