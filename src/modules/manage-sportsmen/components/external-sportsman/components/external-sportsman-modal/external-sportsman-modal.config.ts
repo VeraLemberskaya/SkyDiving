@@ -9,4 +9,5 @@ export const sportsmanSchema = z.object({
   secondName: z.string().min(1, REQUIRED),
   patronymic: z.string().min(1, REQUIRED),
   sportDegree: z.string().optional(),
+  gender: z.enum(['male', 'female'], { required_error: REQUIRED }),
 });

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Button, Flex, Table } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
-import { DeleteButton } from '@components/delete-button';
+import { DeletePopConfirm } from '@components/delete-popconfirm';
 
 import { JudgesTableProps } from '../../panel-of-judges.types';
 
@@ -41,7 +41,7 @@ export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
           render={(value) => (
             <Flex justify="space-between">
               {value}
-              <DeleteButton />
+              <DeletePopConfirm title="Вы уверены что хотите удалить судью?" />
             </Flex>
           )}
           title="Категория"

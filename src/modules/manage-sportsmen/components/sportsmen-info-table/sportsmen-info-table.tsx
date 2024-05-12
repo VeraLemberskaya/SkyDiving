@@ -2,14 +2,17 @@ import { useMemo, useState } from 'react';
 import { Button, Flex, Table, TableProps } from 'antd';
 import { FilterTwoTone, PlusOutlined } from '@ant-design/icons';
 
-import { DeleteButton } from '@components/delete-button';
 import { EditButton } from '@components/edit-button';
+import { DeletePopConfirm } from '@components/delete-popconfirm';
 import { paginationConfig } from '@constants/pagination';
 
+import { useManageSportsmenStore } from '../../manage-sportsmen.store';
 import {
   SportsmenInfoDataType,
   SportsmenInfoTableProps,
-} from './sportsmen-info-table.types';
+} from '../../manage-sportsmen.types';
+import { SportsmenSearch } from '../sportsmen-search';
+
 import { mapSportsmenToTableData } from './sportsmen-info-table.lib';
 
 const { current, pageSize } = paginationConfig;
@@ -18,19 +21,24 @@ export const SportsmenInfoTable = ({
   start,
   loading,
   data,
-  onAdd,
-  onEdit,
+  disableActionsForInternal = false,
 }: SportsmenInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
+  const openModal = useManageSportsmenStore((state) => state.openModal);
+  const setSportsmanId = useManageSportsmenStore(
+    (state) => state.setSportsmanId,
+  );
+
+  const handleEditClick = (data: SportsmenInfoDataType) => () => {
+    setSportsmanId(data.id);
+    openModal('edit');
+  };
+
+  const handleAddClick = () => openModal('add');
+  const handleFilterClick = () => openModal('filter');
 
   const handleTableChange: TableProps['onChange'] = ({ current }) => {
     if (current) setCurrentPage(current);
-  };
-
-  const handleEdit = (data: SportsmenInfoDataType) => () => {
-    if (onEdit) {
-      onEdit(Number(data.key));
-    }
   };
 
   const tableData: SportsmenInfoDataType[] = useMemo(
@@ -54,16 +62,21 @@ export const SportsmenInfoTable = ({
       <Table.ColumnGroup
         title={
           <Flex justify="space-between">
-            Список спортсменов
+            <SportsmenSearch />
             <Flex gap="small">
               <Button
                 icon={<PlusOutlined />}
                 shape="circle"
                 size="middle"
                 type="primary"
-                onClick={onAdd}
+                onClick={handleAddClick}
               />
-              <Button icon={<FilterTwoTone />} shape="circle" size="middle" />
+              <Button
+                icon={<FilterTwoTone />}
+                shape="circle"
+                size="middle"
+                onClick={handleFilterClick}
+              />
             </Flex>
           </Flex>
         }
@@ -83,15 +96,25 @@ export const SportsmenInfoTable = ({
         <Table.Column<SportsmenInfoDataType>
           dataIndex="sportDegree"
           key="sportDegree"
-          render={(value, record) => (
-            <Flex align="center" justify="space-between">
-              {value}
-              <Flex gap="small">
-                <EditButton onClick={handleEdit(record)} />
-                <DeleteButton />
+          render={(value, record) => {
+            const disabled = disableActionsForInternal && record.isInternal;
+
+            return (
+              <Flex align="center" justify="space-between">
+                {value}
+                <Flex gap="small">
+                  <EditButton
+                    disabled={disabled}
+                    onClick={handleEditClick(record)}
+                  />
+                  <DeletePopConfirm
+                    disabled={disabled}
+                    title="Вы уверены что хотите удалить спортсмена?"
+                  />
+                </Flex>
               </Flex>
-            </Flex>
-          )}
+            );
+          }}
           title="Спортивное звание"
         />
       </Table.ColumnGroup>
