@@ -3,7 +3,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, SelectField } from '@components/form-fields';
+import { RadioGroupField } from '@components/form-fields';
 import { sportDegrees, sportsmenData } from '@api/mocks';
+import { genderOptions } from '@constants/options';
 
 import { SportsmanModalProps } from '../../../../manage-sportsmen.types';
 
@@ -84,6 +86,15 @@ export const ExternalSportsmanModal = ({
               name="patronymic"
             />
           </Flex>
+          <RadioGroupField
+            componentProps={{
+              label: 'Пол',
+              required: true,
+              options: genderOptions,
+            }}
+            control={control}
+            name="gender"
+          />
           <SelectField
             componentProps={{
               showSearch: true,

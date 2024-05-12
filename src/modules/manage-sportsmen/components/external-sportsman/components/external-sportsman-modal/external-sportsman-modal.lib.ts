@@ -9,4 +9,5 @@ export const getDefaultValues = (
   secondName: sportsman?.secondName ?? '',
   patronymic: sportsman?.patronymic ?? '',
   sportDegree: sportsman?.sportDegree ?? '',
+  gender: sportsman?.gender,
 });

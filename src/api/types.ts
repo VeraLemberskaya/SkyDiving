@@ -25,8 +25,12 @@ export interface Sportsman {
   patronymic: string;
   serialNumber: number;
   sportDegree: string;
+  isInternal: boolean;
+  gender: Gender;
 }
 
 export interface CompetitionJudge extends Judge {
   work: string;
 }
+
+export type Gender = 'male' | 'female';

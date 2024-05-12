@@ -1,21 +1,19 @@
-import { MouseEventHandler } from 'react';
 import { EditTwoTone } from '@ant-design/icons';
 import { Button, theme } from 'antd';
+import { ButtonProps } from 'antd/lib';
 
-interface EditButtonProps {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-}
-
-export const EditButton = ({ onClick }: EditButtonProps) => {
+export const EditButton = (props: ButtonProps) => {
   const { token } = theme.useToken();
+
+  const color = props.disabled ? token.colorBorder : token.colorPrimary;
 
   return (
     <Button
-      icon={<EditTwoTone twoToneColor={token.colorPrimary} />}
+      icon={<EditTwoTone twoToneColor={color} />}
       shape="circle"
       size="middle"
       type="text"
-      onClick={onClick}
+      {...props}
     />
   );
 };

@@ -43,6 +43,7 @@ export const ManageSportsmen = ({
     <>
       <SportsmenInfoTable
         data={sportsmenData}
+        disableActionsForInternal={onlyExternal}
         start={!onlyExternal ? <ManageCredentialButton /> : undefined}
         onAdd={openAddModal}
         onEdit={handleEdit}

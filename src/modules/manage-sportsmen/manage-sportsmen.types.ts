@@ -7,7 +7,7 @@ export interface ManageSportsmenProps {
 }
 
 export interface SportsmenInfoDataType
-  extends Pick<Sportsman, 'serialNumber' | 'sportDegree'> {
+  extends Omit<Sportsman, 'firstName' | 'secondName' | 'patronymic'> {
   key: string | number;
   fullName: string;
 }
@@ -16,6 +16,7 @@ export interface SportsmenInfoTableProps {
   data: Sportsman[];
   start?: ReactNode;
   loading?: boolean;
+  disableActionsForInternal?: boolean;
   onAdd?: () => void;
   onEdit?: (sportsmanId: number) => void;
 }

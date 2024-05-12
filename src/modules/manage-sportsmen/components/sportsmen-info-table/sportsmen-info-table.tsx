@@ -20,6 +20,7 @@ export const SportsmenInfoTable = ({
   start,
   loading,
   data,
+  disableActionsForInternal = false,
   onAdd,
   onEdit,
 }: SportsmenInfoTableProps) => {
@@ -31,7 +32,7 @@ export const SportsmenInfoTable = ({
 
   const handleEdit = (data: SportsmenInfoDataType) => () => {
     if (onEdit) {
-      onEdit(Number(data.key));
+      onEdit(Number(data.id));
     }
   };
 
@@ -85,15 +86,25 @@ export const SportsmenInfoTable = ({
         <Table.Column<SportsmenInfoDataType>
           dataIndex="sportDegree"
           key="sportDegree"
-          render={(value, record) => (
-            <Flex align="center" justify="space-between">
-              {value}
-              <Flex gap="small">
-                <EditButton onClick={handleEdit(record)} />
-                <DeletePopConfirm title="Вы уверены что хотите удалить спортсмена?" />
+          render={(value, record) => {
+            const disabled = disableActionsForInternal && record.isInternal;
+
+            return (
+              <Flex align="center" justify="space-between">
+                {value}
+                <Flex gap="small">
+                  <EditButton
+                    disabled={disabled}
+                    onClick={handleEdit(record)}
+                  />
+                  <DeletePopConfirm
+                    disabled={disabled}
+                    title="Вы уверены что хотите удалить спортсмена?"
+                  />
+                </Flex>
               </Flex>
-            </Flex>
-          )}
+            );
+          }}
           title="Спортивное звание"
         />
       </Table.ColumnGroup>

@@ -3,16 +3,20 @@ import { Button, Popconfirm, theme } from 'antd';
 
 interface DeletePopConfirmProps {
   title: string;
+  disabled?: boolean;
   onCancel?: () => void;
   onConfirm?: () => void;
 }
 
 export const DeletePopConfirm = ({
   title,
+  disabled = false,
   onCancel,
   onConfirm,
 }: DeletePopConfirmProps) => {
   const { token } = theme.useToken();
+
+  const color = disabled ? token.colorBorder : token.colorError;
 
   return (
     <Popconfirm
@@ -24,7 +28,8 @@ export const DeletePopConfirm = ({
       onConfirm={onConfirm}
     >
       <Button
-        icon={<DeleteTwoTone twoToneColor={token.colorError} />}
+        disabled={disabled}
+        icon={<DeleteTwoTone twoToneColor={color} />}
         shape="circle"
         size="middle"
         type="text"
