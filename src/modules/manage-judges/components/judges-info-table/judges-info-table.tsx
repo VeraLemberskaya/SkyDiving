@@ -21,6 +21,7 @@ export const JudgesInfoTable = ({
   data,
   onAdd,
   onEdit,
+  onFilter,
 }: JudgeInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
 
@@ -61,7 +62,12 @@ export const JudgesInfoTable = ({
                 type="primary"
                 onClick={onAdd}
               />
-              <Button icon={<FilterTwoTone />} shape="circle" size="middle" />
+              <Button
+                icon={<FilterTwoTone />}
+                shape="circle"
+                size="middle"
+                onClick={onFilter}
+              />
             </Flex>
           </Flex>
         }

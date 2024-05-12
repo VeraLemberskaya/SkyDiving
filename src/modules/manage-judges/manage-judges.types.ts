@@ -7,6 +7,7 @@ export interface JudgeInfoTableProps {
   loading?: boolean;
   data: Judge[];
   onAdd?: () => void;
+  onFilter?: () => void;
   onEdit?: (judgeId: number) => void;
 }
 
@@ -18,5 +19,5 @@ export interface JudgeInfoDataType
 
 export interface Modal {
   isOpen: boolean;
-  type: 'edit' | 'add';
+  type: 'edit' | 'add' | 'filter';
 }

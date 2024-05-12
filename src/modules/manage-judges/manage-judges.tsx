@@ -8,6 +8,7 @@ import { AddJudgeModal } from './components/add-judge-modal';
 import { Modal } from './manage-judges.types';
 import { initialModal } from './manage-judges.config';
 import { EditJudgeModal } from './components/edit-judge-modal/edit-judge-modal';
+import { FilterJudgesModal } from './components/filter-judge-model';
 
 export const ManageJudges = () => {
   const [judgeId, setJudgeId] = useState<number | undefined>();
@@ -15,6 +16,7 @@ export const ManageJudges = () => {
 
   const openAddModal = () => setModal({ isOpen: true, type: 'add' });
   const openEditModal = () => setModal({ isOpen: true, type: 'edit' });
+  const openFilterModal = () => setModal({ isOpen: true, type: 'filter' });
   const closeModal = () => setModal((prev) => ({ ...prev, isOpen: false }));
 
   const handleEdit = (id: number) => {
@@ -22,9 +24,15 @@ export const ManageJudges = () => {
     openEditModal();
   };
 
+  const handleFilter = () => {
+    // filter judgesData
+    openFilterModal();
+  };
+
   const judge = judgesData.find(({ id }) => id === judgeId);
   const isAddModalOpen = modal.isOpen && modal.type === 'add';
   const isEditModalOpen = modal.isOpen && modal.type === 'edit';
+  const isFilterModalOpen = modal.isOpen && modal.type === 'filter';
 
   return (
     <>
@@ -33,8 +41,14 @@ export const ManageJudges = () => {
         start={<ManageCredentialButton />}
         onAdd={openAddModal}
         onEdit={handleEdit}
+        onFilter={handleFilter}
       />
       <AddJudgeModal isOpen={isAddModalOpen} onClose={closeModal} />
+      <FilterJudgesModal
+        isOpen={isFilterModalOpen}
+        title="Выбирите данные для фильтрации"
+        onClose={closeModal}
+      />
       {judge && (
         <EditJudgeModal
           isOpen={isEditModalOpen}
