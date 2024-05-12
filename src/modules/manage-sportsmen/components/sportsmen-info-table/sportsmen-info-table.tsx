@@ -23,6 +23,7 @@ export const SportsmenInfoTable = ({
   disableActionsForInternal = false,
   onAdd,
   onEdit,
+  onFilter,
 }: SportsmenInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
 
@@ -66,7 +67,12 @@ export const SportsmenInfoTable = ({
                 type="primary"
                 onClick={onAdd}
               />
-              <Button icon={<FilterTwoTone />} shape="circle" size="middle" />
+              <Button
+                icon={<FilterTwoTone />}
+                shape="circle"
+                size="middle"
+                onClick={onFilter}
+              />
             </Flex>
           </Flex>
         }

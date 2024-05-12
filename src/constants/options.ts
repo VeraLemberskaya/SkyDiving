@@ -1,3 +1,4 @@
+import { sportDegrees } from '@api/mocks';
 import { Gender } from '@api/types';
 
 export const genderOptions: { value: Gender; label: string }[] = [
@@ -10,3 +11,8 @@ export const genderOptions: { value: Gender; label: string }[] = [
     label: 'Женский',
   },
 ];
+
+export const degreeOptions = sportDegrees.map((degree) => ({
+  value: degree.name,
+  label: degree.name,
+}));

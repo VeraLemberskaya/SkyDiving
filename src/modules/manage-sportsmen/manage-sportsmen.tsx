@@ -12,6 +12,7 @@ import {
 } from './components/internal-sportsman';
 import { initialModal } from './manage-sportsmen.config';
 import { EditExternalSportsmanModal } from './components/external-sportsman/edit-external-sportsman-modal';
+import { SportsmenFilterModal } from './components/sportsmen-filter';
 
 export const ManageSportsmen = ({
   onlyExternal = false,
@@ -21,6 +22,7 @@ export const ManageSportsmen = ({
 
   const openAddModal = () => setModal({ isOpen: true, type: 'add' });
   const openEditModal = () => setModal({ isOpen: true, type: 'edit' });
+  const openFilterModal = () => setModal({ isOpen: true, type: 'filter' });
   const closeModal = () => setModal((prev) => ({ ...prev, isOpen: false }));
 
   const handleEdit = (id: number) => {
@@ -38,6 +40,7 @@ export const ManageSportsmen = ({
 
   const isAddModalOpen = modal.isOpen && modal.type === 'add';
   const isEditModalOpen = modal.isOpen && modal.type === 'edit';
+  const isFilterModalOpen = modal.isOpen && modal.type === 'filter';
 
   return (
     <>
@@ -47,8 +50,10 @@ export const ManageSportsmen = ({
         start={!onlyExternal ? <ManageCredentialButton /> : undefined}
         onAdd={openAddModal}
         onEdit={handleEdit}
+        onFilter={openFilterModal}
       />
       <AddSportsmanModal isOpen={isAddModalOpen} onClose={closeModal} />
+      <SportsmenFilterModal isOpen={isFilterModalOpen} onClose={closeModal} />
       {sportsmanId && (
         <EditSportsmanModal
           isOpen={isEditModalOpen}

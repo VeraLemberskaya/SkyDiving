@@ -18,6 +18,7 @@ export interface SportsmenInfoTableProps {
   loading?: boolean;
   disableActionsForInternal?: boolean;
   onAdd?: () => void;
+  onFilter?: () => void;
   onEdit?: (sportsmanId: number) => void;
 }
 
@@ -34,6 +35,11 @@ export interface AddSportsmanModalProps {
   onClose: () => void;
 }
 
+export interface FilterSportsmenModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 export interface EditSportsmanModalProps {
   sportsmanId: number;
   isOpen: boolean;
@@ -42,5 +48,5 @@ export interface EditSportsmanModalProps {
 
 export interface Modal {
   isOpen: boolean;
-  type: 'edit' | 'add';
+  type: 'edit' | 'add' | 'filter';
 }

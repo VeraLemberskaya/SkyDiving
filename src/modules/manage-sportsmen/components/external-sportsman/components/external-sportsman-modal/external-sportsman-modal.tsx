@@ -4,8 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, SelectField } from '@components/form-fields';
 import { RadioGroupField } from '@components/form-fields';
-import { sportDegrees, sportsmenData } from '@api/mocks';
-import { genderOptions } from '@constants/options';
+import { sportsmenData } from '@api/mocks';
+import { degreeOptions, genderOptions } from '@constants/options';
 
 import { SportsmanModalProps } from '../../../../manage-sportsmen.types';
 
@@ -39,11 +39,6 @@ export const ExternalSportsmanModal = ({
     reset();
     onClose();
   };
-
-  const selectOptions = sportDegrees.map((degree) => ({
-    value: degree.name,
-    label: degree.name,
-  }));
 
   return (
     <Modal
@@ -98,7 +93,7 @@ export const ExternalSportsmanModal = ({
           <SelectField
             componentProps={{
               showSearch: true,
-              options: selectOptions,
+              options: degreeOptions,
               placeholder: 'Выберите спортивное звание',
               label: 'Спортивное звание',
             }}
