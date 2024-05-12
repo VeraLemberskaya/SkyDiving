@@ -1,11 +1,8 @@
-import { AddSportsmanModalProps } from '../../manage-sportsmen.types';
+import { ModalProps } from '../../manage-sportsmen.types';
 
 import { InternalSportsmanModal } from './components/internal-sportsman-modal';
 
-export const AddInternalSportsmanModal = ({
-  isOpen,
-  onClose,
-}: AddSportsmanModalProps) => {
+export const AddInternalSportsmanModal = ({ isOpen, onClose }: ModalProps) => {
   const handleSubmit = () => {
     //submit
   };

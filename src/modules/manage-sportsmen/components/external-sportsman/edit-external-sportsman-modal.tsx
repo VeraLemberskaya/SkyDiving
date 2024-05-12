@@ -1,12 +1,11 @@
-import { EditSportsmanModalProps } from '../../manage-sportsmen.types';
+import { ModalProps } from '../../manage-sportsmen.types';
+import { useManageSportsmenStore } from '../../manage-sportsmen.store';
 
 import { ExternalSportsmanModal } from './components/external-sportsman-modal/external-sportsman-modal';
 
-export const EditExternalSportsmanModal = ({
-  sportsmanId,
-  isOpen,
-  onClose,
-}: EditSportsmanModalProps) => {
+export const EditExternalSportsmanModal = ({ isOpen, onClose }: ModalProps) => {
+  const sportsmanId = useManageSportsmenStore((state) => state.sportsmanId);
+
   const handleSubmit = () => {
     //submit
   };

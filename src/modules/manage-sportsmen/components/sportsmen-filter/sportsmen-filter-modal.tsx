@@ -8,29 +8,24 @@ import {
 } from '@components/form-fields';
 import { degreeOptions, genderOptions } from '@constants/options';
 
-import { FilterSportsmenModalProps } from '../../manage-sportsmen.types';
+import { ModalProps, SportsmenFilter } from '../../manage-sportsmen.types';
+import { useManageSportsmenStore } from '../../manage-sportsmen.store';
 
-import { SportsmenFilterValues } from './sportsmen-filter-modal.types';
-import { defaultValues } from './sportsmen-filter-modal.lib';
 import styles from './sportsmen-filter-modal.module.scss';
+import { getDefaultValues } from './sportsmen-filter-modal.lib';
 
-export const SportsmenFilterModal = ({
-  isOpen,
-  onClose,
-}: FilterSportsmenModalProps) => {
-  const { handleSubmit, reset, control } = useForm<SportsmenFilterValues>({
-    defaultValues,
+export const SportsmenFilterModal = ({ isOpen, onClose }: ModalProps) => {
+  const filter = useManageSportsmenStore((state) => state.filter);
+  const setFilter = useManageSportsmenStore((state) => state.setFilter);
+
+  const { handleSubmit, control } = useForm<SportsmenFilter>({
+    defaultValues: getDefaultValues(filter),
     mode: 'onChange',
   });
 
-  const onSubmit = () => {
+  const onSubmit = (values: SportsmenFilter) => {
+    setFilter(values);
     //submit
-    reset();
-    onClose();
-  };
-
-  const onCancel = () => {
-    reset();
     onClose();
   };
 
@@ -41,7 +36,7 @@ export const SportsmenFilterModal = ({
       maskClosable={false}
       open={isOpen}
       title="Введите параметры фильтрации"
-      onCancel={onCancel}
+      onCancel={onClose}
       onOk={handleSubmit(onSubmit)}
     >
       <form className={styles.form}>

@@ -1,7 +1,7 @@
-import { SportsmenFilterValues } from './sportsmen-filter-modal.types';
+import { SportsmenFilter } from '../../manage-sportsmen.types';
 
-export const defaultValues: SportsmenFilterValues = {
-  sportDegree: undefined,
-  gender: undefined,
-  isInternal: undefined,
-};
+export const getDefaultValues = (filter: SportsmenFilter | null) => ({
+  sportDegree: filter?.sportDegree,
+  gender: filter?.gender,
+  isInternal: filter?.isInternal,
+});

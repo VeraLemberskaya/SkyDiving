@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { Sportsman } from '@api/types';
+import { Gender, Sportsman } from '@api/types';
 
 export interface ManageSportsmenProps {
   onlyExternal?: boolean;
@@ -17,9 +17,6 @@ export interface SportsmenInfoTableProps {
   start?: ReactNode;
   loading?: boolean;
   disableActionsForInternal?: boolean;
-  onAdd?: () => void;
-  onFilter?: () => void;
-  onEdit?: (sportsmanId: number) => void;
 }
 
 export interface SportsmanModalProps<Values> {
@@ -30,23 +27,35 @@ export interface SportsmanModalProps<Values> {
   onSubmit: (values: Values) => void;
 }
 
-export interface AddSportsmanModalProps {
+export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export interface FilterSportsmenModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export interface EditSportsmanModalProps {
-  sportsmanId: number;
-  isOpen: boolean;
-  onClose: () => void;
-}
+export type ModalType = 'edit' | 'add' | 'filter';
 
 export interface Modal {
   isOpen: boolean;
-  type: 'edit' | 'add' | 'filter';
+  type: ModalType;
+}
+
+export interface SportsmenFilter {
+  sportDegree?: string;
+  gender?: Gender;
+  isInternal?: boolean;
+}
+
+export interface State {
+  modal: Modal;
+  sportsmanId?: number;
+  filter: SportsmenFilter | null;
+  search?: string;
+}
+
+export interface Actions {
+  openModal: (type: ModalType) => void;
+  closeModal: () => void;
+  setSportsmanId: (id: number) => void;
+  setSearch: (value: string) => void;
+  setFilter: (filter: SportsmenFilter) => void;
 }

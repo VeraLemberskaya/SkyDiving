@@ -6,6 +6,7 @@ import { EditButton } from '@components/edit-button';
 import { DeletePopConfirm } from '@components/delete-popconfirm';
 import { paginationConfig } from '@constants/pagination';
 
+import { useManageSportsmenStore } from '../../manage-sportsmen.store';
 import {
   SportsmenInfoDataType,
   SportsmenInfoTableProps,
@@ -21,20 +22,23 @@ export const SportsmenInfoTable = ({
   loading,
   data,
   disableActionsForInternal = false,
-  onAdd,
-  onEdit,
-  onFilter,
 }: SportsmenInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
+  const openModal = useManageSportsmenStore((state) => state.openModal);
+  const setSportsmanId = useManageSportsmenStore(
+    (state) => state.setSportsmanId,
+  );
+
+  const handleEditClick = (data: SportsmenInfoDataType) => () => {
+    setSportsmanId(data.id);
+    openModal('edit');
+  };
+
+  const handleAddClick = () => openModal('add');
+  const handleFilterClick = () => openModal('filter');
 
   const handleTableChange: TableProps['onChange'] = ({ current }) => {
     if (current) setCurrentPage(current);
-  };
-
-  const handleEdit = (data: SportsmenInfoDataType) => () => {
-    if (onEdit) {
-      onEdit(Number(data.id));
-    }
   };
 
   const tableData: SportsmenInfoDataType[] = useMemo(
@@ -65,13 +69,13 @@ export const SportsmenInfoTable = ({
                 shape="circle"
                 size="middle"
                 type="primary"
-                onClick={onAdd}
+                onClick={handleAddClick}
               />
               <Button
                 icon={<FilterTwoTone />}
                 shape="circle"
                 size="middle"
-                onClick={onFilter}
+                onClick={handleFilterClick}
               />
             </Flex>
           </Flex>
@@ -101,7 +105,7 @@ export const SportsmenInfoTable = ({
                 <Flex gap="small">
                   <EditButton
                     disabled={disabled}
-                    onClick={handleEdit(record)}
+                    onClick={handleEditClick(record)}
                   />
                   <DeletePopConfirm
                     disabled={disabled}
