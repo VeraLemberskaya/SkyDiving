@@ -17,12 +17,7 @@ import styles from './external-sportsman-modal.module.scss';
 export const ExternalSportsmanModal = ({
   title,
   isOpen,
-<<<<<<< HEAD:src/modules/sportsman-modal/components/sportsman-modal/sportsman-modal.tsx
-  title,
-  sportsman,
-=======
   sportsmanId,
->>>>>>> develop:src/modules/manage-sportsmen/components/external-sportsman/components/external-sportsman-modal/external-sportsman-modal.tsx
   onClose,
   onSubmit: onFormSubmit,
 }: SportsmanModalProps<SportsmanFormValues>) => {
