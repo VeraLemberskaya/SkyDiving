@@ -107,6 +107,8 @@ export const sportsmenData: Sportsman[] = [
     secondName: 'Лемберская',
     patronymic: 'Игоревна',
     sportDegree: 'КМС',
+    isInternal: true,
+    gender: 'female',
   },
   {
     id: 2,
@@ -115,6 +117,8 @@ export const sportsmenData: Sportsman[] = [
     secondName: 'Анашкевич',
     patronymic: 'Игоревна',
     sportDegree: 'III разряд',
+    isInternal: false,
+    gender: 'female',
   },
   {
     id: 3,
@@ -123,6 +127,8 @@ export const sportsmenData: Sportsman[] = [
     secondName: 'Маханько',
     patronymic: 'Витальевич',
     sportDegree: 'МС',
+    isInternal: true,
+    gender: 'male',
   },
   {
     id: 4,
@@ -131,6 +137,8 @@ export const sportsmenData: Sportsman[] = [
     secondName: 'Васько',
     patronymic: 'Андреевич',
     sportDegree: 'МС',
+    isInternal: true,
+    gender: 'male',
   },
   {
     id: 5,
@@ -139,6 +147,8 @@ export const sportsmenData: Sportsman[] = [
     secondName: 'Стецкий',
     patronymic: 'Алексеевич',
     sportDegree: 'II разряд',
+    isInternal: false,
+    gender: 'male',
   },
   {
     id: 6,
@@ -147,6 +157,8 @@ export const sportsmenData: Sportsman[] = [
     secondName: 'Грищук',
     patronymic: 'Андреевич',
     sportDegree: 'КМС',
+    isInternal: false,
+    gender: 'male',
   },
   {
     id: 7,
@@ -155,6 +167,8 @@ export const sportsmenData: Sportsman[] = [
     secondName: 'Карканица',
     patronymic: 'Викторовна',
     sportDegree: 'МСМК',
+    isInternal: false,
+    gender: 'female',
   },
   {
     id: 8,
@@ -163,6 +177,8 @@ export const sportsmenData: Sportsman[] = [
     secondName: 'Олизарович',
     patronymic: 'Васильевич',
     sportDegree: 'I разряд',
+    isInternal: true,
+    gender: 'male',
   },
 ];
 

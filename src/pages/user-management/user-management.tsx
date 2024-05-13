@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { Flex, Tabs, TabsProps } from 'antd';
 
-import { SportsmenInfoTable } from '@modules/sportsmen-info-table';
 import { ManageJudges } from '@modules/manage-judges';
-import { ManageCredentialButton } from '@components/manage-credential-button';
-import { sportsmenData } from '@api/mocks';
+import { ManageSportsmen } from '@modules/manage-sportsmen';
 
 import styles from './user-management.module.scss';
 import { UserManagementTitle } from './components/user-management-title';
@@ -31,12 +29,7 @@ export const UserManagement = () => {
     {
       key: '2',
       label: 'Спортсмены',
-      children: (
-        <SportsmenInfoTable
-          data={sportsmenData}
-          start={<ManageCredentialButton onClick={openModal} />}
-        />
-      ),
+      children: <ManageSportsmen />,
     },
   ];
 
