@@ -2,11 +2,11 @@ import { MouseEventHandler } from 'react';
 import { CopyTwoTone } from '@ant-design/icons';
 import { Button, theme } from 'antd';
 
-interface EditButtonProps {
+interface CopyButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export const CopyButton = ({ onClick }: EditButtonProps) => {
+export const CopyButton = ({ onClick }: CopyButtonProps) => {
   const { token } = theme.useToken();
 
   return (
