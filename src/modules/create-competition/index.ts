@@ -1,1 +1,1 @@
-export * from './create-competition-form';
+export { CreateCompetitionForm } from './create-competition-form';

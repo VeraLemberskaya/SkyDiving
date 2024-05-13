@@ -1,1 +1,1 @@
-export * from './add-judge-modal';
+export { AddJudgeModal } from './add-judge-modal';

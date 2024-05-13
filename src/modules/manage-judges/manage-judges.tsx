@@ -5,12 +5,12 @@ import { judgesData } from '@api/mocks';
 
 import { JudgesInfoTable } from './components/judges-info-table';
 import { AddJudgeModal } from './components/add-judge-modal';
-import { Modal } from './manage-judges.types';
+import { ManageJudgesProps, Modal } from './manage-judges.types';
 import { initialModal } from './manage-judges.config';
 import { EditJudgeModal } from './components/edit-judge-modal/edit-judge-modal';
 import { FilterJudgesModal } from './components/filter-judge-model';
 
-export const ManageJudges = () => {
+export const ManageJudges = ({ onManageCredential }: ManageJudgesProps) => {
   const [judgeId, setJudgeId] = useState<number | undefined>();
   const [modal, setModal] = useState<Modal>(initialModal);
 
@@ -29,6 +29,12 @@ export const ManageJudges = () => {
     openFilterModal();
   };
 
+  const handleManageCredentials = (judgeId: number) => () => {
+    if (onManageCredential) {
+      onManageCredential(judgeId);
+    }
+  };
+
   const judge = judgesData.find(({ id }) => id === judgeId);
   const isAddModalOpen = modal.isOpen && modal.type === 'add';
   const isEditModalOpen = modal.isOpen && modal.type === 'edit';
@@ -38,7 +44,9 @@ export const ManageJudges = () => {
     <>
       <JudgesInfoTable
         data={judgesData}
-        start={<ManageCredentialButton />}
+        start={(judgeId) => (
+          <ManageCredentialButton onClick={handleManageCredentials(judgeId)} />
+        )}
         onAdd={openAddModal}
         onEdit={handleEdit}
         onFilter={handleFilter}

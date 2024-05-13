@@ -1,1 +1,1 @@
-export * from './sportsmen-info-table';
+export { SportsmenInfoTable } from './sportsmen-info-table';

@@ -32,3 +32,8 @@ export interface Sportsman {
 export interface CompetitionJudge extends Judge {
   work: string;
 }
+
+export interface Credential {
+  login: string;
+  password: string;
+}

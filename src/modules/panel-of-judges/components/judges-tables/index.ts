@@ -1,1 +1,1 @@
-export * from './judges-table';
+export { JudgesTable } from './judges-table';

@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { Judge } from '@api/types';
 
 export interface JudgeInfoTableProps {
-  start?: ReactNode;
+  start?: (judgeId: number) => ReactNode;
   loading?: boolean;
   data: Judge[];
   onAdd?: () => void;
@@ -12,7 +12,7 @@ export interface JudgeInfoTableProps {
 }
 
 export interface JudgeInfoDataType
-  extends Pick<Judge, 'serialNumber' | 'category'> {
+  extends Pick<Judge, 'id' | 'serialNumber' | 'category'> {
   key: string | number;
   fullName: string;
 }
@@ -20,4 +20,8 @@ export interface JudgeInfoDataType
 export interface Modal {
   isOpen: boolean;
   type: 'edit' | 'add' | 'filter';
+}
+
+export interface ManageJudgesProps {
+  onManageCredential?: (judgeId: number) => void;
 }

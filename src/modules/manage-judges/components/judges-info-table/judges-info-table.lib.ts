@@ -1,9 +1,12 @@
 import { Judge } from '@api/types';
 import { getFullName } from '@utils/getFullName';
 
-export const mapJudgesToTableData = (data: Judge[]) =>
+import { JudgeInfoDataType } from '../../manage-judges.types';
+
+export const mapJudgesToTableData = (data: Judge[]): JudgeInfoDataType[] =>
   data.map(
     ({ id, firstName, secondName, patronymic, serialNumber, category }) => ({
+      id,
       key: id,
       serialNumber,
       category,
