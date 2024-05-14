@@ -29,7 +29,9 @@ export const UserManagement = () => {
     {
       key: '2',
       label: 'Спортсмены',
-      children: <ManageSportsmen />,
+      children: (
+        <ManageSportsmen onManageCredential={handleManageCredentials} />
+      ),
     },
   ];
 
@@ -42,7 +44,6 @@ export const UserManagement = () => {
       {userId && (
         <ManageCredentialModal
           isOpen={isModalOpen}
-          title="Данные для входа"
           userId={userId}
           onClose={closeModal}
         />

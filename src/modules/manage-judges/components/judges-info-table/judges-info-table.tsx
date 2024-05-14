@@ -10,6 +10,7 @@ import {
   JudgeInfoDataType,
   JudgeInfoTableProps,
 } from '../../manage-judges.types';
+import { JudgesSearch } from '../judges-search';
 
 import { mapJudgesToTableData } from './judges-info-table.lib';
 
@@ -53,7 +54,7 @@ export const JudgesInfoTable = ({
       <Table.ColumnGroup
         title={
           <Flex justify="space-between">
-            Список судей
+            <JudgesSearch />
             <Flex gap="small">
               <Button
                 icon={<PlusOutlined />}

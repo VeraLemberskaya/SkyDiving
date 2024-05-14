@@ -10,7 +10,6 @@ import { ManageCredentialProps } from './manage-credential-modal.types';
 export const ManageCredentialModal = ({
   // userId,
   isOpen,
-  title,
   onClose,
 }: ManageCredentialProps) => {
   const onCancel = () => {
@@ -28,7 +27,7 @@ export const ManageCredentialModal = ({
       }
       maskClosable={false}
       open={isOpen}
-      title={title}
+      title="Данные для входа"
       onCancel={onCancel}
     >
       <Flex vertical className={styles.modal} gap="small">

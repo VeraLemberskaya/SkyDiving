@@ -3,12 +3,12 @@ import { ReactNode } from 'react';
 import { Judge } from '@api/types';
 
 export interface JudgeInfoTableProps {
-  start?: (judgeId: number) => ReactNode;
   loading?: boolean;
   data: Judge[];
   onAdd?: () => void;
   onFilter?: () => void;
   onEdit?: (judgeId: number) => void;
+  start?: (judgeId: number) => ReactNode;
 }
 
 export interface JudgeInfoDataType
