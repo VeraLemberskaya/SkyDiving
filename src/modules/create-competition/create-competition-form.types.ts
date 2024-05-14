@@ -1,8 +1,8 @@
 import { Dayjs } from 'dayjs';
 
-export interface CreateCompetitionData {
+export interface CreateCompetitionValues {
   name: string;
-  location: string;
+  place: string;
   period: Dayjs[];
-  stageCount: number | string;
+  numberOfStages?: number;
 }
