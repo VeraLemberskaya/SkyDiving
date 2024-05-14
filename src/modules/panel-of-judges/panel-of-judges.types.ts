@@ -1,4 +1,4 @@
-import { CompetitionJudge } from '@api/types';
+import { CompetitionJudge } from '@api/mock-types';
 
 export interface JudgeInfoDataType
   extends Pick<CompetitionJudge, 'serialNumber' | 'category'> {

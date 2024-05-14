@@ -1,4 +1,4 @@
-import { CompetitionJudge } from '@api/types';
+import { CompetitionJudge } from '@api/mock-types';
 
 export const mainJudgesData: CompetitionJudge[] = [
   {
