@@ -6,24 +6,24 @@ import { InputField, SelectField } from '@components/form-fields';
 import { categories } from '@api/mocks';
 
 import styles from './referees-modal.module.scss';
-import { JudgeFormValues, JudgesModalProps } from './referees-modal.types';
+import { RefereeFormValues, RefereesModalProps } from './referees-modal.types';
 import { getDefaultValues } from './referees-modal.lib';
-import { judgesSchema } from './referees-modal.config';
+import { refereesSchema } from './referees-modal.config';
 
-export const JudgesModal = ({
+export const RefereesModal = ({
   isOpen,
   title,
   referee,
   onClose,
   onSubmit: onFormSubmit,
-}: JudgesModalProps) => {
-  const { handleSubmit, reset, control } = useForm<JudgeFormValues>({
+}: RefereesModalProps) => {
+  const { handleSubmit, reset, control } = useForm<RefereeFormValues>({
     defaultValues: getDefaultValues(referee),
     mode: 'onChange',
-    resolver: zodResolver(judgesSchema),
+    resolver: zodResolver(refereesSchema),
   });
 
-  const onSubmit = (values: JudgeFormValues) => {
+  const onSubmit = (values: RefereeFormValues) => {
     onFormSubmit(values);
     reset();
     onClose();

@@ -1,25 +1,25 @@
 import { Referee } from '@api/types';
 
-export interface JudgesModalProps {
+export interface RefereesModalProps {
   referee?: Referee;
   isOpen: boolean;
   title: string;
   onClose: () => void;
-  onSubmit: (values: JudgeFormValues) => void;
+  onSubmit: (values: RefereeFormValues) => void;
 }
 
-export interface JudgeFormValues {
+export interface RefereeFormValues {
   firstName: string;
   secondName: string;
   patronymic: string;
   category: string;
 }
 
-export interface AddJudgeModalProps {
+export interface AddRefereeModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export interface EditJudgeModalProps extends AddJudgeModalProps {
+export interface EditRefereeModalProps extends AddRefereeModalProps {
   referee: Referee;
 }

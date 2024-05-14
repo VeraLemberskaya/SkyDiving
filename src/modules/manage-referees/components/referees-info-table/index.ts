@@ -1,1 +1,1 @@
-export { JudgesInfoTable } from './referees-info-table';
+export { RefereesInfoTable } from './referees-info-table';

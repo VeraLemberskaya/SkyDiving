@@ -28,7 +28,7 @@ export const CreateCompetitionForm = () => {
 
   const onSubmit = () => {
     //submit
-    navigate(routes.COMPETITION_JUDGES_BY_ID(1));
+    navigate(routes.COMPETITION_REFEREES_BY_ID(1));
   };
 
   return (

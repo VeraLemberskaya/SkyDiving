@@ -1,7 +1,7 @@
 import { Referee } from '@api/types';
 
-import { JudgesFilterValues } from './filter-referee-modal.type';
+import { RefereesFilterValues } from './filter-referee-modal.type';
 
-export const getDefaultValues = (referee?: Referee): JudgesFilterValues => ({
+export const getDefaultValues = (referee?: Referee): RefereesFilterValues => ({
   category: referee?.category ?? '',
 });

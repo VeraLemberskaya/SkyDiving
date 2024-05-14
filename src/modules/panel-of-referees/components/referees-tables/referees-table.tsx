@@ -4,12 +4,16 @@ import { PlusOutlined } from '@ant-design/icons';
 
 import { DeletePopConfirm } from '@components/delete-popconfirm';
 
-import { JudgesTableProps } from '../../panel-of-referees.types';
+import { RefereesTableProps } from '../../panel-of-referees.types';
 
-import { mapJudgesToTableData } from './referees-table.lib';
+import { mapRefereesToTableData } from './referees-table.lib';
 
-export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
-  const tableData = useMemo(() => mapJudgesToTableData(data), [data]);
+export const RefereesTable = ({
+  data,
+  title,
+  onAddReferee,
+}: RefereesTableProps) => {
+  const tableData = useMemo(() => mapRefereesToTableData(data), [data]);
 
   return (
     <Table bordered dataSource={tableData} pagination={false} size="small">
@@ -22,7 +26,7 @@ export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
               shape="circle"
               size="middle"
               type="primary"
-              onClick={onAddJudge}
+              onClick={onAddReferee}
             />
           </Flex>
         }

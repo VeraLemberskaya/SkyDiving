@@ -1,1 +1,1 @@
-export { JudgesModal } from './referees-modal';
+export { RefereesModal } from './referees-modal';

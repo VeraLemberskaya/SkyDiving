@@ -7,18 +7,18 @@ import { getFullName } from '@utils/getFullName';
 
 import { referees } from '../../mocks/data';
 import {
-  AddJudgeFormValues,
-  AddJudgeModalProps,
+  AddRefereeFormValues,
+  AddRefereeModalProps,
 } from '../../panel-of-referees.types';
 
 import styles from './add-referee-modal.module.scss';
-import { addJudgeSchema, defaultValues } from './add-referee-modal.config';
+import { addRefereeSchema, defaultValues } from './add-referee-modal.config';
 
-export const AddJudgeModal = ({ isOpen, onClose }: AddJudgeModalProps) => {
-  const { handleSubmit, reset, control } = useForm<AddJudgeFormValues>({
+export const AddRefereeModal = ({ isOpen, onClose }: AddRefereeModalProps) => {
+  const { handleSubmit, reset, control } = useForm<AddRefereeFormValues>({
     defaultValues,
     mode: 'onChange',
-    resolver: zodResolver(addJudgeSchema),
+    resolver: zodResolver(addRefereeSchema),
   });
 
   const onSubmit = () => {
@@ -60,7 +60,7 @@ export const AddJudgeModal = ({ isOpen, onClose }: AddJudgeModalProps) => {
               required: true,
             }}
             control={control}
-            name="judgeId"
+            name="refereeId"
           />
           <InputField
             componentProps={{

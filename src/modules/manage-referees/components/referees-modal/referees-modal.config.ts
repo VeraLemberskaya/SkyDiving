@@ -4,7 +4,7 @@ import { validationMessages } from '@constants/validation';
 
 const { REQUIRED } = validationMessages;
 
-export const judgesSchema = z.object({
+export const refereesSchema = z.object({
   firstName: z.string().min(1, REQUIRED),
   secondName: z.string().min(1, REQUIRED),
   patronymic: z.string().min(1, REQUIRED),

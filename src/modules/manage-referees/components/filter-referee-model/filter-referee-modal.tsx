@@ -7,22 +7,22 @@ import { categories } from '@api/mocks';
 
 import styles from './filter-referee-modal.module.scss';
 import {
-  JudgesFilterProps,
-  JudgesFilterValues,
+  RefereesFilterProps,
+  RefereesFilterValues,
 } from './filter-referee-modal.type';
-import { judgesFilterSchema } from './filter-referee-modal.config';
+import { refereesFilterSchema } from './filter-referee-modal.config';
 import { getDefaultValues } from './filter-referee-model.lib';
 
-export const FilterJudgesModal = ({
+export const FilterRefereesModal = ({
   isOpen,
   title,
   referee,
   onClose,
-}: JudgesFilterProps) => {
-  const { handleSubmit, reset, control } = useForm<JudgesFilterValues>({
+}: RefereesFilterProps) => {
+  const { handleSubmit, reset, control } = useForm<RefereesFilterValues>({
     defaultValues: getDefaultValues(referee),
     mode: 'onChange',
-    resolver: zodResolver(judgesFilterSchema),
+    resolver: zodResolver(refereesFilterSchema),
   });
 
   const onSubmit = () => {

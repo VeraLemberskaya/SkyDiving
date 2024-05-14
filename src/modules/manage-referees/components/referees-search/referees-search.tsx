@@ -3,7 +3,7 @@ import { Input } from 'antd';
 
 import styles from './referees-search.module.scss';
 
-export const JudgesSearch = () => {
+export const RefereesSearch = () => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = () => {
     //handleChange
   };

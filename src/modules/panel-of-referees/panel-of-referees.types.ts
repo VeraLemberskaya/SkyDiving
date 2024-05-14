@@ -1,24 +1,24 @@
-import { CompetitionJudge } from '@api/types';
+import { CompetitionReferee } from '@api/types';
 
-export interface JudgeInfoDataType
-  extends Pick<CompetitionJudge, 'serialNumber' | 'category'> {
+export interface RefereeInfoDataType
+  extends Pick<CompetitionReferee, 'serialNumber' | 'category'> {
   key: string | number;
   fullName: string;
   work: string;
 }
 
-export interface AddJudgeFormValues {
-  judgeId?: number;
+export interface AddRefereeFormValues {
+  refereeId?: number;
   work: string;
 }
 
-export interface AddJudgeModalProps {
+export interface AddRefereeModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export interface JudgesTableProps {
-  data: CompetitionJudge[];
+export interface RefereesTableProps {
+  data: CompetitionReferee[];
   title: string;
-  onAddJudge: () => void;
+  onAddReferee: () => void;
 }

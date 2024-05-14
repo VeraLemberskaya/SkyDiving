@@ -1,17 +1,17 @@
-import { JudgesModal } from '../referees-modal';
-import { EditJudgeModalProps } from '../referees-modal/referees-modal.types';
+import { RefereesModal } from '../referees-modal';
+import { EditRefereeModalProps } from '../referees-modal/referees-modal.types';
 
-export const EditJudgeModal = ({
+export const EditRefereeModal = ({
   referee,
   isOpen,
   onClose,
-}: EditJudgeModalProps) => {
+}: EditRefereeModalProps) => {
   const handleSubmit = () => {
     //submit
   };
 
   return (
-    <JudgesModal
+    <RefereesModal
       isOpen={isOpen}
       key={referee.id}
       referee={referee}

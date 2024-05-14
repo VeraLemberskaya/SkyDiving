@@ -1,6 +1,6 @@
-import { CompetitionJudge } from '@api/types';
+import { CompetitionReferee } from '@api/types';
 
-export const mainJudgesData: CompetitionJudge[] = [
+export const mainRefereesData: CompetitionReferee[] = [
   {
     id: 1,
     serialNumber: 1,
@@ -48,7 +48,7 @@ export const mainJudgesData: CompetitionJudge[] = [
   },
 ];
 
-export const judgesData: CompetitionJudge[] = [
+export const refereesData: CompetitionReferee[] = [
   {
     id: 6,
     serialNumber: 6,

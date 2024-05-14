@@ -1,1 +1,1 @@
-export { ManageJudges } from './manage-referees';
+export { ManageReferees } from './manage-referees';

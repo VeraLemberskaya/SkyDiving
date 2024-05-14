@@ -1,1 +1,1 @@
-export { FilterJudgesModal } from './filter-referee-modal';
+export { FilterRefereesModal } from './filter-referee-modal';

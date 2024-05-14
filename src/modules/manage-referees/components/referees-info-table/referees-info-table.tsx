@@ -7,36 +7,36 @@ import { DeletePopConfirm } from '@components/delete-popconfirm';
 import { paginationConfig } from '@constants/pagination';
 
 import {
-  JudgeInfoDataType,
-  JudgeInfoTableProps,
+  RefereeInfoDataType,
+  RefereeInfoTableProps,
 } from '../../manage-referees.types';
-import { JudgesSearch } from '../referees-search';
+import { RefereesSearch } from '../referees-search';
 
-import { mapJudgesToTableData } from './referees-info-table.lib';
+import { mapRefereesToTableData } from './referees-info-table.lib';
 
 const { current, pageSize } = paginationConfig;
 
-export const JudgesInfoTable = ({
+export const RefereesInfoTable = ({
   start,
   loading,
   data,
   onAdd,
   onEdit,
   onFilter,
-}: JudgeInfoTableProps) => {
+}: RefereeInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
 
   const handleTableChange: TableProps['onChange'] = ({ current }) => {
     if (current) setCurrentPage(current);
   };
 
-  const handleEdit = (data: JudgeInfoDataType) => () => {
+  const handleEdit = (data: RefereeInfoDataType) => () => {
     if (onEdit) {
       onEdit(Number(data.key));
     }
   };
 
-  const tableData = useMemo(() => mapJudgesToTableData(data), [data]);
+  const tableData = useMemo(() => mapRefereesToTableData(data), [data]);
 
   return (
     <Table
@@ -54,7 +54,7 @@ export const JudgesInfoTable = ({
       <Table.ColumnGroup
         title={
           <Flex justify="space-between">
-            <JudgesSearch />
+            <RefereesSearch />
             <Flex gap="small">
               <Button
                 icon={<PlusOutlined />}
@@ -74,7 +74,7 @@ export const JudgesInfoTable = ({
         }
       >
         <Table.Column dataIndex="serialNumber" key="serialNumber" title="№" />
-        <Table.Column<JudgeInfoDataType>
+        <Table.Column<RefereeInfoDataType>
           dataIndex="fullName"
           key="fullName"
           render={(value, { id }) => (
@@ -85,7 +85,7 @@ export const JudgesInfoTable = ({
           )}
           title="ФИО"
         />
-        <Table.Column<JudgeInfoDataType>
+        <Table.Column<RefereeInfoDataType>
           dataIndex="category"
           key="category"
           render={(value, record) => (

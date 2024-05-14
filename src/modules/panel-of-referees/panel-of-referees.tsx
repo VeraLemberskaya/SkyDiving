@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Flex } from 'antd';
 
-import { JudgesTable } from './components/referees-tables';
-import { judgesData, mainJudgesData } from './mocks/data';
-import { AddJudgeModal } from './components/add-referee-modal';
+import { RefereesTable } from './components/referees-tables';
+import { refereesData, mainRefereesData } from './mocks/data';
+import { AddRefereeModal } from './components/add-referee-modal';
 
-export const PanelOfJudges = () => {
+export const PanelOfReferees = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -14,18 +14,18 @@ export const PanelOfJudges = () => {
   return (
     <>
       <Flex vertical gap="small">
-        <JudgesTable
-          data={mainJudgesData}
+        <RefereesTable
+          data={mainRefereesData}
           title="Главная судейская коллегия"
-          onAddJudge={openModal}
+          onAddReferee={openModal}
         />
-        <JudgesTable
-          data={judgesData}
+        <RefereesTable
+          data={refereesData}
           title="Судейская коллегия"
-          onAddJudge={openModal}
+          onAddReferee={openModal}
         />
       </Flex>
-      <AddJudgeModal isOpen={isModalOpen} onClose={closeModal} />
+      <AddRefereeModal isOpen={isModalOpen} onClose={closeModal} />
     </>
   );
 };

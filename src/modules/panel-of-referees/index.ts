@@ -1,1 +1,1 @@
-export { PanelOfJudges } from './panel-of-referees';
+export { PanelOfReferees } from './panel-of-referees';

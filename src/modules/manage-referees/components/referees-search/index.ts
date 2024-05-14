@@ -1,1 +1,1 @@
-export { JudgesSearch } from './referees-search';
+export { RefereesSearch } from './referees-search';

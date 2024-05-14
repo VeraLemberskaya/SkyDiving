@@ -1,12 +1,12 @@
 import { Referee } from '@api/types';
 
-export interface JudgesFilterProps {
+export interface RefereesFilterProps {
   referee?: Referee;
   isOpen: boolean;
   title: string;
   onClose: () => void;
 }
 
-export interface JudgesFilterValues {
+export interface RefereesFilterValues {
   category: string;
 }

@@ -1,9 +1,11 @@
 import { Referee } from '@api/types';
 import { getFullName } from '@utils/getFullName';
 
-import { JudgeInfoDataType } from '../../manage-referees.types';
+import { RefereeInfoDataType } from '../../manage-referees.types';
 
-export const mapJudgesToTableData = (data: Referee[]): JudgeInfoDataType[] =>
+export const mapRefereesToTableData = (
+  data: Referee[],
+): RefereeInfoDataType[] =>
   data.map(
     ({ id, firstName, secondName, patronymic, serialNumber, category }) => ({
       id,

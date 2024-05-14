@@ -31,7 +31,7 @@ export interface Sportsman {
   gender: Gender;
 }
 
-export interface CompetitionJudge extends Referee {
+export interface CompetitionReferee extends Referee {
   work: string;
 }
 

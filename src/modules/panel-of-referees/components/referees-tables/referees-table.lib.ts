@@ -1,11 +1,11 @@
-import { CompetitionJudge } from '@api/types';
+import { CompetitionReferee } from '@api/types';
 import { getFullName } from '@utils/getFullName';
 
-import { JudgeInfoDataType } from '../../panel-of-referees.types';
+import { RefereeInfoDataType } from '../../panel-of-referees.types';
 
-export const mapJudgesToTableData = (
-  data: CompetitionJudge[],
-): JudgeInfoDataType[] =>
+export const mapRefereesToTableData = (
+  data: CompetitionReferee[],
+): RefereeInfoDataType[] =>
   data.map(
     ({
       id,

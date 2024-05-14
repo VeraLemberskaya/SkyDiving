@@ -1,1 +1,1 @@
-export { EditJudgeModal } from './edit-referee-modal';
+export { EditRefereeModal } from './edit-referee-modal';

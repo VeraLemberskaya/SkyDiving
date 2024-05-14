@@ -2,16 +2,16 @@ import { ReactNode } from 'react';
 
 import { Referee } from '@api/types';
 
-export interface JudgeInfoTableProps {
+export interface RefereeInfoTableProps {
   loading?: boolean;
   data: Referee[];
   onAdd?: () => void;
   onFilter?: () => void;
-  onEdit?: (judgeId: number) => void;
-  start?: (judgeId: number) => ReactNode;
+  onEdit?: (refereeId: number) => void;
+  start?: (refereeId: number) => ReactNode;
 }
 
-export interface JudgeInfoDataType
+export interface RefereeInfoDataType
   extends Pick<Referee, 'id' | 'serialNumber' | 'category'> {
   key: string | number;
   fullName: string;
@@ -22,6 +22,6 @@ export interface Modal {
   type: 'edit' | 'add' | 'filter';
 }
 
-export interface ManageJudgesProps {
-  onManageCredential?: (judgeId: number) => void;
+export interface ManageRefereesProps {
+  onManageCredential?: (refereeId: number) => void;
 }

@@ -1,13 +1,13 @@
-import { JudgesModal } from '../referees-modal';
-import { AddJudgeModalProps } from '../referees-modal/referees-modal.types';
+import { RefereesModal } from '../referees-modal';
+import { AddRefereeModalProps } from '../referees-modal/referees-modal.types';
 
-export const AddJudgeModal = ({ isOpen, onClose }: AddJudgeModalProps) => {
+export const AddRefereeModal = ({ isOpen, onClose }: AddRefereeModalProps) => {
   const handleSubmit = () => {
     //submit
   };
 
   return (
-    <JudgesModal
+    <RefereesModal
       isOpen={isOpen}
       title="Добавление судьи"
       onClose={onClose}

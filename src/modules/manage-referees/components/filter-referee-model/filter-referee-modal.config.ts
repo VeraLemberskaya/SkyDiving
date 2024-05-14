@@ -4,6 +4,6 @@ import { validationMessages } from '@constants/validation';
 
 const { REQUIRED } = validationMessages;
 
-export const judgesFilterSchema = z.object({
+export const refereesFilterSchema = z.object({
   category: z.string().refine((value) => value.trim() !== '', REQUIRED),
 });

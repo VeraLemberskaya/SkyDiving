@@ -1,1 +1,1 @@
-export { CompetitionJudges as default } from './competition-referees';
+export { CompetitionReferees as default } from './competition-referees';
