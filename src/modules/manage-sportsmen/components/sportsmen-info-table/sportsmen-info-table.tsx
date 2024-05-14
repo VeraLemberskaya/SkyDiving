@@ -109,6 +109,7 @@ export const SportsmenInfoTable = ({
                   />
                   <DeletePopConfirm
                     disabled={disabled}
+                    size="middle"
                     title="Вы уверены что хотите удалить спортсмена?"
                   />
                 </Flex>

@@ -93,7 +93,10 @@ export const JudgesInfoTable = ({
               {value}
               <Flex gap="small">
                 <EditButton onClick={handleEdit(record)} />
-                <DeletePopConfirm title="Вы уверены что хотите удалить судью?" />
+                <DeletePopConfirm
+                  size="middle"
+                  title="Вы уверены что хотите удалить судью?"
+                />
               </Flex>
             </Flex>
           )}

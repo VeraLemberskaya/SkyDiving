@@ -1,19 +1,16 @@
-import { DeleteTwoTone } from '@ant-design/icons';
-import { Flex, Button, theme } from 'antd';
+import { Flex } from 'antd';
+
+import { DeletePopConfirm } from '@components/delete-popconfirm';
 
 import { ParticipantNodeProps } from '../../manage-participants-tree.types';
 
 export const ParticipantNode = ({ participant }: ParticipantNodeProps) => {
-  const { token } = theme.useToken();
-
   return (
     <Flex gap="middle" justify="space-between">
       {participant.fullName}
-      <Button
-        icon={<DeleteTwoTone twoToneColor={token.colorError} />}
-        shape="circle"
+      <DeletePopConfirm
         size="small"
-        type="text"
+        title="Вы уверены что хотите удалить спортсмена из команды?"
       />
     </Flex>
   );

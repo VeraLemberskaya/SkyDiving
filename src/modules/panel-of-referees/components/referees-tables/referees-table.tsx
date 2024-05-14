@@ -36,7 +36,10 @@ export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
           render={(value) => (
             <Flex justify="space-between">
               {value}
-              <DeletePopConfirm title="Вы уверены что хотите удалить судью?" />
+              <DeletePopConfirm
+                size="middle"
+                title="Вы уверены что хотите удалить судью?"
+              />
             </Flex>
           )}
           title="Категория"

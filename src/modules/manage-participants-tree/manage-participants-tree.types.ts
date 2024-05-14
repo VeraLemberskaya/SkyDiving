@@ -4,6 +4,10 @@ export interface ParticipantNodeProps {
   participant: Participant;
 }
 
+export interface TeamNodeProps {
+  team: Team;
+}
+
 export interface TreeHeaderProps {
   title: string;
   onAdd: () => void;

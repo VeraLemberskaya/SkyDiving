@@ -1,7 +1,9 @@
 import { DeleteTwoTone } from '@ant-design/icons';
 import { Button, Popconfirm, theme } from 'antd';
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
 interface DeletePopConfirmProps {
+  size: SizeType;
   title: string;
   disabled?: boolean;
   onCancel?: () => void;
@@ -9,6 +11,7 @@ interface DeletePopConfirmProps {
 }
 
 export const DeletePopConfirm = ({
+  size,
   title,
   disabled = false,
   onCancel,
@@ -31,7 +34,7 @@ export const DeletePopConfirm = ({
         disabled={disabled}
         icon={<DeleteTwoTone twoToneColor={color} />}
         shape="circle"
-        size="middle"
+        size={size}
         type="text"
       />
     </Popconfirm>
