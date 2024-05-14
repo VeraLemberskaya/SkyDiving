@@ -26,7 +26,7 @@ export const CreateCompetitionForm = () => {
   const { mutate: createCompetition } = useMutation({
     mutationFn: API.competitions.createCompetition,
     onSuccess: ({ data }) => {
-      navigate(routes.COMPETITION_JUDGES_BY_ID(data.id));
+      navigate(routes.COMPETITION_REFEREES_BY_ID(data.id));
     },
   });
 

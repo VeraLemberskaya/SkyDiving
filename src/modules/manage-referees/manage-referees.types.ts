@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { Referee } from '@api/types';
+import { Referee } from '@api/mock-types';
 
 export interface RefereeInfoTableProps {
   loading?: boolean;
