@@ -1,4 +1,4 @@
-import { Participant, Team } from '@api/types';
+import { Participant, Team } from '@api/mock-types';
 
 export interface ParticipantNodeProps {
   participant: Participant;

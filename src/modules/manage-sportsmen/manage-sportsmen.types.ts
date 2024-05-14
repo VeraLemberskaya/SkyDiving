@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { Gender, Sportsman } from '@api/types';
+import { Gender, Sportsman } from '@api/mock-types';
 
 export interface ManageSportsmenProps {
   onlyExternal?: boolean;

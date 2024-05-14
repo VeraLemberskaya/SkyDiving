@@ -1,5 +1,5 @@
 import { categories, sportDegrees } from '@api/mocks';
-import { Gender } from '@api/types';
+import { Gender } from '@api/mock-types';
 
 export const genderOptions: { value: Gender; label: string }[] = [
   {

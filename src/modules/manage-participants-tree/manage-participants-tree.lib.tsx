@@ -1,6 +1,6 @@
 import { Key } from 'react';
 
-import { Participant, Team } from '@api/types';
+import { Participant, Team } from '@api/mock-types';
 
 import { ParticipantNode } from './components/participant-node';
 import { TeamNode } from './components/team-node';

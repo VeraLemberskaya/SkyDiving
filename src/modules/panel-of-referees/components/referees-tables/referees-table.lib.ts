@@ -1,4 +1,5 @@
-import { CompetitionReferee } from '@api/types';
+import { CompetitionReferee } from '@api/mock-types';
+
 import { getFullName } from '@utils/getFullName';
 
 import { RefereeInfoDataType } from '../../panel-of-referees.types';

@@ -1,4 +1,4 @@
-import { CompetitionReferee } from '@api/types';
+import { CompetitionReferee } from '@api/mock-types';
 
 export const mainRefereesData: CompetitionReferee[] = [
   {

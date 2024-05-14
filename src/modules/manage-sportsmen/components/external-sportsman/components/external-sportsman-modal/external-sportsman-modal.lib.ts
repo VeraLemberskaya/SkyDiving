@@ -1,4 +1,4 @@
-import { Sportsman } from '@api/types';
+import { Sportsman } from '@api/mock-types';
 
 import { SportsmanFormValues } from './external-sportsman-modal.types';
 

@@ -1,4 +1,5 @@
-import { Referee } from '@api/types';
+import { Referee } from '@api/mock-types';
+
 import { getFullName } from '@utils/getFullName';
 
 import { RefereeInfoDataType } from '../../manage-referees.types';

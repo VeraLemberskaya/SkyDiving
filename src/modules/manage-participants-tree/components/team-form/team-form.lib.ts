@@ -1,4 +1,4 @@
-import { Team } from '@api/types';
+import { Team } from '@api/mock-types';
 
 export const getDefaultValues = (team?: Team) => ({
   name: team?.name ?? '',

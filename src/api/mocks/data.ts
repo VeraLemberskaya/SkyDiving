@@ -1,4 +1,4 @@
-import { Referee, Sportsman } from '@api/types';
+import { Referee, Sportsman } from '@api/mock-types';
 
 export const refereeData: Referee[] = [
   {

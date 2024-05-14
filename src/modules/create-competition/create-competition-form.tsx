@@ -2,33 +2,55 @@ import { Button, Flex, Typography } from 'antd';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 
 import {
   InputField,
   InputNumberField,
   RangeField,
 } from '@components/form-fields';
+import { API } from '@api/index';
+import { CreateCompetitionData } from '@api/types';
 import { routes } from '@constants/routes';
 
 import styles from './create-competition-form.module.scss';
-import { CreateCompetitionData } from './create-competition-form.types';
+import { CreateCompetitionValues } from './create-competition-form.types';
 import {
   createCompetitionSchema,
   defaultValues,
 } from './create-competition-form.config';
 
 export const CreateCompetitionForm = () => {
-  const { handleSubmit, control } = useForm<CreateCompetitionData>({
+  const navigate = useNavigate();
+
+  const { mutate: createCompetition } = useMutation({
+    mutationFn: API.competitions.createCompetition,
+    onSuccess: ({ data }) => {
+      navigate(routes.COMPETITION_JUDGES_BY_ID(data.id));
+    },
+  });
+
+  const { handleSubmit, control } = useForm<CreateCompetitionValues>({
     defaultValues,
     mode: 'onChange',
     resolver: zodResolver(createCompetitionSchema),
   });
 
-  const navigate = useNavigate();
+  const onSubmit = ({
+    name,
+    place,
+    numberOfStages,
+    period,
+  }: CreateCompetitionValues) => {
+    const data: CreateCompetitionData = {
+      name,
+      place,
+      numberOfStages: Number(numberOfStages),
+      beginDate: period[0].toISOString(),
+      endDate: period[1].toISOString(),
+    };
 
-  const onSubmit = () => {
-    //submit
-    navigate(routes.COMPETITION_REFEREES_BY_ID(1));
+    createCompetition(data);
   };
 
   return (
@@ -52,7 +74,7 @@ export const CreateCompetitionForm = () => {
               required: true,
             }}
             control={control}
-            name="location"
+            name="place"
           />
           <RangeField
             componentProps={{
@@ -71,7 +93,7 @@ export const CreateCompetitionForm = () => {
               required: true,
             }}
             control={control}
-            name="stageCount"
+            name="numberOfStages"
           />
         </Flex>
         <Button htmlType="submit" type="primary">
