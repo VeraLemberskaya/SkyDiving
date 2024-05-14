@@ -1,7 +1,10 @@
 import { CompetitionJudge } from '@api/types';
 
-export interface JudgeDataType extends Omit<CompetitionJudge, 'id'> {
+export interface JudgeInfoDataType
+  extends Pick<CompetitionJudge, 'serialNumber' | 'category'> {
   key: string | number;
+  fullName: string;
+  work: string;
 }
 
 export interface AddJudgeFormValues {

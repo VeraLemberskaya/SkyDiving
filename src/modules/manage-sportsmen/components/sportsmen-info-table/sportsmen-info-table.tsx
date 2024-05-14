@@ -82,12 +82,12 @@ export const SportsmenInfoTable = ({
         }
       >
         <Table.Column dataIndex="serialNumber" key="serialNumber" title="№" />
-        <Table.Column
+        <Table.Column<SportsmenInfoDataType>
           dataIndex="fullName"
           key="fullName"
-          render={(value) => (
+          render={(value, { id }) => (
             <Flex align="center" gap="small">
-              {start}
+              {start && start(id)}
               {value}
             </Flex>
           )}

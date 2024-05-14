@@ -1,1 +1,1 @@
-export * from './assistant-layout';
+export { AssistantLayout } from './assistant-layout';

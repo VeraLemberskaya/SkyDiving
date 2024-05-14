@@ -4,6 +4,7 @@ import { Gender, Sportsman } from '@api/types';
 
 export interface ManageSportsmenProps {
   onlyExternal?: boolean;
+  onManageCredential?: (sportsmanId: number) => void;
 }
 
 export interface SportsmenInfoDataType
@@ -14,9 +15,9 @@ export interface SportsmenInfoDataType
 
 export interface SportsmenInfoTableProps {
   data: Sportsman[];
-  start?: ReactNode;
   loading?: boolean;
   disableActionsForInternal?: boolean;
+  start?: (sportsmanId: number) => ReactNode;
 }
 
 export interface SportsmanModalProps<Values> {

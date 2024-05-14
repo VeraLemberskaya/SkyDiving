@@ -14,9 +14,16 @@ import { useManageSportsmenStore } from './manage-sportsmen.store';
 
 export const ManageSportsmen = ({
   onlyExternal = false,
+  onManageCredential,
 }: ManageSportsmenProps) => {
   const modal = useManageSportsmenStore((state) => state.modal);
   const closeModal = useManageSportsmenStore((state) => state.closeModal);
+
+  const handleManageCredentials = (sportsmanId: number) => () => {
+    if (onManageCredential) {
+      onManageCredential(sportsmanId);
+    }
+  };
 
   const AddSportsmanModal = onlyExternal
     ? AddExternalSportsmanModal
@@ -35,7 +42,13 @@ export const ManageSportsmen = ({
       <SportsmenInfoTable
         data={sportsmenData}
         disableActionsForInternal={onlyExternal}
-        start={!onlyExternal ? <ManageCredentialButton /> : undefined}
+        start={(sportsmanId) =>
+          !onlyExternal ? (
+            <ManageCredentialButton
+              onClick={handleManageCredentials(sportsmanId)}
+            />
+          ) : undefined
+        }
       />
       <AddSportsmanModal isOpen={isAddModalOpen} onClose={closeModal} />
       <SportsmenFilterModal isOpen={isFilterModalOpen} onClose={closeModal} />
