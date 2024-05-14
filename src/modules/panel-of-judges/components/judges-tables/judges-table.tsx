@@ -6,15 +6,10 @@ import { DeletePopConfirm } from '@components/delete-popconfirm';
 
 import { JudgesTableProps } from '../../panel-of-judges.types';
 
+import { mapJudgesToTableData } from './judges-table.lib';
+
 export const JudgesTable = ({ data, title, onAddJudge }: JudgesTableProps) => {
-  const tableData = useMemo(
-    () =>
-      data.map(({ id, ...data }) => ({
-        key: id,
-        ...data,
-      })),
-    [data],
-  );
+  const tableData = useMemo(() => mapJudgesToTableData(data), [data]);
 
   return (
     <Table bordered dataSource={tableData} pagination={false} size="small">

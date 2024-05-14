@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, SelectField } from '@components/form-fields';
+import { getFullName } from '@utils/getFullName';
 
 import { judges } from '../../mocks/data';
 import {
@@ -31,10 +32,12 @@ export const AddJudgeModal = ({ isOpen, onClose }: AddJudgeModalProps) => {
     onClose();
   };
 
-  const selectOptions = judges.map((judge) => ({
-    value: judge.id,
-    label: `${judge.fullName} (${judge.category})`,
-  }));
+  const selectOptions = judges.map(
+    ({ id, firstName, secondName, patronymic, category }) => ({
+      value: id,
+      label: `${getFullName(firstName, secondName, patronymic)} (${category})`,
+    }),
+  );
 
   return (
     <Modal

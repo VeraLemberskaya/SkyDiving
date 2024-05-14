@@ -2,6 +2,8 @@ import z from 'zod';
 
 import { validationMessages } from '@constants/validation';
 
+const { REQUIRED } = validationMessages;
+
 export const defaultValues = {
   name: '',
   location: '',
@@ -10,12 +12,10 @@ export const defaultValues = {
 };
 
 export const createCompetitionSchema = z.object({
-  name: z.string().min(1, validationMessages.REQUIRED),
-  location: z.string().min(1, validationMessages.REQUIRED),
+  name: z.string().min(1, REQUIRED),
+  location: z.string().min(1, REQUIRED),
   period: z.tuple([z.any(), z.any()], {
-    invalid_type_error: validationMessages.REQUIRED,
+    invalid_type_error: REQUIRED,
   }),
-  stageCount: z
-    .number({ invalid_type_error: validationMessages.REQUIRED })
-    .min(1),
+  stageCount: z.number({ invalid_type_error: REQUIRED }).min(1),
 });

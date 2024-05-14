@@ -6,7 +6,12 @@ import { EditButton } from '@components/edit-button';
 import { DeletePopConfirm } from '@components/delete-popconfirm';
 import { paginationConfig } from '@constants/pagination';
 
-import { JudgeInfoTableProps } from './judges-info-table.types';
+import {
+  JudgeInfoDataType,
+  JudgeInfoTableProps,
+} from '../../manage-judges.types';
+import { JudgesSearch } from '../judges-search';
+
 import { mapJudgesToTableData } from './judges-info-table.lib';
 
 const { current, pageSize } = paginationConfig;
@@ -15,11 +20,20 @@ export const JudgesInfoTable = ({
   start,
   loading,
   data,
+  onAdd,
+  onEdit,
+  onFilter,
 }: JudgeInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
 
   const handleTableChange: TableProps['onChange'] = ({ current }) => {
     if (current) setCurrentPage(current);
+  };
+
+  const handleEdit = (data: JudgeInfoDataType) => () => {
+    if (onEdit) {
+      onEdit(Number(data.key));
+    }
   };
 
   const tableData = useMemo(() => mapJudgesToTableData(data), [data]);
@@ -40,39 +54,45 @@ export const JudgesInfoTable = ({
       <Table.ColumnGroup
         title={
           <Flex justify="space-between">
-            Список судей
+            <JudgesSearch />
             <Flex gap="small">
               <Button
                 icon={<PlusOutlined />}
                 shape="circle"
                 size="middle"
                 type="primary"
+                onClick={onAdd}
               />
-              <Button icon={<FilterTwoTone />} shape="circle" size="middle" />
+              <Button
+                icon={<FilterTwoTone />}
+                shape="circle"
+                size="middle"
+                onClick={onFilter}
+              />
             </Flex>
           </Flex>
         }
       >
         <Table.Column dataIndex="serialNumber" key="serialNumber" title="№" />
-        <Table.Column
+        <Table.Column<JudgeInfoDataType>
           dataIndex="fullName"
           key="fullName"
-          render={(value) => (
+          render={(value, { id }) => (
             <Flex align="center" gap="small">
-              {start}
+              {start && start(id)}
               {value}
             </Flex>
           )}
           title="ФИО"
         />
-        <Table.Column
+        <Table.Column<JudgeInfoDataType>
           dataIndex="category"
           key="category"
-          render={(value) => (
+          render={(value, record) => (
             <Flex align="center" justify="space-between">
               {value}
               <Flex gap="small">
-                <EditButton />
+                <EditButton onClick={handleEdit(record)} />
                 <DeletePopConfirm title="Вы уверены что хотите удалить судью?" />
               </Flex>
             </Flex>

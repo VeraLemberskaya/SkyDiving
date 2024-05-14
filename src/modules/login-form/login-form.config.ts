@@ -2,12 +2,14 @@ import z from 'zod';
 
 import { validationMessages } from '@constants/validation';
 
+const { REQUIRED } = validationMessages;
+
 export const defaultValues = {
   login: '',
   password: '',
 };
 
 export const loginSchema = z.object({
-  login: z.string().min(1, validationMessages.REQUIRED),
-  password: z.string().min(1, validationMessages.REQUIRED),
+  login: z.string().min(1, REQUIRED),
+  password: z.string().min(1, REQUIRED),
 });

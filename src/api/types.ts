@@ -14,7 +14,9 @@ export interface Team {
 export interface Judge {
   id: number;
   serialNumber: number;
-  fullName: string;
+  firstName: string;
+  secondName: string;
+  patronymic: string;
   category: string;
 }
 
