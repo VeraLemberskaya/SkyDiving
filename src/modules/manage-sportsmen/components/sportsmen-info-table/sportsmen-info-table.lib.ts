@@ -1,4 +1,4 @@
-import { Sportsman } from '@api/types';
+import { Sportsman } from '@api/mock-types';
 import { getFullName } from '@utils/getFullName';
 
 import { SportsmenInfoDataType } from '../../manage-sportsmen.types';

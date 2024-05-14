@@ -1,4 +1,4 @@
-import { Gender } from '@api/types';
+import { Gender } from '@api/mock-types';
 
 export interface SportsmanFormValues {
   firstName: string;

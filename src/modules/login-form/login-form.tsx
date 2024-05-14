@@ -3,21 +3,22 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, PasswordField } from '@components/form-fields';
+import { Credentials } from '@api/types';
 
 import styles from './login-form.module.scss';
-import { LoginData } from './login-form.types';
 import { defaultValues, loginSchema } from './login-form.config';
+import { useLoginMutation } from './login-form.hooks';
 
 export const LoginForm = () => {
-  const { handleSubmit, control } = useForm<LoginData>({
+  const { mutate: signIn, isPending } = useLoginMutation();
+
+  const { handleSubmit, control } = useForm<Credentials>({
     defaultValues,
     mode: 'onChange',
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = () => {
-    //submit
-  };
+  const onSubmit = async (data: Credentials) => signIn(data);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -41,6 +42,7 @@ export const LoginForm = () => {
         <Button
           className={styles.form_button}
           htmlType="submit"
+          loading={isPending}
           size="large"
           type="primary"
         >

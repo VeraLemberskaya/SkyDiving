@@ -1,4 +1,4 @@
-import { CompetitionJudge } from '@api/types';
+import { CompetitionJudge } from '@api/mock-types';
 import { getFullName } from '@utils/getFullName';
 
 import { JudgeInfoDataType } from '../../panel-of-judges.types';
