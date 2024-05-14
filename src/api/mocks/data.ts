@@ -1,6 +1,6 @@
-import { Judge, Sportsman } from '@api/types';
+import { Referee, Sportsman } from '@api/types';
 
-export const judgesData: Judge[] = [
+export const judgesData: Referee[] = [
   {
     id: 1,
     serialNumber: 1,

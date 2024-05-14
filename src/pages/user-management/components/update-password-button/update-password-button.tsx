@@ -4,11 +4,13 @@ import { Button } from 'antd';
 
 import style from './update-password-button.module.scss';
 
-interface EditButtonProps {
+interface UpdatePasswordButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export const UpdatePasswordButton = ({ onClick }: EditButtonProps) => {
+export const UpdatePasswordButton = ({
+  onClick,
+}: UpdatePasswordButtonProps) => {
   return (
     <Button
       icon={<SyncOutlined className={style.button} />}

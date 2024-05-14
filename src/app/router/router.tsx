@@ -8,7 +8,7 @@ import { routes } from '@constants/routes';
 
 const Login = lazy(() => import('@pages/login'));
 const NewCompetition = lazy(() => import('@pages/new-competition'));
-const CompetitionJudges = lazy(() => import('@pages/competition-judges'));
+const CompetitionJudges = lazy(() => import('@pages/competition-referees'));
 const ManageParticipants = lazy(() => import('@pages/manage-participants'));
 const CompetitionParticipants = lazy(
   () => import('@pages/competition-participants'),

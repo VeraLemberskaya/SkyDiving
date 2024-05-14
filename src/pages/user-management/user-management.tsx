@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Flex, Tabs, TabsProps } from 'antd';
 
-import { ManageJudges } from '@modules/manage-judges';
+import { ManageJudges } from '@modules/manage-referees';
 import { ManageSportsmen } from '@modules/manage-sportsmen';
 
 import styles from './user-management.module.scss';
