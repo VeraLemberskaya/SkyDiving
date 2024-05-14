@@ -26,7 +26,7 @@ export interface Modal {
 }
 
 export interface RefereeFilter {
-  category?: string;
+  category: string | null;
 }
 
 export interface State {
@@ -41,5 +41,5 @@ export interface Actions {
   closeModal: () => void;
   setRefereeId: (id: number) => void;
   setSearch: (value: string) => void;
-  setFilter: (filter: RefereeFilter) => void;
+  setFilter: (filter: RefereeFilter | null) => void;
 }

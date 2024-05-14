@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Button, Flex, Table, TableProps } from 'antd';
+import { Badge, Button, Flex, Table, TableProps } from 'antd';
 import { FilterTwoTone, PlusOutlined } from '@ant-design/icons';
 
 import { EditButton } from '@components/edit-button';
@@ -24,6 +24,8 @@ export const SportsmenInfoTable = ({
   disableActionsForInternal = false,
 }: SportsmenInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
+
+  const filter = useManageSportsmenStore((state) => state.filter);
   const openModal = useManageSportsmenStore((state) => state.openModal);
   const setSportsmanId = useManageSportsmenStore(
     (state) => state.setSportsmanId,
@@ -70,12 +72,14 @@ export const SportsmenInfoTable = ({
                 type="primary"
                 onClick={handleAddClick}
               />
-              <Button
-                icon={<FilterTwoTone />}
-                shape="circle"
-                size="middle"
-                onClick={handleFilterClick}
-              />
+              <Badge dot={Boolean(filter)} offset={[-5, 5]}>
+                <Button
+                  icon={<FilterTwoTone />}
+                  shape="circle"
+                  size="middle"
+                  onClick={handleFilterClick}
+                />
+              </Badge>
             </Flex>
           </Flex>
         }

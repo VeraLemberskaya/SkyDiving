@@ -1,9 +1,8 @@
-import { Modal } from 'antd';
+import { Button, Modal } from 'antd';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 import { SelectField } from '@components/form-fields';
-import { categories } from '@api/mocks';
+import { categoryOptions } from '@constants/options';
 
 import { useManageRefereesStore } from '../../manage-referees.store';
 import { RefereeFilter } from '../../manage-referees.types';
@@ -13,7 +12,6 @@ import {
   RefereesFilterProps,
   RefereesFilterValues,
 } from './filter-referee-modal.type';
-import { refereesFilterSchema } from './filter-referee-modal.config';
 import { getDefaultValues } from './filter-referee-model.lib';
 
 export const FilterRefereesModal = ({
@@ -23,11 +21,12 @@ export const FilterRefereesModal = ({
   const filter = useManageRefereesStore((state) => state.filter);
   const setFilter = useManageRefereesStore((state) => state.setFilter);
 
-  const { handleSubmit, control } = useForm<RefereesFilterValues>({
-    defaultValues: getDefaultValues(filter),
-    mode: 'onChange',
-    resolver: zodResolver(refereesFilterSchema),
-  });
+  const { handleSubmit, reset, watch, formState, control } =
+    useForm<RefereesFilterValues>({
+      defaultValues: getDefaultValues(filter),
+    });
+
+  const filterValues = watch();
 
   const onSubmit = (values: RefereeFilter) => {
     setFilter(values);
@@ -35,26 +34,42 @@ export const FilterRefereesModal = ({
     onClose();
   };
 
-  const selectOptions = categories.map((category) => ({
-    value: category.name,
-    label: category.name,
-  }));
+  const resetFilter = () => {
+    reset(getDefaultValues(null));
+    setFilter(null);
+  };
+
+  const isDisabled = Object.values(filterValues).every(
+    (value) => value === null,
+  );
 
   return (
     <Modal
       centered
       destroyOnClose
+      footer={[
+        <Button disabled={isDisabled} key="filter" onClick={resetFilter}>
+          Сбросить
+        </Button>,
+        <Button
+          disabled={!formState.isDirty}
+          key="ok"
+          type="primary"
+          onClick={handleSubmit(onSubmit)}
+        >
+          OK
+        </Button>,
+      ]}
       maskClosable={false}
       open={isOpen}
       title="Выбирите данные для фильтрации"
       onCancel={onClose}
-      onOk={handleSubmit(onSubmit)}
     >
       <form className={styles.form}>
         <SelectField
           componentProps={{
             showSearch: true,
-            options: selectOptions,
+            options: categoryOptions,
             placeholder: 'Выберите судейскую категрию',
             label: 'Судейская категория',
           }}

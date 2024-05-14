@@ -4,5 +4,5 @@ export interface RefereesFilterProps {
 }
 
 export interface RefereesFilterValues {
-  category: string;
+  category: string | null;
 }

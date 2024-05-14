@@ -41,9 +41,9 @@ export interface Modal {
 }
 
 export interface SportsmenFilter {
-  sportDegree?: string;
-  gender?: Gender;
-  isInternal?: boolean;
+  sportDegree: string | null;
+  gender: Gender | null;
+  isInternal: boolean | null;
 }
 
 export interface State {
@@ -58,5 +58,5 @@ export interface Actions {
   closeModal: () => void;
   setSportsmanId: (id: number) => void;
   setSearch: (value: string) => void;
-  setFilter: (filter: SportsmenFilter) => void;
+  setFilter: (filter: SportsmenFilter | null) => void;
 }
