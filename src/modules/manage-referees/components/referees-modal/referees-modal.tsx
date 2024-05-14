@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, SelectField } from '@components/form-fields';
-import { categories } from '@api/mocks';
+import { categories, refereeData } from '@api/mocks';
 
 import styles from './referees-modal.module.scss';
 import { RefereeFormValues, RefereesModalProps } from './referees-modal.types';
@@ -13,10 +13,12 @@ import { refereesSchema } from './referees-modal.config';
 export const RefereesModal = ({
   isOpen,
   title,
-  referee,
+  refereeId,
   onClose,
   onSubmit: onFormSubmit,
-}: RefereesModalProps) => {
+}: RefereesModalProps<RefereeFormValues>) => {
+  const referee = refereeData.find(({ id }) => id === refereeId);
+
   const { handleSubmit, reset, control } = useForm<RefereeFormValues>({
     defaultValues: getDefaultValues(referee),
     mode: 'onChange',

@@ -1,11 +1,12 @@
 import { Referee } from '@api/types';
 
-export interface RefereesModalProps {
+export interface RefereesModalProps<Values> {
   referee?: Referee;
   isOpen: boolean;
+  refereeId?: number;
   title: string;
   onClose: () => void;
-  onSubmit: (values: RefereeFormValues) => void;
+  onSubmit: (values: Values) => void;
 }
 
 export interface RefereeFormValues {
@@ -15,11 +16,7 @@ export interface RefereeFormValues {
   category: string;
 }
 
-export interface AddRefereeModalProps {
+export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-}
-
-export interface EditRefereeModalProps extends AddRefereeModalProps {
-  referee: Referee;
 }

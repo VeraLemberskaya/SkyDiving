@@ -5,6 +5,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { SelectField } from '@components/form-fields';
 import { categories } from '@api/mocks';
 
+import { useManageRefereesStore } from '../../manage-referees.store';
+import { RefereeFilter } from '../../manage-referees.types';
+
 import styles from './filter-referee-modal.module.scss';
 import {
   RefereesFilterProps,
@@ -15,24 +18,20 @@ import { getDefaultValues } from './filter-referee-model.lib';
 
 export const FilterRefereesModal = ({
   isOpen,
-  title,
-  referee,
   onClose,
 }: RefereesFilterProps) => {
-  const { handleSubmit, reset, control } = useForm<RefereesFilterValues>({
-    defaultValues: getDefaultValues(referee),
+  const filter = useManageRefereesStore((state) => state.filter);
+  const setFilter = useManageRefereesStore((state) => state.setFilter);
+
+  const { handleSubmit, control } = useForm<RefereesFilterValues>({
+    defaultValues: getDefaultValues(filter),
     mode: 'onChange',
     resolver: zodResolver(refereesFilterSchema),
   });
 
-  const onSubmit = () => {
+  const onSubmit = (values: RefereeFilter) => {
+    setFilter(values);
     //submit
-    reset();
-    onClose();
-  };
-
-  const onCancel = () => {
-    reset();
     onClose();
   };
 
@@ -47,8 +46,8 @@ export const FilterRefereesModal = ({
       destroyOnClose
       maskClosable={false}
       open={isOpen}
-      title={title}
-      onCancel={onCancel}
+      title="Выбирите данные для фильтрации"
+      onCancel={onClose}
       onOk={handleSubmit(onSubmit)}
     >
       <form className={styles.form}>

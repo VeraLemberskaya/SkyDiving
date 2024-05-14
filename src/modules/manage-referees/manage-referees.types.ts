@@ -5,9 +5,6 @@ import { Referee } from '@api/types';
 export interface RefereeInfoTableProps {
   loading?: boolean;
   data: Referee[];
-  onAdd?: () => void;
-  onFilter?: () => void;
-  onEdit?: (refereeId: number) => void;
   start?: (refereeId: number) => ReactNode;
 }
 
@@ -17,11 +14,32 @@ export interface RefereeInfoDataType
   fullName: string;
 }
 
-export interface Modal {
-  isOpen: boolean;
-  type: 'edit' | 'add' | 'filter';
-}
-
 export interface ManageRefereesProps {
   onManageCredential?: (refereeId: number) => void;
+}
+
+export type ModalType = 'edit' | 'add' | 'filter';
+
+export interface Modal {
+  isOpen: boolean;
+  type: ModalType;
+}
+
+export interface RefereeFilter {
+  category?: string;
+}
+
+export interface State {
+  modal: Modal;
+  refereeId?: number;
+  filter: RefereeFilter | null;
+  search?: string;
+}
+
+export interface Actions {
+  openModal: (type: ModalType) => void;
+  closeModal: () => void;
+  setRefereeId: (id: number) => void;
+  setSearch: (value: string) => void;
+  setFilter: (filter: RefereeFilter) => void;
 }

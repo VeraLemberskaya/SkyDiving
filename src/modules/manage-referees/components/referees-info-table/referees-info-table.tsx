@@ -11,6 +11,7 @@ import {
   RefereeInfoTableProps,
 } from '../../manage-referees.types';
 import { RefereesSearch } from '../referees-search';
+import { useManageRefereesStore } from '../../manage-referees.store';
 
 import { mapRefereesToTableData } from './referees-info-table.lib';
 
@@ -20,23 +21,26 @@ export const RefereesInfoTable = ({
   start,
   loading,
   data,
-  onAdd,
-  onEdit,
-  onFilter,
 }: RefereeInfoTableProps) => {
   const [currentPage, setCurrentPage] = useState<number>(current);
+  const openModal = useManageRefereesStore((state) => state.openModal);
+  const setRefereeId = useManageRefereesStore((state) => state.setRefereeId);
+
+  const handleAddClick = () => openModal('add');
+  const handleFilterClick = () => openModal('filter');
+  const handleEditClick = (data: RefereeInfoDataType) => () => {
+    setRefereeId(data.id);
+    openModal('edit');
+  };
 
   const handleTableChange: TableProps['onChange'] = ({ current }) => {
     if (current) setCurrentPage(current);
   };
 
-  const handleEdit = (data: RefereeInfoDataType) => () => {
-    if (onEdit) {
-      onEdit(Number(data.key));
-    }
-  };
-
-  const tableData = useMemo(() => mapRefereesToTableData(data), [data]);
+  const tableData: RefereeInfoDataType[] = useMemo(
+    () => mapRefereesToTableData(data),
+    [data],
+  );
 
   return (
     <Table
@@ -61,13 +65,13 @@ export const RefereesInfoTable = ({
                 shape="circle"
                 size="middle"
                 type="primary"
-                onClick={onAdd}
+                onClick={handleAddClick}
               />
               <Button
                 icon={<FilterTwoTone />}
                 shape="circle"
                 size="middle"
-                onClick={onFilter}
+                onClick={handleFilterClick}
               />
             </Flex>
           </Flex>
@@ -92,7 +96,7 @@ export const RefereesInfoTable = ({
             <Flex align="center" justify="space-between">
               {value}
               <Flex gap="small">
-                <EditButton onClick={handleEdit(record)} />
+                <EditButton onClick={handleEditClick(record)} />
                 <DeletePopConfirm
                   size="middle"
                   title="Вы уверены что хотите удалить судью?"

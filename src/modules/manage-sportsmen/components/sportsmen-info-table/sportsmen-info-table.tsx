@@ -29,13 +29,12 @@ export const SportsmenInfoTable = ({
     (state) => state.setSportsmanId,
   );
 
+  const handleAddClick = () => openModal('add');
+  const handleFilterClick = () => openModal('filter');
   const handleEditClick = (data: SportsmenInfoDataType) => () => {
     setSportsmanId(data.id);
     openModal('edit');
   };
-
-  const handleAddClick = () => openModal('add');
-  const handleFilterClick = () => openModal('filter');
 
   const handleTableChange: TableProps['onChange'] = ({ current }) => {
     if (current) setCurrentPage(current);
