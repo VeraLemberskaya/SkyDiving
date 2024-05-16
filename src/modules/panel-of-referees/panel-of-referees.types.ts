@@ -1,4 +1,4 @@
-import { CompetitionReferee } from '@api/types';
+import { CompetitionReferee } from '@api/mock-types';
 
 export interface RefereeInfoDataType
   extends Pick<CompetitionReferee, 'serialNumber' | 'category'> {
