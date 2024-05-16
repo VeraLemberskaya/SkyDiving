@@ -1,10 +1,7 @@
-import { Referee } from '@api/types';
-
 export interface RefereesModalProps<Values> {
-  referee?: Referee;
+  title: string;
   isOpen: boolean;
   refereeId?: number;
-  title: string;
   onClose: () => void;
   onSubmit: (values: Values) => void;
 }

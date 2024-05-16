@@ -1,4 +1,4 @@
-import { Referee } from '@api/types';
+import { Referee } from '@api/mock-types';
 
 import { RefereeFormValues } from './referees-modal.types';
 
