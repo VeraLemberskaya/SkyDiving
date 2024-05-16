@@ -1,4 +1,4 @@
-import { Button, Flex, Typography } from 'antd';
+import { Button, Flex } from 'antd';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
@@ -54,52 +54,49 @@ export const CreateCompetitionForm = () => {
   };
 
   return (
-    <>
-      <Typography.Title level={5}>Новое соревнование</Typography.Title>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <Flex vertical className={styles.fields} gap="small">
-          <InputField
-            componentProps={{
-              placeholder: 'Введите название соревнования',
-              label: 'Название',
-              required: true,
-            }}
-            control={control}
-            name="name"
-          />
-          <InputField
-            componentProps={{
-              placeholder: 'Введите место проведения (город)',
-              label: 'Место проведения (город)',
-              required: true,
-            }}
-            control={control}
-            name="place"
-          />
-          <RangeField
-            componentProps={{
-              placeholder: ['Начало', 'Конец'],
-              label: 'Период соревнования',
-              required: true,
-            }}
-            control={control}
-            name="period"
-          />
-          <InputNumberField
-            componentProps={{
-              placeholder: ' Введите количество этапов',
-              label: 'Количество этапов',
-              min: 1,
-              required: true,
-            }}
-            control={control}
-            name="numberOfStages"
-          />
-        </Flex>
-        <Button htmlType="submit" type="primary">
-          Продолжить
-        </Button>
-      </form>
-    </>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <Flex vertical className={styles.fields} gap="small">
+        <InputField
+          componentProps={{
+            placeholder: 'Введите название соревнования',
+            label: 'Название',
+            required: true,
+          }}
+          control={control}
+          name="name"
+        />
+        <InputField
+          componentProps={{
+            placeholder: 'Введите место проведения (город)',
+            label: 'Место проведения (город)',
+            required: true,
+          }}
+          control={control}
+          name="place"
+        />
+        <RangeField
+          componentProps={{
+            placeholder: ['Начало', 'Конец'],
+            label: 'Период соревнования',
+            required: true,
+          }}
+          control={control}
+          name="period"
+        />
+        <InputNumberField
+          componentProps={{
+            placeholder: ' Введите количество этапов',
+            label: 'Количество этапов',
+            min: 1,
+            required: true,
+          }}
+          control={control}
+          name="numberOfStages"
+        />
+      </Flex>
+      <Button htmlType="submit" type="primary">
+        Продолжить
+      </Button>
+    </form>
   );
 };
