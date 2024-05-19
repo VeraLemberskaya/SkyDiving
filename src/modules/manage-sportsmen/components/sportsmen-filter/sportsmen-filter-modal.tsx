@@ -1,4 +1,4 @@
-import { Flex, Modal } from 'antd';
+import { Button, Flex, Modal } from 'antd';
 import { useForm } from 'react-hook-form';
 
 import {
@@ -18,10 +18,12 @@ export const SportsmenFilterModal = ({ isOpen, onClose }: ModalProps) => {
   const filter = useManageSportsmenStore((state) => state.filter);
   const setFilter = useManageSportsmenStore((state) => state.setFilter);
 
-  const { handleSubmit, control } = useForm<SportsmenFilter>({
-    defaultValues: getDefaultValues(filter),
-    mode: 'onChange',
-  });
+  const { handleSubmit, reset, watch, formState, control } =
+    useForm<SportsmenFilter>({
+      defaultValues: getDefaultValues(filter),
+    });
+
+  const filterValues = watch();
 
   const onSubmit = (values: SportsmenFilter) => {
     setFilter(values);
@@ -29,15 +31,36 @@ export const SportsmenFilterModal = ({ isOpen, onClose }: ModalProps) => {
     onClose();
   };
 
+  const resetFilter = () => {
+    reset(getDefaultValues(null));
+    setFilter(null);
+  };
+
+  const isDisabled = Object.values(filterValues).every(
+    (value) => value === null,
+  );
+
   return (
     <Modal
       centered
       destroyOnClose
+      footer={[
+        <Button disabled={isDisabled} key="filter" onClick={resetFilter}>
+          Сбросить
+        </Button>,
+        <Button
+          disabled={!formState.isDirty}
+          key="ok"
+          type="primary"
+          onClick={handleSubmit(onSubmit)}
+        >
+          OK
+        </Button>,
+      ]}
       maskClosable={false}
       open={isOpen}
       title="Введите параметры фильтрации"
       onCancel={onClose}
-      onOk={handleSubmit(onSubmit)}
     >
       <form className={styles.form}>
         <Flex vertical gap="middle">

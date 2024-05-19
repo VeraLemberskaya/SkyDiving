@@ -3,14 +3,16 @@ import { sportsmenData } from '@api/mocks';
 
 import { SportsmenInfoTable } from './components/sportsmen-info-table';
 import { ManageSportsmenProps } from './manage-sportsmen.types';
-import { AddExternalSportsmanModal } from './components/external-sportsman/add-external-sportsman-modal';
+import { SportsmenFilterModal } from './components/sportsmen-filter';
+import { useManageSportsmenStore } from './manage-sportsmen.store';
+import {
+  AddExternalSportsmanModal,
+  EditExternalSportsmanModal,
+} from './components/external-sportsman';
 import {
   AddInternalSportsmanModal,
   EditInternalSportsmanModal,
 } from './components/internal-sportsman';
-import { EditExternalSportsmanModal } from './components/external-sportsman/edit-external-sportsman-modal';
-import { SportsmenFilterModal } from './components/sportsmen-filter';
-import { useManageSportsmenStore } from './manage-sportsmen.store';
 
 export const ManageSportsmen = ({
   onlyExternal = false,

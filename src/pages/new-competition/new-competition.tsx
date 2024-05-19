@@ -1,5 +1,16 @@
+import { Typography } from 'antd';
+
 import { CreateCompetitionForm } from '@modules/create-competition';
 
+import styles from './new-competition.module.scss';
+
 export const NewCompetition = () => {
-  return <CreateCompetitionForm />;
+  return (
+    <>
+      <Typography.Title level={5}>Новое соревнование</Typography.Title>
+      <div className={styles.content}>
+        <CreateCompetitionForm />
+      </div>
+    </>
+  );
 };

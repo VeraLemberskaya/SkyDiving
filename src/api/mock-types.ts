@@ -11,7 +11,7 @@ export interface Team {
   participants: Participant[];
 }
 
-export interface Judge {
+export interface Referee {
   id: number;
   serialNumber: number;
   firstName: string;
@@ -31,7 +31,7 @@ export interface Sportsman {
   gender: Gender;
 }
 
-export interface CompetitionJudge extends Judge {
+export interface CompetitionReferee extends Referee {
   work: string;
 }
 

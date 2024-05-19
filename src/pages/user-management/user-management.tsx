@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Flex, Tabs, TabsProps } from 'antd';
 
-import { ManageJudges } from '@modules/manage-judges';
+import { ManageReferees } from '@modules/manage-referees';
 import { ManageSportsmen } from '@modules/manage-sportsmen';
 
 import styles from './user-management.module.scss';
@@ -24,7 +24,7 @@ export const UserManagement = () => {
     {
       key: '1',
       label: 'Судьи',
-      children: <ManageJudges onManageCredential={handleManageCredentials} />,
+      children: <ManageReferees onManageCredential={handleManageCredentials} />,
     },
     {
       key: '2',

@@ -3,6 +3,7 @@ import { Key } from 'react';
 import { Participant, Team } from '@api/mock-types';
 
 import { ParticipantNode } from './components/participant-node';
+import { TeamNode } from './components/team-node';
 
 export const mapParticipantsToTreeData = (participants: Participant[]) => {
   return participants.map((participant) => ({
@@ -14,7 +15,7 @@ export const mapParticipantsToTreeData = (participants: Participant[]) => {
 
 export const mapTeamsToTreeData = (teams: Team[]) => {
   return teams.map((team) => ({
-    title: team.name,
+    title: <TeamNode team={team} />,
     key: `team${team.id}`,
     children: mapParticipantsToTreeData(team.participants),
   }));

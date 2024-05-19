@@ -1,6 +1,6 @@
-import { Competition, Judge, Sportsman } from '@api/mock-types';
+import { Competition, Referee, Sportsman } from '@api/mock-types';
 
-export const judgesData: Judge[] = [
+export const refereeData: Referee[] = [
   {
     id: 1,
     serialNumber: 1,

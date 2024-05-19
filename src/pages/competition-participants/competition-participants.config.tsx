@@ -8,7 +8,7 @@ export const breadcrumbItems = [
   },
   {
     title: (
-      <Link to={routes.COMPETITION_JUDGES_BY_ID(1)}>Судейская коллегия</Link>
+      <Link to={routes.COMPETITION_REFEREES_BY_ID(1)}>Судейская коллегия</Link>
     ),
   },
   {
