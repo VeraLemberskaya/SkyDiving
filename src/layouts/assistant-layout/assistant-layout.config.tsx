@@ -8,13 +8,13 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 export const menuItems: MenuItem[] = [
   {
-    label: 'Соревнования',
-    key: 'competitions',
+    label: <Link to={routes.COMPETITIONS}>Соревнования</Link>,
+    key: routes.COMPETITIONS,
     icon: <TrophyOutlined />,
   },
   {
     label: <Link to={routes.PARTICIPANTS}>Спортсмены</Link>,
-    key: 'participants',
+    key: routes.PARTICIPANTS,
     icon: <UserOutlined />,
   },
 ];

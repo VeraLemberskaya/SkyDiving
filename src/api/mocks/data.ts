@@ -1,4 +1,4 @@
-import { Referee, Sportsman } from '@api/mock-types';
+import { Competition, Referee, Sportsman } from '@api/mock-types';
 
 export const refereeData: Referee[] = [
   {
@@ -217,5 +217,32 @@ export const categories = [
   {
     id: 4,
     name: 'Судья высшей национальной категории',
+  },
+];
+
+export const competitions: Competition[] = [
+  {
+    id: 1,
+    name: 'Чемпионат РБ',
+    place: 'Гродно',
+    beginDate: '2024-05-14',
+    endDate: '2024-05-24',
+    numberOfStages: 2,
+  },
+  {
+    id: 2,
+    name: 'Чемпионат РБ-2',
+    place: 'Минск',
+    beginDate: '2024-04-14',
+    endDate: '2024-04-16',
+    numberOfStages: 2,
+  },
+  {
+    id: 3,
+    name: 'Чемпионат Скайдайверов',
+    place: 'Барановичи',
+    beginDate: '2024-03-14',
+    endDate: '2024-04-16',
+    numberOfStages: 2,
   },
 ];

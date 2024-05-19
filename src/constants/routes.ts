@@ -6,4 +6,5 @@ export const routes = {
   USER_MANAGEMENT: '/user-management',
   PARTICIPANTS: '/participants',
   COMPETITION_REFEREES_BY_ID: (id: number) => `/competition/${id}/referees`,
+  COMPETITIONS: '/competitions',
 };

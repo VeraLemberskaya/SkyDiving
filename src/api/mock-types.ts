@@ -36,3 +36,12 @@ export interface CompetitionReferee extends Referee {
 }
 
 export type Gender = 'male' | 'female';
+
+export interface Competition {
+  id: number;
+  name: string;
+  beginDate: string;
+  endDate: string;
+  place: string;
+  numberOfStages: number;
+}
