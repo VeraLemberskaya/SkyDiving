@@ -1,5 +1,3 @@
-import dayjs from 'dayjs';
-
 import { ManageSportsman, Referee, Sportsman } from '@api/mock-types';
 
 export const refereeData: Referee[] = [
