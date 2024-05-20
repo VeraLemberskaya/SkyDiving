@@ -15,6 +15,7 @@ const CompetitionParticipants = lazy(
 );
 const UserManagement = lazy(() => import('@pages/user-management'));
 const Competitions = lazy(() => import('@pages/competitions'));
+const Competition = lazy(() => import('@pages/competition'));
 
 const {
   LOGIN,
@@ -24,6 +25,7 @@ const {
   COMPETITION_PARTICIPANTS,
   PARTICIPANTS,
   COMPETITIONS,
+  COMPETITION,
 } = routes;
 
 export const Router = () => {
@@ -43,6 +45,7 @@ export const Router = () => {
             path={COMPETITION_PARTICIPANTS}
           />
           <Route element={<ManageParticipants />} path={PARTICIPANTS} />
+          <Route element={<Competition />} path={COMPETITION} />
         </Route>
         <Route element={<AdminLayout />}>
           <Route element={<UserManagement />} path={USER_MANAGEMENT} />

@@ -3,7 +3,7 @@ import { Button, Popconfirm, theme } from 'antd';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
 interface DeletePopConfirmProps {
-  size: SizeType;
+  size?: SizeType;
   title: string;
   disabled?: boolean;
   onCancel?: () => void;
@@ -11,7 +11,7 @@ interface DeletePopConfirmProps {
 }
 
 export const DeletePopConfirm = ({
-  size,
+  size = 'middle',
   title,
   disabled = false,
   onCancel,
