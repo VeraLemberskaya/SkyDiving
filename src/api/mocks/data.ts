@@ -1,4 +1,9 @@
-import { ManageSportsman, Referee, Sportsman } from '@api/mock-types';
+import {
+  Competition,
+  ManageSportsman,
+  Referee,
+  Sportsman,
+} from '@api/mock-types';
 
 export const refereeData: Referee[] = [
   {
@@ -255,5 +260,32 @@ export const manageSportsmenData: ManageSportsman[] = [
     passportPersonalNumber: '1234565A003PB2',
     issuingAuthority: 'Октябрьский РОВД г. Гродно',
     issuingDate: '2019-02-13',
+  },
+];
+
+export const competitions: Competition[] = [
+  {
+    id: 1,
+    name: 'Чемпионат РБ',
+    place: 'Гродно',
+    beginDate: '2024-05-14',
+    endDate: '2024-05-24',
+    numberOfStages: 2,
+  },
+  {
+    id: 2,
+    name: 'Чемпионат РБ-2',
+    place: 'Минск',
+    beginDate: '2024-04-14',
+    endDate: '2024-04-16',
+    numberOfStages: 2,
+  },
+  {
+    id: 3,
+    name: 'Чемпионат Скайдайверов',
+    place: 'Барановичи',
+    beginDate: '2024-03-14',
+    endDate: '2024-04-16',
+    numberOfStages: 2,
   },
 ];
