@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+import { Dayjs } from 'dayjs';
+import { Control } from 'react-hook-form';
 
 import { Gender, Sportsman } from '@api/mock-types';
 
@@ -26,6 +28,33 @@ export interface SportsmanModalProps<Values> {
   sportsmanId?: number;
   onClose: () => void;
   onSubmit: (values: Values) => void;
+}
+
+export interface SportsmanFormValues {
+  firstName: string;
+  secondName: string;
+  patronymic: string;
+  gender: Gender | null;
+  birthDate: Dayjs | null;
+  birthLocation: string;
+  employment: string;
+  education: string;
+  phone: string;
+  passportSeries: string;
+  passportNumber: string;
+  passportPersonalNumber: string;
+  issuingAuthority: string;
+  issuingDate: Dayjs | null;
+  sportActivityStartYear: Dayjs | null;
+  trainer: string;
+  sportDegree: string;
+  fatherFullName: string;
+  fatherJob: string;
+  fatherPhone: string;
+  motherFullName: string;
+  motherJob: string;
+  motherPhone: string;
+  homeAddress: string;
 }
 
 export interface ModalProps {
@@ -59,4 +88,8 @@ export interface Actions {
   setSportsmanId: (id: number) => void;
   setSearch: (value: string) => void;
   setFilter: (filter: SportsmenFilter | null) => void;
+}
+
+export interface SportsmanFormControlProps {
+  control: Control<SportsmanFormValues>;
 }

@@ -14,6 +14,7 @@ interface FieldProps<T extends FieldValues> {
 export interface FormItemProps<T extends FieldValues> {
   label?: string;
   required?: boolean;
+  className?: string;
   controllerProps: UseControllerProps<T>;
   children: (props: FieldProps<T>) => ReactNode;
 }

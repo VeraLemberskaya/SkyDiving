@@ -31,6 +31,30 @@ export interface Sportsman {
   gender: Gender;
 }
 
+export interface ManageSportsman
+  extends Omit<Sportsman, 'sportDegree' | 'isInternal'> {
+  birthDate: string;
+  birthLocation?: string;
+  employment?: string;
+  education?: string;
+  phone: string;
+  passportSeries: string;
+  passportNumber: string;
+  passportPersonalNumber: string;
+  issuingAuthority: string;
+  issuingDate: string;
+  sportActivityStartYear?: string;
+  trainer?: string;
+  sportDegree?: string;
+  fatherFullName?: string;
+  fatherJob?: string;
+  fatherPhone?: string;
+  motherFullName?: string;
+  motherJob?: string;
+  motherPhone?: string;
+  homeAddress?: string;
+}
+
 export interface CompetitionReferee extends Referee {
   work: string;
 }
