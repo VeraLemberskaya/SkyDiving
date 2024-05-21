@@ -69,3 +69,8 @@ export interface Competition {
   place: string;
   numberOfStages: number;
 }
+
+export interface CompetitionRefereeing extends Competition {
+  roundNumber: number;
+  seriesNumber: number;
+}

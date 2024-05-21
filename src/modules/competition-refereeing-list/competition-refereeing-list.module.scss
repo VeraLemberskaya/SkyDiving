@@ -1,0 +1,7 @@
+@import '@app/styles/mixins';
+
+.list {
+  @include main-template;
+
+  margin-top: 0;
+}
