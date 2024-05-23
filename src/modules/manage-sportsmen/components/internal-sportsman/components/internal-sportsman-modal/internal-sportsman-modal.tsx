@@ -1,4 +1,4 @@
-import { Flex, Modal, Typography } from 'antd';
+import { Modal } from 'antd';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -15,7 +15,6 @@ import styles from './internal-sportsman-modal.module.scss';
 import { sportsmanSchema } from './internal-sportsman-modal.config';
 import { getDefaultValues } from './internal-sportsman-modal.lib';
 import { MainSportsmanInfo } from './components/main-sportsman-info';
-import { AdditionalSportsmanInfo } from './components/additional-sportsman-info';
 import { PassportSportsmanInfo } from './components/passport-sportsman-info';
 import { SportsActivityInfo } from './components/sports-activity-info';
 import { SportsmanParentsInfo } from './components/sportsman-parents-info/sportsman-parents-info';
@@ -49,6 +48,9 @@ export const InternalSportsmanModal = ({
   const birthDate = watch('birthDate');
   const age = calculateAge(birthDate);
 
+  const isValidAge =
+    age !== null && age < AGE_OF_MAJORITY && age >= MIN_SPORTSMAN_AGE;
+
   return (
     <Modal
       centered
@@ -57,40 +59,15 @@ export const InternalSportsmanModal = ({
       maskClosable={false}
       open={isOpen}
       title={title}
-      width="fit-content"
+      width={700}
       onCancel={onCancel}
       onOk={handleSubmit(onSubmit)}
     >
       <form className={styles.modal_form}>
-        <Flex vertical gap="large">
-          <div>
-            <Typography.Title level={5}>Основная информация:</Typography.Title>
-            <Flex vertical gap="middle">
-              <MainSportsmanInfo control={control} />
-              <AdditionalSportsmanInfo control={control} />
-            </Flex>
-          </div>
-          {age !== null &&
-            age < AGE_OF_MAJORITY &&
-            age >= MIN_SPORTSMAN_AGE && (
-              <div>
-                <Typography.Title level={5}>
-                  Информация о родителях:
-                </Typography.Title>
-                <SportsmanParentsInfo control={control} />
-              </div>
-            )}
-          <div>
-            <Typography.Title level={5}>Паспортные данные:</Typography.Title>
-            <PassportSportsmanInfo control={control} />
-          </div>
-          <div>
-            <Typography.Title level={5}>
-              Спортивная деятельность:
-            </Typography.Title>
-            <SportsActivityInfo control={control} />
-          </div>
-        </Flex>
+        <MainSportsmanInfo control={control} />
+        {isValidAge && <SportsmanParentsInfo control={control} />}
+        <PassportSportsmanInfo control={control} />
+        <SportsActivityInfo control={control} />
       </form>
     </Modal>
   );

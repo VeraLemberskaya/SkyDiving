@@ -10,7 +10,7 @@ export const DatePickerField = <T extends FieldValues>({
   componentProps,
   ...controllerProps
 }: FormFieldProps<DatePickerProps, T>) => {
-  const { label, required, className, ...props } = componentProps;
+  const { label, required, className, disabledDate, ...props } = componentProps;
 
   return (
     <FormItem
@@ -21,6 +21,7 @@ export const DatePickerField = <T extends FieldValues>({
     >
       {({ field, fieldState: { invalid } }) => (
         <DatePicker
+          disabledDate={disabledDate}
           id={field.name}
           status={invalid ? 'error' : ''}
           style={{ width: '100%' }}

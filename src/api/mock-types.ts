@@ -31,7 +31,7 @@ export interface Sportsman {
   gender: Gender;
 }
 
-export interface ManageSportsman
+export interface SkydivingClubMember
   extends Omit<Sportsman, 'sportDegree' | 'isInternal'> {
   birthDate: string;
   birthLocation?: string;

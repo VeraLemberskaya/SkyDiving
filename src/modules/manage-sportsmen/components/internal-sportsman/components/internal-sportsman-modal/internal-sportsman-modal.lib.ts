@@ -1,11 +1,11 @@
 import dayjs from 'dayjs';
 
-import { ManageSportsman } from '@api/mock-types';
+import { SkydivingClubMember } from '@api/mock-types';
 
 import { SportsmanFormValues } from '../../../../manage-sportsmen.types';
 
 export const getDefaultValues = (
-  sportsman?: ManageSportsman,
+  sportsman?: SkydivingClubMember,
 ): SportsmanFormValues => ({
   firstName: sportsman?.firstName ?? '',
   secondName: sportsman?.secondName ?? '',

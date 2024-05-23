@@ -1,6 +1,6 @@
 import {
   Competition,
-  ManageSportsman,
+  SkydivingClubMember,
   Referee,
   Sportsman,
 } from '@api/mock-types';
@@ -225,7 +225,7 @@ export const categories = [
   },
 ];
 
-export const manageSportsmenData: ManageSportsman[] = [
+export const manageSportsmenData: SkydivingClubMember[] = [
   {
     id: 1,
     serialNumber: 1,
