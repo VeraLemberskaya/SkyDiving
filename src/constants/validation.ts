@@ -10,7 +10,7 @@ export const BELARUS_PASSPORT_PERSONAL_NUMBER_REGEX =
 
 export const validationMessages = {
   REQUIRED: 'Поле обязательно к заполнению.',
-  GENDER_REQUIRED: 'Выбирите пол',
+  GENDER_REQUIRED: 'Выбирите пол.',
   ONLY_RUSSIAN_LETTERS: 'Только буквы русского алфавита.',
   MIN_SPORTSMAN_AGE_ERROR: `Спортсмен должен быть не младше ${MIN_SPORTSMAN_AGE} лет.`,
   PHONE_ERROR: 'Некорректный номер телефона.',

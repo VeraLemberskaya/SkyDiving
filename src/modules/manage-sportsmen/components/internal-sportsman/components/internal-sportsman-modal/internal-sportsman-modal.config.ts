@@ -1,4 +1,5 @@
 import z from 'zod';
+import { Dayjs } from 'dayjs';
 
 import { calculateAge } from '@utils/calculateAge';
 import {
@@ -33,7 +34,7 @@ export const sportsmanSchema = z.object({
     message: ONLY_RUSSIAN_LETTERS,
   }),
   gender: z.enum(['male', 'female'], { invalid_type_error: GENDER_REQUIRED }),
-  birthDate: z.any().refine(
+  birthDate: z.custom<Dayjs>().refine(
     (birthDate) => {
       const age = calculateAge(birthDate);
       return age !== null && age >= MIN_SPORTSMAN_AGE;
@@ -70,7 +71,7 @@ export const sportsmanSchema = z.object({
       message: PASSPORT_PERSONAL_NUMBER_ERROR,
     }),
   issuingAuthority: z.string().min(1, REQUIRED),
-  issuingDate: z.any().refine(
+  issuingDate: z.custom<Dayjs>().refine(
     (issuingDate) => {
       return issuingDate !== null;
     },
@@ -78,24 +79,18 @@ export const sportsmanSchema = z.object({
       message: REQUIRED,
     },
   ),
-  sportActivityStartYear: z.any(),
+  sportActivityStartYear: z.custom<Dayjs>(),
   trainer: z.string(),
   sportDegree: z.string().optional(),
   fatherFullName: z.string(),
   fatherJob: z.string(),
-  fatherPhone: z
-    .string()
-    .min(1, REQUIRED)
-    .refine((phone) => PHONE_REGEX.test(phone), {
-      message: PHONE_ERROR,
-    }),
+  fatherPhone: z.string().refine((phone) => PHONE_REGEX.test(phone), {
+    message: PHONE_ERROR,
+  }),
   motherFullName: z.string(),
   motherJob: z.string(),
-  motherPhone: z
-    .string()
-    .min(1, REQUIRED)
-    .refine((phone) => PHONE_REGEX.test(phone), {
-      message: PHONE_ERROR,
-    }),
+  motherPhone: z.string().refine((phone) => PHONE_REGEX.test(phone), {
+    message: PHONE_ERROR,
+  }),
   homeAddress: z.string().min(1, REQUIRED),
 });
