@@ -22,10 +22,11 @@ export const RangeField = <T extends FieldValues>({
     >
       {({ field, fieldState: { invalid } }) => (
         <RangePicker
+          id={field.name}
           status={invalid ? 'error' : ''}
+          style={{ width: '100%' }}
           {...props}
           {...field}
-          style={{ width: '100%' }}
         />
       )}
     </FormItem>
