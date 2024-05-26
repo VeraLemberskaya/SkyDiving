@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { Button, Typography } from 'antd';
+import { Button, Flex, Typography } from 'antd';
+
+import { refereeingResults } from '@api/mocks';
 
 import { CompetitionAcrobaticsInfoProps } from './competition-acrobatics-info.types';
 import styles from './competition-acrobatics-info.module.scss';
 import { text } from './competition-acrobatics-info.config';
 import { StartRefereeingModal } from './components/start-refereeing-modal';
+import { AcrobaticsTable } from './components/acrobatics-table';
 
 export const CompetitionAcrobaticsInfo = ({
   competitionId,
@@ -14,14 +17,31 @@ export const CompetitionAcrobaticsInfo = ({
   const openModal = () => setIsStartModalOpen(true);
   const closeModal = () => setIsStartModalOpen(false);
 
+  const startButton = (
+    <Button type="primary" onClick={openModal}>
+      Начать судейство
+    </Button>
+  );
+
   return (
     <>
-      <Typography.Text className={styles.text} type="secondary">
-        {text}
-      </Typography.Text>
-      <Button type="primary" onClick={openModal}>
-        Начать судейство
-      </Button>
+      {!refereeingResults ? (
+        <>
+          <Typography.Text className={styles.text} type="secondary">
+            {text}
+          </Typography.Text>
+          {startButton}
+        </>
+      ) : (
+        <>
+          <Flex justify="end">{startButton}</Flex>
+          <Flex vertical gap="middle">
+            <AcrobaticsTable round={1} series={1} />
+            <AcrobaticsTable round={2} series={1} />
+            <AcrobaticsTable round={3} series={1} />
+          </Flex>
+        </>
+      )}
       <StartRefereeingModal
         competitionId={competitionId}
         isOpen={isStartModalOpen}
