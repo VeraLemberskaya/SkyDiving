@@ -1,15 +1,16 @@
-import { Input, InputProps } from 'antd';
+import { DatePicker } from 'antd';
+import { DatePickerProps } from 'antd/es/date-picker';
 import { FieldValues } from 'react-hook-form';
 
 import { FormItem } from '@components/form-item';
 
 import { FormFieldProps } from './form-fields.types';
 
-export const InputField = <T extends FieldValues>({
+export const DatePickerField = <T extends FieldValues>({
   componentProps,
   ...controllerProps
-}: FormFieldProps<InputProps, T>) => {
-  const { label, required, className, ...props } = componentProps;
+}: FormFieldProps<DatePickerProps, T>) => {
+  const { label, required, className, disabledDate, ...props } = componentProps;
 
   return (
     <FormItem
@@ -19,9 +20,11 @@ export const InputField = <T extends FieldValues>({
       required={required}
     >
       {({ field, fieldState: { invalid } }) => (
-        <Input
+        <DatePicker
+          disabledDate={disabledDate}
           id={field.name}
           status={invalid ? 'error' : ''}
+          style={{ width: '100%' }}
           {...props}
           {...field}
         />

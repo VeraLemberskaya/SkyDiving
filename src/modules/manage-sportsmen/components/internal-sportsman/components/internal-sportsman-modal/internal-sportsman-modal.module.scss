@@ -1,0 +1,9 @@
+@import '@app/styles/vars';
+
+.modal {
+  margin: $sp-1 0;
+
+  &_form {
+    margin-bottom: $sp-4;
+  }
+}

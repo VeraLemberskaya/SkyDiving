@@ -1,4 +1,9 @@
-import { Competition, Referee, Sportsman } from '@api/mock-types';
+import {
+  Competition,
+  SkydivingClubMember,
+  Referee,
+  Sportsman,
+} from '@api/mock-types';
 
 export const refereeData: Referee[] = [
   {
@@ -217,6 +222,44 @@ export const categories = [
   {
     id: 4,
     name: 'Судья высшей национальной категории',
+  },
+];
+
+export const manageSportsmenData: SkydivingClubMember[] = [
+  {
+    id: 1,
+    serialNumber: 1,
+    firstName: 'Вера',
+    secondName: 'Лемберская',
+    patronymic: 'Игоревна',
+    gender: 'female',
+    birthDate: '2002-05-16',
+    birthLocation: '',
+    phone: '+3752910427844',
+    passportSeries: 'KH',
+    passportNumber: '0011000',
+    passportPersonalNumber: '7637905A001PB6',
+    issuingAuthority: 'Октябрьский РОВД г. Гродно',
+    issuingDate: '2019-03-27',
+    sportActivityStartYear: '2010',
+    trainer: 'Васько Кирилл Андреевич',
+    sportDegree: 'КМС',
+  },
+  {
+    id: 2,
+    serialNumber: 2,
+    firstName: 'Екатерина',
+    secondName: 'Анашкевич',
+    patronymic: 'Игоревна',
+    gender: 'female',
+    birthDate: '2003-02-06',
+    birthLocation: '',
+    phone: '+375123456789',
+    passportSeries: 'KH',
+    passportNumber: '0011000',
+    passportPersonalNumber: '1234565A003PB2',
+    issuingAuthority: 'Октябрьский РОВД г. Гродно',
+    issuingDate: '2019-02-13',
   },
 ];
 

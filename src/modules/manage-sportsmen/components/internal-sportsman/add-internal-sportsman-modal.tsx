@@ -10,7 +10,7 @@ export const AddInternalSportsmanModal = ({ isOpen, onClose }: ModalProps) => {
   return (
     <InternalSportsmanModal
       isOpen={isOpen}
-      title="Добавление члена аэроклуба"
+      title="Добавление спортсмена-парашютиста (личная карточка)"
       onClose={onClose}
       onSubmit={handleSubmit}
     />
