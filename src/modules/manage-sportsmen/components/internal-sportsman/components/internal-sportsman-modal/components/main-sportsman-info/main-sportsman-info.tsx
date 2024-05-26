@@ -5,7 +5,7 @@ import {
   InputField,
   RadioGroupField,
 } from '@components/form-fields';
-import { isFutureDate } from '@utils/isFutureDate';
+import { isFutureDate } from '@utils/is-future-date';
 import { genderOptions } from '@constants/options';
 
 import { SportsmanFormControlProps } from '../../../../../../manage-sportsmen.types';

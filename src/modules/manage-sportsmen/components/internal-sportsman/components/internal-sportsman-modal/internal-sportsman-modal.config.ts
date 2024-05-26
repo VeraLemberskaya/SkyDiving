@@ -1,7 +1,7 @@
 import z from 'zod';
 import { Dayjs } from 'dayjs';
 
-import { calculateAge } from '@utils/calculateAge';
+import { calculateAge } from '@utils/calculate-age';
 import {
   BELARUS_PASSPORT_NUMBER_REGEX,
   BELARUS_PASSPORT_PERSONAL_NUMBER_REGEX,

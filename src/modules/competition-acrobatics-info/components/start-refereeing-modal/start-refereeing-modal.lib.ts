@@ -1,5 +1,5 @@
 import { Sportsman } from '@api/mock-types';
-import { getFullName } from '@utils/getFullName';
+import { getFullName } from '@utils/get-fullname';
 
 export const getParticipantsOptions = (participants: Sportsman[]) =>
   participants.map(
