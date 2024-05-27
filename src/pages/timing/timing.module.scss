@@ -1,0 +1,10 @@
+@import '@app/styles/mixins';
+@import '@app/styles/vars.scss';
+
+.content {
+  @include main-template;
+
+  width: fit-content;
+  min-width: 400px;
+  margin-top: 0;
+}

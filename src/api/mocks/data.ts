@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 import {
   Competition,
+  CompetitionRefereeing,
   SkydivingClubMember,
   Referee,
   Sportsman,

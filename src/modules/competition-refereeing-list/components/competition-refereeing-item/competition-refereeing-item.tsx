@@ -1,6 +1,6 @@
 import { Flex, List, Typography } from 'antd';
 import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { routes } from '@constants/routes';
 
@@ -11,15 +11,27 @@ import styles from './competition-refereeing-item.module.scss';
 export const CompetitionRefereeingItem = ({
   competition,
 }: CompetitionRefereeingItemProps) => {
+  const navigate = useNavigate();
+
   const { beginDate, endDate, name, place, roundNumber, seriesNumber } =
     competition;
 
   const startDate = dayjs(beginDate).format('DD.MM.YYYY');
   const finishDate = dayjs(endDate).format('DD.MM.YYYY');
 
+  const handleRefereeingClick = () => {
+    navigate(routes.REFEREEING_TIMER, {
+      state: {
+        name,
+        roundNumber,
+        seriesNumber,
+      },
+    });
+  };
+
   return (
-    <List.Item className={styles.item}>
-      <Link className={styles.item_container} to={routes.REFEREEING_TIMER}>
+    <List.Item className={styles.item} onClick={handleRefereeingClick}>
+      <div className={styles.item_container}>
         <Flex align="center" justify="space-between">
           <div className={styles.title_container}>
             <Typography.Title level={5}>{name}</Typography.Title>
@@ -34,7 +46,7 @@ export const CompetitionRefereeingItem = ({
             </Flex>
           </Flex>
         </Flex>
-      </Link>
+      </div>
     </List.Item>
   );
 };
