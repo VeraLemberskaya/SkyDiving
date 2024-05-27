@@ -3,6 +3,7 @@ import { immer } from 'zustand/middleware/immer';
 
 import { Actions, State } from './auth.types';
 
+//TODO: check after reload
 const initialState: State = {
   isLogin: false,
   role: null,

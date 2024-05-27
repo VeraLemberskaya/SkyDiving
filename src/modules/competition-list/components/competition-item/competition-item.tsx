@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import { Flex, List, Typography } from 'antd';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
@@ -22,8 +22,13 @@ export const CompetitionItem = ({ competition }: CompetitionItemProps) => {
     navigate(routes.COMPETITION_BY_ID(competition.id));
   };
 
+  const handleEdit: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.stopPropagation();
+    //edit logic
+  };
+
   const actions: ReactNode[] = [
-    <EditButton key="edit" />,
+    <EditButton key="edit" onClick={handleEdit} />,
     <DeletePopConfirm
       key="delete"
       title="Вы уверены, что хотите удалить соревнование?"

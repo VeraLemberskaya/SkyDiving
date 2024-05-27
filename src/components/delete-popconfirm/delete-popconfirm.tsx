@@ -1,3 +1,4 @@
+import { MouseEventHandler } from 'react';
 import { DeleteTwoTone } from '@ant-design/icons';
 import { Button, Popconfirm, theme } from 'antd';
 import { SizeType } from 'antd/lib/config-provider/SizeContext';
@@ -21,6 +22,10 @@ export const DeletePopConfirm = ({
 
   const color = disabled ? token.colorBorder : token.colorError;
 
+  const handleClick: MouseEventHandler = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <Popconfirm
       arrow={{ pointAtCenter: true }}
@@ -36,6 +41,7 @@ export const DeletePopConfirm = ({
         shape="circle"
         size={size}
         type="text"
+        onClick={handleClick}
       />
     </Popconfirm>
   );
