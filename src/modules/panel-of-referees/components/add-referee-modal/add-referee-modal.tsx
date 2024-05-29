@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, SelectField } from '@components/form-fields';
-import { getFullName } from '@utils/getFullName';
+import { getFullName } from '@utils/get-fullname';
 
 import { referees } from '../../mocks/data';
 import {

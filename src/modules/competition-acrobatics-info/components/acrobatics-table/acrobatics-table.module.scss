@@ -1,0 +1,13 @@
+@import "@app/styles/vars";
+
+.table {
+  margin-top: $sp-3;
+
+  &_active {
+    background-color: rgba($color: $primary, $alpha: 0.1);
+  }
+
+  &__divider {
+    margin: 6px 0;
+  }
+}

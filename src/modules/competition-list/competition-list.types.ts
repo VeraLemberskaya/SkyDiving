@@ -7,3 +7,7 @@ export interface CompetitionListProps {
 export interface CompetitionItemProps {
   competition: Competition;
 }
+
+export interface AcrobaticButtonProps {
+  competitionId: number;
+}

@@ -74,3 +74,39 @@ export interface CompetitionRefereeing extends Competition {
   roundNumber: number;
   seriesNumber: number;
 }
+export interface TrickAttempt {
+  trickAttemptId: number;
+  sPenalty: number | null;
+  sPenaltyTime: number | null;
+  dPenalty: number | null;
+  dPenaltyTime: number | null;
+  plusMinusPenalty: number | null;
+  plusMinusPenaltyTime: number | null;
+  minusPenalty: number | null;
+  minusPenaltyTime: number | null;
+  arrowPenalty: number | null;
+  arrowPenaltyTime: number | null;
+}
+
+export interface Referring {
+  trickSeriesId: number;
+  trickSeriesNumber: number;
+  skydiverNumber: number;
+  roundNumber: number;
+  competitionMemberDetailId: number;
+  refereeNumber: number;
+  timeWithoutPenalty: number;
+  isTimeSubmitted: boolean;
+  totalPenalty: number;
+  score: number;
+  trickAttempts: {
+    firstSpiral: TrickAttempt;
+    secondSpiral: TrickAttempt;
+    firstFlip: TrickAttempt;
+    thirdSpiral: TrickAttempt;
+    foursSpiral: TrickAttempt;
+    secondFlip: TrickAttempt;
+  };
+}
+
+export type TrickType = keyof Referring['trickAttempts'];

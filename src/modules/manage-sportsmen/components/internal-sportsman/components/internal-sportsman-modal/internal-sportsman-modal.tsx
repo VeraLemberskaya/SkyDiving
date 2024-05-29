@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { manageSportsmenData } from '@api/mocks';
-import { calculateAge } from '@utils/calculateAge';
+import { calculateAge } from '@utils/calculate-age';
 import { AGE_OF_MAJORITY, MIN_SPORTSMAN_AGE } from '@constants/validation';
 
 import {

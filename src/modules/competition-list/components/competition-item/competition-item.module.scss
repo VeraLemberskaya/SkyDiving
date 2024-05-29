@@ -1,5 +1,17 @@
+@import "@app/styles/vars";
+
 .item {
-  width: 100%;
+  cursor: pointer;
+  padding: $sp-1 !important;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: rgba($color: $primary, $alpha: .1);
+  }
+
+  &__content {
+    width: 100%;
+  }
 }
 
 .title_container {
