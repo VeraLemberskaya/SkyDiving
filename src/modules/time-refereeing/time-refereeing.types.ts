@@ -1,6 +1,6 @@
 import { RadioChangeEvent } from 'antd';
 
-export enum TimerType {
+export const enum TimerType {
   Manual = 'Manual',
   BuiltIn = 'Built-in',
 }

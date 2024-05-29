@@ -42,6 +42,10 @@ export const TimeRefereeing = () => {
     setTime(0);
   };
 
+  const handleChange = (newTime: number) => {
+    setTime(newTime);
+  };
+
   return (
     <>
       {showTimerSelect ? (
@@ -59,7 +63,13 @@ export const TimeRefereeing = () => {
           >
             Вернуться к выбору таймера
           </Button>
-          {timerType === TimerType.Manual && <ManualTimer />}
+          {timerType === TimerType.Manual && (
+            <ManualTimer
+              onChange={handleChange}
+              onOk={handleOk}
+              onReset={handleReset}
+            />
+          )}
           {timerType === TimerType.BuiltIn && (
             <BuiltInTimer
               time={time}
