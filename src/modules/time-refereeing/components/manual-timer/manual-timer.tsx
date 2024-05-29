@@ -5,6 +5,7 @@ import { CalculatorOutlined } from '@ant-design/icons';
 import { MAX_MILLISECONDS } from '../../time-refereeing.config';
 
 import styles from './manual-timer.module.scss';
+import { TimeEnterModal } from './components/time-enter-modal';
 
 interface ManualTimerProps {
   onOk: () => void;
@@ -12,15 +13,15 @@ interface ManualTimerProps {
   onChange: (time: number) => void;
 }
 
+export const MAX_INPUT_VALUE = 5;
 const MAX_SECONDS = 16;
 const TO_MILLISECONDS_MULTIPLIER = 10;
 
 export const ManualTimer = ({ onOk, onReset, onChange }: ManualTimerProps) => {
   const [inputValue, setInputValue] = useState('');
+  const [isTimeEnterModalOpen, setIsTimeModalEnterOpen] = useState(false);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let newValue = e.target.value;
-
+  const changeInputValue = (newValue: string) => {
     if (/^[2-9]/.test(newValue)) {
       newValue = '0' + newValue;
     }
@@ -37,6 +38,12 @@ export const ManualTimer = ({ onOk, onReset, onChange }: ManualTimerProps) => {
     }
 
     setInputValue(newValue);
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+
+    changeInputValue(newValue);
   };
 
   const handleOk = () => {
@@ -57,15 +64,29 @@ export const ManualTimer = ({ onOk, onReset, onChange }: ManualTimerProps) => {
     onChange(MAX_MILLISECONDS);
   };
 
+  const handleOpenModal = () => {
+    setIsTimeModalEnterOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsTimeModalEnterOpen(false);
+  };
+
   return (
     <Flex gap="middle">
       <Typography.Text>Время:</Typography.Text>
       <Flex vertical className={styles.timerContainer} gap="middle">
         <Input
           className={styles.timerContainer_input}
-          maxLength={5}
+          maxLength={MAX_INPUT_VALUE}
           placeholder="00.00"
-          suffix={<Button icon={<CalculatorOutlined />} type="text" />}
+          suffix={
+            <Button
+              icon={<CalculatorOutlined />}
+              type="text"
+              onClick={handleOpenModal}
+            />
+          }
           value={inputValue}
           variant="filled"
           onChange={handleInputChange}
@@ -86,6 +107,12 @@ export const ManualTimer = ({ onOk, onReset, onChange }: ManualTimerProps) => {
           </Button>
         </Flex>
       </Flex>
+      <TimeEnterModal
+        inputValue={inputValue}
+        isOpen={isTimeEnterModalOpen}
+        onChange={changeInputValue}
+        onClose={handleCloseModal}
+      />
     </Flex>
   );
 };
