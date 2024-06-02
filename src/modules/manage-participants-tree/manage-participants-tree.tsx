@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Flex } from 'antd';
 
+import { teams } from '@api/mocks';
+
 import { ParticipantsTree } from '../participants-tree';
-import { teams } from '../participants-tree/mock/data';
 
 import { Mode } from './manage-participants-tree.types';
 import { AddTeamForm } from './components/add-team-form';

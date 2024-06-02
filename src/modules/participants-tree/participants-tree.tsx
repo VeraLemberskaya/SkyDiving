@@ -2,7 +2,8 @@ import { useMemo } from 'react';
 import { Space, Tree, TreeProps } from 'antd';
 import { CaretDownFilled } from '@ant-design/icons';
 
-import { participants, teams } from './mock/data';
+import { participants, teams } from '@api/mocks';
+
 import {
   getParticipantIdFromKey,
   getTeamIdFromKey,
