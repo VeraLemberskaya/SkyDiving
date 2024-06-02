@@ -1,13 +1,22 @@
 import { useState } from 'react';
 import { Flex } from 'antd';
 
-import { ParticipantsTree } from './components/participants-tree';
-import { teams } from './mock/data';
+import { teams } from '@api/mocks';
+
+import { ParticipantsTree } from '../participants-tree';
+
 import { Mode } from './manage-participants-tree.types';
 import { AddTeamForm } from './components/add-team-form';
 import { EditTeamForm } from './components/edit-team-form';
 import styles from './manage-participants-tree.module.scss';
 import { AddParticipantsModal } from './components/add-participants-modal';
+
+const treeOptions = {
+  selectTeams: true,
+  selectParticipants: false,
+  deleteParticipants: true,
+  deleteTeams: true,
+};
 
 export const ManageParticipantsTree = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,8 +28,8 @@ export const ManageParticipantsTree = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const handleSelect = (teamId: number) => {
-    setTeamId(teamId);
+  const handleSelect = ({ id }: { id: number }) => {
+    setTeamId(id);
     openEditTeamForm();
   };
 
@@ -36,6 +45,7 @@ export const ManageParticipantsTree = () => {
   return (
     <Flex className={styles.container}>
       <ParticipantsTree
+        options={treeOptions}
         selectedTeamId={teamId}
         onAddParticipant={openModal}
         onAddTeam={handleAddTeam}
