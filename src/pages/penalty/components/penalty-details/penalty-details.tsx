@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 
 import { routes } from '@constants/routes';
 
-import { TimingDetailsProps } from '../../timing.types';
+import { PenaltyDetailsProps } from '../../penalty.types';
 
-import styles from './timing-details.module.scss';
+import styles from './penalty-details.module.scss';
 
-export const TimingDetails = ({
+export const PenaltyDetails = ({
   name,
   roundNumber,
   seriesNumber,
-}: TimingDetailsProps) => {
+}: PenaltyDetailsProps) => {
   return (
     <>
       <Link className={styles.link} to={routes.COMPETITIONS_REFEREEING}>

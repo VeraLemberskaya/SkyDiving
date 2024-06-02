@@ -1,0 +1,15 @@
+@import '@app/styles/vars.scss';
+
+.link {
+  color: $link;
+
+  &:hover {
+    width: fit-content;
+    color: $link-hover;
+    background-color: $link-hover-bg;
+  }
+}
+
+.icon {
+  margin-bottom: $sp-1;
+}

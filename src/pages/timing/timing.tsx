@@ -7,6 +7,7 @@ import { TimingDetails } from './components/timing-details';
 import styles from './timing.module.scss';
 
 export const Timing = () => {
+  //TODO: useQuery
   const location = useLocation();
   const { name, roundNumber, seriesNumber } = location.state;
 

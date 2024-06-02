@@ -9,6 +9,7 @@ export const routes = {
   COMPETITIONS: '/competitions',
   COMPETITIONS_REFEREEING: '/competitions-refereeing',
   REFEREEING_TIMER: '/timing',
+  PENALTY: '/penalty',
   COMPETITION_BY_ID: (id: number) => `/competition/${id}`,
   COMPETITION_REFEREES_BY_ID: (id: number) => `/competition/${id}/referees`,
 };

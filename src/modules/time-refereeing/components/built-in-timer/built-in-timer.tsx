@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button, Flex, Input, Typography } from 'antd';
 
-import { formatTime } from '@utils/formatTime';
+import { formatTime } from '@utils/format-time';
 
 import { MAX_MILLISECONDS } from '../../time-refereeing.config';
 import { TimerStatus } from '../../time-refereeing.types';

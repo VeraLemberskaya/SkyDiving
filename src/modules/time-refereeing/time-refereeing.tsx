@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Button, Flex, RadioChangeEvent } from 'antd';
+import { useNavigate } from 'react-router-dom';
+
+import { routes } from '@constants/routes';
 
 import { BuiltInTimer } from './components/built-in-timer';
 import { ManualTimer } from './components/manual-timer';
@@ -12,6 +15,8 @@ export const TimeRefereeing = () => {
   const [time, setTime] = useState(0);
   const [timerType, setTimerType] = useState<TimerType | null>(null);
   const [showTimerSelect, setShowTimerSelect] = useState(true);
+
+  const navigate = useNavigate();
 
   const handleTimerTypeChange = (e: RadioChangeEvent) => {
     setTimerType(e.target.value);
@@ -36,6 +41,7 @@ export const TimeRefereeing = () => {
 
   const handleOk = () => {
     // Logic to handle when "Ok" button is clicked
+    navigate(routes.PENALTY);
   };
 
   const handleReset = () => {

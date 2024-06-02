@@ -1,0 +1,11 @@
+.card {
+  text-align: center;
+
+  &_select {
+    width: 100px;
+
+    div {
+      border: none !important;
+    }
+  }
+}
