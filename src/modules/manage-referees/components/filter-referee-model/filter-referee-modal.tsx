@@ -62,7 +62,7 @@ export const FilterRefereesModal = ({
       ]}
       maskClosable={false}
       open={isOpen}
-      title="Выбирите данные для фильтрации"
+      title="Выберите данные для фильтрации"
       onCancel={onClose}
     >
       <form className={styles.form}>

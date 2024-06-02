@@ -2,23 +2,17 @@ import { ChangeEvent } from 'react';
 import { Button, Flex, Input, Modal } from 'antd';
 
 import { CustomKeyboard } from '../custom-keyboard';
-import { MAX_INPUT_VALUE } from '../../manual-timer';
+import { TimeEnterModalProps } from '../../../../time-refereeing.types';
+import { MAX_INPUT_VALUE } from '../../../../time-refereeing.config';
 
 import styles from './time-enter-modal.module.scss';
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  inputValue: string;
-  onChange: (newValue: string) => void;
-}
 
 export const TimeEnterModal = ({
   isOpen,
   onClose,
   inputValue,
   onChange,
-}: ModalProps) => {
+}: TimeEnterModalProps) => {
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
 

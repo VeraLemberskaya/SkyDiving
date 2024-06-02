@@ -2,20 +2,16 @@ import { ChangeEvent, useState } from 'react';
 import { Button, Flex, Input, Typography } from 'antd';
 import { CalculatorOutlined } from '@ant-design/icons';
 
-import { MAX_MILLISECONDS } from '../../time-refereeing.config';
+import {
+  MAX_INPUT_VALUE,
+  MAX_MILLISECONDS,
+  MAX_SECONDS,
+  TO_MILLISECONDS_MULTIPLIER,
+} from '../../time-refereeing.config';
+import { ManualTimerProps } from '../../time-refereeing.types';
 
 import styles from './manual-timer.module.scss';
 import { TimeEnterModal } from './components/time-enter-modal';
-
-interface ManualTimerProps {
-  onOk: () => void;
-  onReset: () => void;
-  onChange: (time: number) => void;
-}
-
-export const MAX_INPUT_VALUE = 5;
-const MAX_SECONDS = 16;
-const TO_MILLISECONDS_MULTIPLIER = 10;
 
 export const ManualTimer = ({ onOk, onReset, onChange }: ManualTimerProps) => {
   const [inputValue, setInputValue] = useState('');

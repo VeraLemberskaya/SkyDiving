@@ -1,13 +1,9 @@
 import { Button, Flex } from 'antd';
 
-import { MAX_INPUT_VALUE } from '../../manual-timer';
+import { CustomKeyboardProps } from '../../../../time-refereeing.types';
+import { MAX_INPUT_VALUE } from '../../../../time-refereeing.config';
 
 import styles from './custom-keyboard.module.scss';
-
-interface CustomKeyboardProps {
-  onInput: (value: string) => void;
-  currentValue: string;
-}
 
 export const CustomKeyboard = ({
   onInput,

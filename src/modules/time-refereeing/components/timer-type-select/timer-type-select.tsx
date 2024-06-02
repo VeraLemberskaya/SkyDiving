@@ -12,7 +12,7 @@ export const TimerTypeSelect = ({
 }: TimerTypeSelectProps) => {
   return (
     <>
-      <Typography.Title level={5}>Выбирите тип таймера:</Typography.Title>
+      <Typography.Title level={5}>Выберите тип секундомера:</Typography.Title>
       <Flex vertical gap={50}>
         <Radio.Group onChange={onTimerTypeChange}>
           <Space direction="vertical">
