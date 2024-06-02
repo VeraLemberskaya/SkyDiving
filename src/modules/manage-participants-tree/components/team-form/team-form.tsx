@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, SelectField } from '@components/form-fields';
 
-import { participants } from '../../mock/data';
+import { participants } from '../../../participants-tree/mock/data';
 import {
   TeamFormProps,
   TeamFormValues,

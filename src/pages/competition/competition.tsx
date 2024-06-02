@@ -3,6 +3,7 @@ import { Tabs, TabsProps, Typography } from 'antd';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import { CompetitionAcrobaticsInfo } from '@modules/competition-acrobatics-info';
+import { LandingAccuracy } from '@modules/landing-accuracy';
 
 import styles from './competition.module.scss';
 
@@ -20,7 +21,7 @@ export const Competition = () => {
       {
         key: 'landing-accuracy',
         label: 'Точность приземления',
-        children: <div>Точность приземления</div>,
+        children: <LandingAccuracy />,
       },
       {
         key: 'acrobatics',
