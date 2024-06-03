@@ -106,3 +106,10 @@ export interface Referring {
 }
 
 export type TrickType = keyof Referring['trickAttempts'];
+
+export interface Jumping {
+  id: number;
+  jumpingNumber: number;
+  accuracy: number;
+  date: string;
+}
