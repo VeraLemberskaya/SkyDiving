@@ -1,0 +1,19 @@
+@import "@app/styles/vars";
+
+.item {
+  background-color: rgba($color: $light-gray, $alpha: 0.2);
+  border-radius: 10px;
+  padding: $sp-2 !important;
+  margin-bottom: $sp-2;
+
+  &__content {
+    width: 100%;
+  }
+
+  &__description {
+    span {
+      font-weight: 500;
+    }
+  }
+}
+

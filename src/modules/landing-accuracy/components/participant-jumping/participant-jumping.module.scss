@@ -1,0 +1,12 @@
+@import "@app/styles/vars.scss";
+
+.jumping {
+  &__content {
+    width: 100%;
+    padding-right: $sp-8;
+  }
+
+  &__header {
+    margin-bottom: $sp-2;
+  }
+}

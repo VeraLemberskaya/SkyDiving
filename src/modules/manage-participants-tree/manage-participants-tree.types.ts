@@ -1,17 +1,4 @@
-import { Participant, Team } from '@api/mock-types';
-
-export interface ParticipantNodeProps {
-  participant: Participant;
-}
-
-export interface TeamNodeProps {
-  team: Team;
-}
-
-export interface TreeHeaderProps {
-  title: string;
-  onAdd: () => void;
-}
+import { Team } from '@api/mock-types';
 
 export interface TeamFormProps {
   title: string;
@@ -26,13 +13,6 @@ export interface EditTeamFormProps {
 export interface TeamFormValues {
   name: string;
   participantIds: number[];
-}
-
-export interface ParticipantsTreeProps {
-  selectedTeamId?: number;
-  onSelect: (teamId: number) => void;
-  onAddTeam: () => void;
-  onAddParticipant: () => void;
 }
 
 export type Mode = 'add' | 'edit';

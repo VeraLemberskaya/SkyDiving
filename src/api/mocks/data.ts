@@ -6,6 +6,7 @@ import {
   Referee,
   Sportsman,
   Referring,
+  Jumping,
 } from '@api/mock-types';
 
 export const refereeData: Referee[] = [
@@ -598,5 +599,146 @@ export const refereeingResults: Referring[] = [
         arrowPenaltyTime: null,
       },
     },
+  },
+];
+
+export const teams = [
+  {
+    id: 1,
+    name: 'Витебск',
+    participants: [
+      {
+        id: 1,
+        fullName: 'Лемберская Вера Игоревна',
+      },
+      {
+        id: 2,
+        fullName: 'Анашкевич Екатерина Игоревна',
+      },
+      {
+        id: 3,
+        fullName: 'Маханько Максим Витальевич',
+      },
+      {
+        id: 4,
+        fullName: 'Васько Кирилл Андреевич',
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: 'Минск',
+    participants: [
+      {
+        id: 5,
+        fullName: 'Стецкий Никита Алексеевич',
+      },
+      {
+        id: 6,
+        fullName: 'Грищук Егор Андреевич',
+      },
+      {
+        id: 7,
+        fullName: 'Олизарович Петр Васильевич',
+      },
+      {
+        id: 8,
+        fullName: 'Карканица Анна Викторовна',
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: 'Барановичи',
+    participants: [
+      {
+        id: 9,
+        fullName: 'Олизарович Петр Васильевич',
+      },
+      {
+        id: 10,
+        fullName: 'Карканица Анна Викторовна',
+      },
+      {
+        id: 11,
+        fullName: 'Стецкий Никита Алексеевич',
+      },
+      {
+        id: 12,
+        fullName: 'Грищук Егор Андреевич',
+      },
+    ],
+  },
+];
+
+export const participants = [
+  {
+    id: 13,
+    fullName: 'Лемберская Вера Игоревна',
+  },
+  {
+    id: 14,
+    fullName: 'Анашкевич Екатерина Игоревна',
+  },
+  {
+    id: 15,
+    fullName: 'Маханько Максим Витальевич',
+  },
+  {
+    id: 16,
+    fullName: 'Васько Кирилл Андреевич',
+  },
+  {
+    id: 17,
+    fullName: 'Стецкий Никита Алексеевич',
+  },
+  {
+    id: 18,
+    fullName: 'Грищук Егор Андреевич',
+  },
+  {
+    id: 19,
+    fullName: 'Олизарович Петр Васильевич',
+  },
+  {
+    id: 20,
+    fullName: 'Карканица Анна Викторовна',
+  },
+  {
+    id: 21,
+    fullName: 'Олизарович Петр Васильевич',
+  },
+  {
+    id: 22,
+    fullName: 'Карканица Анна Викторовна',
+  },
+  {
+    id: 23,
+    fullName: 'Стецкий Никита Алексеевич',
+  },
+  {
+    id: 24,
+    fullName: 'Грищук Егор Андреевич',
+  },
+];
+
+export const jumpingList: Jumping[] = [
+  {
+    id: 1,
+    jumpingNumber: 1,
+    accuracy: 5,
+    date: '2024-05-14',
+  },
+  {
+    id: 2,
+    jumpingNumber: 2,
+    accuracy: 7,
+    date: '2024-05-14',
+  },
+  {
+    id: 3,
+    jumpingNumber: 3,
+    accuracy: 4,
+    date: '2024-05-14',
   },
 ];
