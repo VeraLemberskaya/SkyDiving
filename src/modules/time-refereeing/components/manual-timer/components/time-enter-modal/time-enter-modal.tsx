@@ -1,28 +1,31 @@
-import { ChangeEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Flex, Input, Modal } from 'antd';
 
 import { CustomKeyboard } from '../custom-keyboard';
-import { MAX_INPUT_VALUE } from '../../manual-timer';
+import { TimeEnterModalProps } from '../../../../time-refereeing.types';
+import { MAX_INPUT_VALUE } from '../../../../time-refereeing.config';
+import { processTimeInput } from '../../manual-timer.lib';
 
 import styles from './time-enter-modal.module.scss';
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  inputValue: string;
-  onChange: (newValue: string) => void;
-}
-
 export const TimeEnterModal = ({
   isOpen,
-  onClose,
   inputValue,
-  onChange,
-}: ModalProps) => {
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
+  onOk,
+  onClose,
+}: TimeEnterModalProps) => {
+  const [modalInputValue, setModalInputValue] = useState(inputValue);
 
-    onChange(newValue);
+  useEffect(() => {
+    setModalInputValue(inputValue);
+  }, [inputValue]);
+
+  const changeModalInputValue = (newValue: string) => {
+    setModalInputValue(processTimeInput(newValue));
+  };
+
+  const handleOk = () => {
+    onOk(modalInputValue);
   };
 
   return (
@@ -30,7 +33,7 @@ export const TimeEnterModal = ({
       centered
       destroyOnClose
       footer={[
-        <Button key="ok" type="primary" onClick={onClose}>
+        <Button key="ok" type="primary" onClick={handleOk}>
           OK
         </Button>,
       ]}
@@ -41,14 +44,17 @@ export const TimeEnterModal = ({
     >
       <Flex vertical className={styles.modalContainer} gap="small">
         <Input
+          disabled
           className={styles.modalContainer_input}
           maxLength={MAX_INPUT_VALUE}
           placeholder="00.00"
-          value={inputValue}
+          value={modalInputValue}
           variant="filled"
-          onChange={handleInput}
         />
-        <CustomKeyboard currentValue={inputValue} onInput={onChange} />
+        <CustomKeyboard
+          currentValue={modalInputValue}
+          onInput={changeModalInputValue}
+        />
       </Flex>
     </Modal>
   );

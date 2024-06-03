@@ -1,96 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button, Flex, Input, Typography } from 'antd';
 
 import { formatTime } from '@utils/format-time';
 
 import { MAX_MILLISECONDS } from '../../time-refereeing.config';
-import { TimerStatus } from '../../time-refereeing.types';
+import { BuiltInTimerProps, TimerStatus } from '../../time-refereeing.types';
 
 import styles from './built-in-timer.module.scss';
+import { useTimer } from './built-in-timer.hooks';
 
-interface BuiltInTimerProps {
-  time: number;
-  onTick: (time: number) => void;
-  onOk: () => void;
-  onReset: () => void;
-}
+export const BuiltInTimer = ({ onSubmit }: BuiltInTimerProps) => {
+  const { time, timerStatus, startTimer, stopTimer, resetTimer } = useTimer();
 
-export const BuiltInTimer = ({
-  time,
-  onTick,
-  onOk,
-  onReset,
-}: BuiltInTimerProps) => {
-  const [timerStatus, setTimerStatus] = useState<TimerStatus>(
-    TimerStatus.Paused,
-  );
-
-  const rafStart = useRef<number | null>(null);
-  const rafId = useRef<number | null>(null);
-
-  const startTimer = () => {
-    setTimerStatus(TimerStatus.Running);
-
-    if (rafStart.current === null) {
-      rafStart.current = Date.now() - time;
-    }
-
-    rafId.current = requestAnimationFrame(tick);
+  const handleOk = () => {
+    onSubmit(time);
   };
-
-  const stopTimer = () => {
-    setTimerStatus(TimerStatus.Stopped);
-
-    if (rafId.current !== null) {
-      cancelAnimationFrame(rafId.current);
-      rafId.current = null;
-    }
-  };
-
-  const resetTimer = () => {
-    setTimerStatus(TimerStatus.Paused);
-    onReset();
-
-    rafStart.current = null;
-  };
-
-  const tick = useCallback(() => {
-    if (rafStart.current !== null) {
-      const now = Date.now();
-      const elapsed = now - rafStart.current;
-
-      onTick(elapsed);
-
-      if (elapsed < MAX_MILLISECONDS && timerStatus === TimerStatus.Running) {
-        rafId.current = requestAnimationFrame(tick);
-      } else {
-        setTimerStatus(TimerStatus.Stopped);
-      }
-    }
-  }, [onTick, timerStatus]);
-
-  useEffect(() => {
-    if (timerStatus === TimerStatus.Running) {
-      rafId.current = requestAnimationFrame(tick);
-    }
-
-    if (timerStatus === TimerStatus.Stopped && rafId.current !== null) {
-      cancelAnimationFrame(rafId.current);
-      rafId.current = null;
-    }
-
-    return () => {
-      if (rafId.current !== null) {
-        cancelAnimationFrame(rafId.current);
-      }
-    };
-  }, [tick, timerStatus]);
-
-  useEffect(() => {
-    if (time >= MAX_MILLISECONDS) {
-      setTimerStatus(TimerStatus.Stopped);
-    }
-  }, [time]);
 
   return (
     <Flex gap="middle">
@@ -103,7 +26,7 @@ export const BuiltInTimer = ({
         />
         {timerStatus === TimerStatus.Stopped ? (
           <Flex gap="small">
-            <Button className={styles.button} type="default" onClick={onOk}>
+            <Button className={styles.button} type="default" onClick={handleOk}>
               Ок
             </Button>
             <Button

@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { SelectField } from '@components/form-fields';
+import { participants } from '@api/mocks';
 
-import { participants } from '../../mock/data';
 import {
   AddParticipantsModalProps,
   AddParticipantsValues,

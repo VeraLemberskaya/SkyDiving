@@ -70,7 +70,9 @@ export interface Competition {
   numberOfStages: number;
 }
 
-export interface CompetitionRefereeing extends Competition {
+export interface CompetitionRefereeing {
+  trickSerieId: number;
+  competition: Competition;
   roundNumber: number;
   seriesNumber: number;
 }
@@ -110,3 +112,10 @@ export interface Referring {
 }
 
 export type TrickType = keyof Referring['trickAttempts'];
+
+export interface Jumping {
+  id: number;
+  jumpingNumber: number;
+  accuracy: number;
+  date: string;
+}

@@ -1,20 +1,22 @@
 import { Flex } from 'antd';
-import { useLocation } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 import { TimeRefereeing } from '@modules/time-refereeing';
+import { competitionsRefereeing } from '@api/mocks';
 
 import { TimingDetails } from './components/timing-details';
 import styles from './timing.module.scss';
 
 export const Timing = () => {
-  //TODO: useQuery
-  const location = useLocation();
-  const { name, roundNumber, seriesNumber } = location.state;
+  //TODO: Получить компетишен по trickSerieId
+  //const { trickSerieId } = useParams();
+
+  const { roundNumber, seriesNumber } = competitionsRefereeing[0];
 
   return (
     <Flex vertical gap="middle">
       <TimingDetails
-        name={name}
+        name={competitionsRefereeing[0].competition.name}
         roundNumber={roundNumber}
         seriesNumber={seriesNumber}
       />

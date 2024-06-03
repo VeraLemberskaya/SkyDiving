@@ -2,6 +2,7 @@ import { Flex, List, Typography } from 'antd';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 
+import { formatDate } from '@utils/format-date';
 import { routes } from '@constants/routes';
 
 import { CompetitionRefereeingItemProps } from '../../competition-refereeing-list.types';
@@ -9,24 +10,19 @@ import { CompetitionRefereeingItemProps } from '../../competition-refereeing-lis
 import styles from './competition-refereeing-item.module.scss';
 
 export const CompetitionRefereeingItem = ({
-  competition,
+  competitionRefereeing,
 }: CompetitionRefereeingItemProps) => {
   const navigate = useNavigate();
 
-  const { beginDate, endDate, name, place, roundNumber, seriesNumber } =
-    competition;
+  const { trickSerieId, competition, roundNumber, seriesNumber } =
+    competitionRefereeing;
+  const { beginDate, endDate, name, place } = competition;
 
-  const startDate = dayjs(beginDate).format('DD.MM.YYYY');
-  const finishDate = dayjs(endDate).format('DD.MM.YYYY');
+  const startDate = formatDate(beginDate);
+  const finishDate = formatDate(endDate);
 
   const handleRefereeingClick = () => {
-    navigate(routes.REFEREEING_TIMER, {
-      state: {
-        name,
-        roundNumber,
-        seriesNumber,
-      },
-    });
+    navigate(routes.REFEREEING_TIMER_BY_ID(trickSerieId));
   };
 
   return (

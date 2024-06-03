@@ -17,9 +17,9 @@ export const TimingDetails = ({
       <Link className={styles.link} to={routes.COMPETITIONS_REFEREEING}>
         Вернутся к выбору судейства
       </Link>
-      <Typography.Title
-        level={4}
-      >{`${name} - Раунд ${roundNumber} | Серия ${seriesNumber}`}</Typography.Title>
+      <Typography.Title level={4}>
+        {`${name} - Раунд ${roundNumber} | Серия ${seriesNumber}`}
+      </Typography.Title>
     </>
   );
 };

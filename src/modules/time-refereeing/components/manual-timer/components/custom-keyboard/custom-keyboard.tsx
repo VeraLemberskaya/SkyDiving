@@ -1,13 +1,9 @@
 import { Button, Flex } from 'antd';
 
-import { MAX_INPUT_VALUE } from '../../manual-timer';
+import { CustomKeyboardProps } from '../../../../time-refereeing.types';
+import { MAX_INPUT_VALUE } from '../../../../time-refereeing.config';
 
 import styles from './custom-keyboard.module.scss';
-
-interface CustomKeyboardProps {
-  onInput: (value: string) => void;
-  currentValue: string;
-}
 
 export const CustomKeyboard = ({
   onInput,
@@ -19,6 +15,14 @@ export const CustomKeyboard = ({
     if (newValue.length <= MAX_INPUT_VALUE) {
       onInput(newValue);
     }
+  };
+
+  const handleClear = () => {
+    onInput('');
+  };
+
+  const handleBackspace = () => {
+    onInput(currentValue.slice(0, -1));
   };
 
   const renderButtons = (numbers: number[]) => {
@@ -35,6 +39,14 @@ export const CustomKeyboard = ({
 
   return (
     <Flex vertical gap="small">
+      <Flex gap="small">
+        <Button className={styles.keyboardButton} onClick={handleClear}>
+          C
+        </Button>
+        <Button className={styles.keyboardButton} onClick={handleBackspace}>
+          ⌫
+        </Button>
+      </Flex>
       <Flex gap="small">{renderButtons([7, 8, 9])}</Flex>
       <Flex gap="small">{renderButtons([4, 5, 6])}</Flex>
       <Flex gap="small">{renderButtons([1, 2, 3])}</Flex>

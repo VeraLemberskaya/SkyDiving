@@ -2,10 +2,7 @@ import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Layout, Flex, Avatar, Button } from 'antd';
 
 import styles from './header.module.scss';
-
-interface HeaderProps {
-  onLogout: () => void;
-}
+import { HeaderProps } from './header.types';
 
 export const Header = ({ onLogout }: HeaderProps) => {
   return (

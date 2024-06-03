@@ -1,10 +1,7 @@
-import { MouseEventHandler } from 'react';
-import { IdcardTwoTone } from '@ant-design/icons';
 import { Button, theme } from 'antd';
+import { IdcardTwoTone } from '@ant-design/icons';
 
-interface ManageCredentialButtonProps {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-}
+import { ManageCredentialButtonProps } from './manage-credential-button.types';
 
 export const ManageCredentialButton = ({
   onClick,

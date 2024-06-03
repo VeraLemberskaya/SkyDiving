@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import { Flex, List, Typography } from 'antd';
-import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 
 import { EditButton } from '@components/edit-button';
 import { DeletePopConfirm } from '@components/delete-popconfirm';
+import { formatDate } from '@utils/format-date';
 import { routes } from '@constants/routes';
 
 import { CompetitionItemProps } from '../../competition-list.types';
@@ -17,8 +17,8 @@ export const CompetitionItem = ({ competition }: CompetitionItemProps) => {
 
   const navigate = useNavigate();
 
-  const startDate = dayjs(beginDate).format('DD.MM.YYYY');
-  const finishDate = dayjs(endDate).format('DD.MM.YYYY');
+  const startDate = formatDate(beginDate);
+  const finishDate = formatDate(endDate);
 
   const handleCompetitionClick = () => {
     navigate(routes.COMPETITION_BY_ID(competition.id));
