@@ -9,7 +9,7 @@ type MenuItem = Required<MenuProps>['items'][number];
 export const menuItems: MenuItem[] = [
   {
     label: <Link to={routes.COMPETITIONS_REFEREEING}>Судейство</Link>,
-    key: routes.COMPETITIONS_REFEREEING,
+    key: 'competitions-refereeing',
     icon: <TrophyOutlined />,
   },
 ];

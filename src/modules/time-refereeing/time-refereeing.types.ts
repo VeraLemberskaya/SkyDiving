@@ -1,5 +1,3 @@
-import { RadioChangeEvent } from 'antd';
-
 export const enum TimerType {
   Manual = 'Manual',
   BuiltIn = 'Built-in',
@@ -14,14 +12,7 @@ export const enum TimerStatus {
 export interface TimerTypeSelectProps {
   type: TimerType | null;
   onContinue: () => void;
-  onTimerTypeChange: (e: RadioChangeEvent) => void;
-}
-
-export interface BuiltInTimerProps {
-  time: number;
-  onTick: (time: number) => void;
-  onOk: () => void;
-  onReset: () => void;
+  onTimerTypeChange: (type: TimerType) => void;
 }
 
 export interface CustomKeyboardProps {
@@ -32,12 +23,6 @@ export interface CustomKeyboardProps {
 export interface TimeEnterModalProps {
   isOpen: boolean;
   inputValue: string;
-  onChange: (newValue: string) => void;
   onClose: () => void;
-}
-
-export interface ManualTimerProps {
-  onOk: () => void;
-  onReset: () => void;
-  onChange: (time: number) => void;
+  onOk: (newValue: string) => void;
 }

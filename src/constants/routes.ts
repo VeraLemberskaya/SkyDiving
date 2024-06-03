@@ -8,7 +8,8 @@ export const routes = {
   PARTICIPANTS: '/participants',
   COMPETITIONS: '/competitions',
   COMPETITIONS_REFEREEING: '/competitions-refereeing',
-  REFEREEING_TIMER: '/timing',
+  REFEREEING_TIMER: '/timing/:refereeingId',
   COMPETITION_BY_ID: (id: number) => `/competition/${id}`,
   COMPETITION_REFEREES_BY_ID: (id: number) => `/competition/${id}/referees`,
+  REFEREEING_TIMER_BY_ID: (refereeingId: number) => `/timing/${refereeingId}`,
 };

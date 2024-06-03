@@ -17,6 +17,14 @@ export const CustomKeyboard = ({
     }
   };
 
+  const handleClear = () => {
+    onInput('');
+  };
+
+  const handleBackspace = () => {
+    onInput(currentValue.slice(0, -1));
+  };
+
   const renderButtons = (numbers: number[]) => {
     return numbers.map((num) => (
       <Button
@@ -31,6 +39,14 @@ export const CustomKeyboard = ({
 
   return (
     <Flex vertical gap="small">
+      <Flex gap="small">
+        <Button className={styles.keyboardButton} onClick={handleClear}>
+          C
+        </Button>
+        <Button className={styles.keyboardButton} onClick={handleBackspace}>
+          ⌫
+        </Button>
+      </Flex>
       <Flex gap="small">{renderButtons([7, 8, 9])}</Flex>
       <Flex gap="small">{renderButtons([4, 5, 6])}</Flex>
       <Flex gap="small">{renderButtons([1, 2, 3])}</Flex>

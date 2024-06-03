@@ -5,67 +5,54 @@ import { CalculatorOutlined } from '@ant-design/icons';
 import {
   MAX_INPUT_VALUE,
   MAX_MILLISECONDS,
-  MAX_SECONDS,
+  MAX_SECONDS_STRING,
   TO_MILLISECONDS_MULTIPLIER,
 } from '../../time-refereeing.config';
-import { ManualTimerProps } from '../../time-refereeing.types';
 
 import styles from './manual-timer.module.scss';
 import { TimeEnterModal } from './components/time-enter-modal';
+import { processTimeInput } from './manual-timer.lib';
 
-export const ManualTimer = ({ onOk, onReset, onChange }: ManualTimerProps) => {
+export const ManualTimer = () => {
+  const [time, setTime] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const [isTimeEnterModalOpen, setIsTimeModalEnterOpen] = useState(false);
-
-  const changeInputValue = (newValue: string) => {
-    if (/^[2-9]/.test(newValue)) {
-      newValue = '0' + newValue;
-    }
-
-    newValue = newValue.replace(/\D/g, '');
-
-    if (Number(newValue.slice(0, 2)) >= MAX_SECONDS) {
-      setInputValue('16.00');
-      return;
-    }
-
-    if (newValue.length >= 2) {
-      newValue = newValue.slice(0, 2) + '.' + newValue.slice(2);
-    }
-
-    setInputValue(newValue);
-  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
 
-    changeInputValue(newValue);
+    setInputValue(processTimeInput(newValue));
   };
 
   const handleOk = () => {
     const timeInMilliseconds =
       Number(inputValue.replace('.', '')) * TO_MILLISECONDS_MULTIPLIER;
 
-    onChange(timeInMilliseconds);
-    onOk();
+    setTime(timeInMilliseconds);
+    //TODO: Logic to handle when "Ok" button is clicked
   };
 
   const resetTimer = () => {
     setInputValue('');
-    onReset();
+    setTime(0);
   };
 
   const setMaxTimeValue = () => {
-    setInputValue('16.00');
-    onChange(MAX_MILLISECONDS);
+    setInputValue(MAX_SECONDS_STRING);
+    setTime(MAX_MILLISECONDS);
   };
 
-  const handleOpenModal = () => {
+  const onOpenModal = () => {
     setIsTimeModalEnterOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const onCloseModal = () => {
     setIsTimeModalEnterOpen(false);
+  };
+
+  const onOk = (newValue: string) => {
+    setInputValue(processTimeInput(newValue));
+    onCloseModal();
   };
 
   return (
@@ -80,7 +67,7 @@ export const ManualTimer = ({ onOk, onReset, onChange }: ManualTimerProps) => {
             <Button
               icon={<CalculatorOutlined />}
               type="text"
-              onClick={handleOpenModal}
+              onClick={onOpenModal}
             />
           }
           value={inputValue}
@@ -106,8 +93,8 @@ export const ManualTimer = ({ onOk, onReset, onChange }: ManualTimerProps) => {
       <TimeEnterModal
         inputValue={inputValue}
         isOpen={isTimeEnterModalOpen}
-        onChange={changeInputValue}
-        onClose={handleCloseModal}
+        onClose={onCloseModal}
+        onOk={onOk}
       />
     </Flex>
   );

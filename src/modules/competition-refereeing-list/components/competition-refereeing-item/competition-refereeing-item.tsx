@@ -9,24 +9,19 @@ import { CompetitionRefereeingItemProps } from '../../competition-refereeing-lis
 import styles from './competition-refereeing-item.module.scss';
 
 export const CompetitionRefereeingItem = ({
-  competition,
+  competitionRefereeing,
 }: CompetitionRefereeingItemProps) => {
   const navigate = useNavigate();
 
-  const { beginDate, endDate, name, place, roundNumber, seriesNumber } =
-    competition;
+  const { trickSerieId, competition, roundNumber, seriesNumber } =
+    competitionRefereeing;
+  const { beginDate, endDate, name, place } = competition;
 
   const startDate = dayjs(beginDate).format('DD.MM.YYYY');
   const finishDate = dayjs(endDate).format('DD.MM.YYYY');
 
   const handleRefereeingClick = () => {
-    navigate(routes.REFEREEING_TIMER, {
-      state: {
-        name,
-        roundNumber,
-        seriesNumber,
-      },
-    });
+    navigate(routes.REFEREEING_TIMER_BY_ID(trickSerieId));
   };
 
   return (

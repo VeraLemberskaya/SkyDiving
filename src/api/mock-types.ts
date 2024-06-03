@@ -70,7 +70,9 @@ export interface Competition {
   numberOfStages: number;
 }
 
-export interface CompetitionRefereeing extends Competition {
+export interface CompetitionRefereeing {
+  trickSerieId: number;
+  competition: Competition;
   roundNumber: number;
   seriesNumber: number;
 }

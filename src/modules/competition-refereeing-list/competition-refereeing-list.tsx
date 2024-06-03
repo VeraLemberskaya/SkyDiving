@@ -10,7 +10,9 @@ export const CompetitionRefereeingList = () => {
     <List
       className={styles.list}
       dataSource={competitionsRefereeing}
-      renderItem={(item) => <CompetitionRefereeingItem competition={item} />}
+      renderItem={(item) => (
+        <CompetitionRefereeingItem competitionRefereeing={item} />
+      )}
     />
   );
 };

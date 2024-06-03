@@ -1,4 +1,4 @@
-import { Button, Flex, Radio, Space, Typography } from 'antd';
+import { Button, Flex, Radio, RadioChangeEvent, Space, Typography } from 'antd';
 
 import { selectOptions } from '../../time-refereeing.config';
 import { TimerTypeSelectProps } from '../../time-refereeing.types';
@@ -10,11 +10,16 @@ export const TimerTypeSelect = ({
   onContinue,
   onTimerTypeChange,
 }: TimerTypeSelectProps) => {
+  const handleTimerTypeChange = (e: RadioChangeEvent) => {
+    const type = e.target.value;
+
+    onTimerTypeChange(type);
+  };
   return (
     <>
       <Typography.Title level={5}>Выберите тип секундомера:</Typography.Title>
       <Flex vertical gap={50}>
-        <Radio.Group onChange={onTimerTypeChange}>
+        <Radio.Group onChange={handleTimerTypeChange}>
           <Space direction="vertical">
             {selectOptions.map((option) => (
               <Radio key={option.value} value={option.value}>
