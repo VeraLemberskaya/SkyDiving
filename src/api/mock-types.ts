@@ -70,6 +70,12 @@ export interface Competition {
   numberOfStages: number;
 }
 
+export interface CompetitionRefereeing {
+  trickSerieId: number;
+  competition: Competition;
+  roundNumber: number;
+  seriesNumber: number;
+}
 export interface TrickAttempt {
   trickAttemptId: number;
   sPenalty: number | null;

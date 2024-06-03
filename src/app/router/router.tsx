@@ -4,6 +4,7 @@ import { Spin } from 'antd';
 
 import { AssistantLayout } from '@layouts/assistant-layout';
 import { AdminLayout } from '@layouts/admin-layout';
+import { RefereeLayout } from '@layouts/referee-layout';
 import { routes } from '@constants/routes';
 
 const Login = lazy(() => import('@pages/login'));
@@ -15,6 +16,10 @@ const CompetitionParticipants = lazy(
 );
 const UserManagement = lazy(() => import('@pages/user-management'));
 const Competitions = lazy(() => import('@pages/competitions'));
+const CompetitionsRefereeing = lazy(
+  () => import('@pages/competition-refereeing'),
+);
+const Timing = lazy(() => import('@pages/timing'));
 const Competition = lazy(() => import('@pages/competition'));
 
 const {
@@ -25,6 +30,8 @@ const {
   COMPETITION_PARTICIPANTS,
   PARTICIPANTS,
   COMPETITIONS,
+  COMPETITIONS_REFEREEING,
+  REFEREEING_TIMER,
   COMPETITION,
 } = routes;
 
@@ -49,6 +56,13 @@ export const Router = () => {
         </Route>
         <Route element={<AdminLayout />}>
           <Route element={<UserManagement />} path={USER_MANAGEMENT} />
+        </Route>
+        <Route element={<RefereeLayout />}>
+          <Route
+            element={<CompetitionsRefereeing />}
+            path={COMPETITIONS_REFEREEING}
+          />
+          <Route element={<Timing />} path={REFEREEING_TIMER} />
         </Route>
       </Routes>
     </Suspense>
