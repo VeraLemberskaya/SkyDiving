@@ -8,12 +8,13 @@ import {
   MAX_SECONDS_STRING,
   TO_MILLISECONDS_MULTIPLIER,
 } from '../../time-refereeing.config';
+import { ManualTimerProps } from '../../time-refereeing.types';
 
 import styles from './manual-timer.module.scss';
 import { TimeEnterModal } from './components/time-enter-modal';
 import { processTimeInput } from './manual-timer.lib';
 
-export const ManualTimer = () => {
+export const ManualTimer = ({ onSubmit }: ManualTimerProps) => {
   const [time, setTime] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const [isTimeEnterModalOpen, setIsTimeModalEnterOpen] = useState(false);
@@ -29,7 +30,7 @@ export const ManualTimer = () => {
       Number(inputValue.replace('.', '')) * TO_MILLISECONDS_MULTIPLIER;
 
     setTime(timeInMilliseconds);
-    //TODO: Logic to handle when "Ok" button is clicked
+    onSubmit(time);
   };
 
   const resetTimer = () => {

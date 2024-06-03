@@ -3,16 +3,16 @@ import { Button, Flex, Input, Typography } from 'antd';
 import { formatTime } from '@utils/format-time';
 
 import { MAX_MILLISECONDS } from '../../time-refereeing.config';
-import { TimerStatus } from '../../time-refereeing.types';
+import { BuiltInTimerProps, TimerStatus } from '../../time-refereeing.types';
 
 import styles from './built-in-timer.module.scss';
-import { useTimer } from './hooks';
+import { useTimer } from './built-in-timer.hooks';
 
-export const BuiltInTimer = () => {
+export const BuiltInTimer = ({ onSubmit }: BuiltInTimerProps) => {
   const { time, timerStatus, startTimer, stopTimer, resetTimer } = useTimer();
 
   const handleOk = () => {
-    //TODO: Logic to handle when "Ok" button is clicked
+    onSubmit(time);
   };
 
   return (

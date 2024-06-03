@@ -24,6 +24,10 @@ export const TimeRefereeing = () => {
     setShowTimerSelect(true);
   };
 
+  const onSubmit = (time: number) => {
+    //TODO: Logic to handle when "Ok" button is clicked
+  };
+
   return (
     <>
       {showTimerSelect ? (
@@ -41,8 +45,12 @@ export const TimeRefereeing = () => {
           >
             Вернуться к выбору таймера
           </Button>
-          {timerType === TimerType.Manual && <ManualTimer />}
-          {timerType === TimerType.BuiltIn && <BuiltInTimer />}
+          {timerType === TimerType.Manual && (
+            <ManualTimer onSubmit={onSubmit} />
+          )}
+          {timerType === TimerType.BuiltIn && (
+            <BuiltInTimer onSubmit={onSubmit} />
+          )}
         </Flex>
       )}
     </>

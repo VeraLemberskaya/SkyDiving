@@ -26,3 +26,11 @@ export interface TimeEnterModalProps {
   onClose: () => void;
   onOk: (newValue: string) => void;
 }
+
+export interface ManualTimerProps {
+  onSubmit: (time: number) => void;
+}
+
+export interface BuiltInTimerProps {
+  onSubmit: (time: number) => void;
+}
