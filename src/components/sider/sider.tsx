@@ -1,11 +1,8 @@
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { Layout } from 'antd';
 
 import styles from './sider.module.scss';
-
-interface SiderProps {
-  children: ReactNode;
-}
+import { SiderProps } from './sider.types';
 
 export const Sider = ({ children }: SiderProps) => {
   const [collapsed, setCollapsed] = useState(false);

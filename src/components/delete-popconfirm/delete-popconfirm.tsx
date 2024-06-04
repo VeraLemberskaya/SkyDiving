@@ -1,15 +1,8 @@
 import { MouseEventHandler } from 'react';
 import { DeleteTwoTone } from '@ant-design/icons';
 import { Button, Popconfirm, theme } from 'antd';
-import { SizeType } from 'antd/lib/config-provider/SizeContext';
 
-interface DeletePopConfirmProps {
-  size?: SizeType;
-  title: string;
-  disabled?: boolean;
-  onCancel?: () => void;
-  onConfirm?: () => void;
-}
+import { DeletePopConfirmProps } from './delete-popconfirm.types';
 
 export const DeletePopConfirm = ({
   size = 'middle',

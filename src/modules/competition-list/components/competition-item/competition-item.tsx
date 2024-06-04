@@ -13,10 +13,12 @@ import { AcrobaticsButton } from '../acrobatics-button';
 import styles from './competition-item.module.scss';
 
 export const CompetitionItem = ({ competition }: CompetitionItemProps) => {
+  const { beginDate, endDate, name, place } = competition;
+
   const navigate = useNavigate();
 
-  const startDate = formatDate(competition.beginDate);
-  const endDate = formatDate(competition.endDate);
+  const startDate = formatDate(beginDate);
+  const finishDate = formatDate(endDate);
 
   const handleCompetitionClick = () => {
     navigate(routes.COMPETITION_BY_ID(competition.id));
@@ -48,15 +50,20 @@ export const CompetitionItem = ({ competition }: CompetitionItemProps) => {
         justify="space-between"
       >
         <div className={styles.title_container}>
-          <Typography.Title level={5}>{competition.name}</Typography.Title>
-          <Typography.Text type="secondary">
-            {competition.place}
-          </Typography.Text>
+          <Typography.Title level={5}>{name}</Typography.Title>
+          <Typography.Text type="secondary">{place}</Typography.Text>
         </div>
         <Flex align="center" gap="large">
           <Typography.Text strong>
-            {startDate} - {endDate}
+            {startDate} - {finishDate}
           </Typography.Text>
+          <Flex>
+            <EditButton />
+            <DeletePopConfirm
+              size="middle"
+              title="Вы уверены, что хотите удалить соревнование?"
+            />
+          </Flex>
         </Flex>
       </Flex>
     </List.Item>

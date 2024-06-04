@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 import {
   Competition,
+  CompetitionRefereeing,
   SkydivingClubMember,
   Referee,
   Sportsman,
@@ -290,6 +291,35 @@ export const competitions: Competition[] = [
     beginDate: '2024-03-14',
     endDate: '2024-04-16',
     numberOfStages: 2,
+  },
+];
+
+export const competitionsRefereeing: CompetitionRefereeing[] = [
+  {
+    trickSerieId: 1,
+    competition: {
+      id: 1,
+      name: 'Чемпионат РБ',
+      place: 'Гродно',
+      beginDate: '2024-05-14',
+      endDate: '2024-05-24',
+      numberOfStages: 2,
+    },
+    roundNumber: 1,
+    seriesNumber: 1,
+  },
+  {
+    trickSerieId: 2,
+    competition: {
+      id: 2,
+      name: 'Чемпионат РБ-2',
+      place: 'Минск',
+      beginDate: '2024-04-14',
+      endDate: '2024-04-16',
+      numberOfStages: 2,
+    },
+    roundNumber: 1,
+    seriesNumber: 1,
   },
 ];
 

@@ -1,0 +1,17 @@
+@import '@app/styles/vars.scss';
+
+.button {
+  color: $link;
+  width: fit-content;
+  padding: 0;
+
+  &:hover {
+    color: $black !important;
+  }
+
+  span {
+    &:hover {
+      background: $link-hover-bg;
+    }
+  }
+}
