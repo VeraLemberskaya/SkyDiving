@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Button, Flex } from 'antd';
+import { useNavigate } from 'react-router-dom';
+
+import { routes } from '@constants/routes';
 
 import { BuiltInTimer } from './components/built-in-timer';
 import { ManualTimer } from './components/manual-timer';
@@ -10,6 +13,8 @@ import styles from './time-refereeing.module.scss';
 export const TimeRefereeing = () => {
   const [timerType, setTimerType] = useState<TimerType | null>(null);
   const [showTimerSelect, setShowTimerSelect] = useState(true);
+
+  const navigate = useNavigate();
 
   const handleTimerTypeChange = (type: TimerType) => {
     setTimerType(type);
@@ -24,7 +29,11 @@ export const TimeRefereeing = () => {
     setShowTimerSelect(true);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = (time: number) => {
+    const refereeingId = 1; //TODO: получить из кэша или еще откуда
+
+    navigate(routes.PENALTY_BY_ID(refereeingId));
     //TODO: Logic to handle when "Ok" button is clicked
   };
 

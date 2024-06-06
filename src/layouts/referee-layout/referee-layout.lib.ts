@@ -5,7 +5,7 @@ import { routes } from '@constants/routes';
 const COMPETITION_REFEREEING_ROUTES = [
   routes.COMPETITIONS_REFEREEING,
   routes.REFEREEING_TIMER,
-  //TODO: PENALTY page
+  routes.PENALTY,
 ];
 
 export const getSelectedKey = (pathname: string) => {

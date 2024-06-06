@@ -1,4 +1,9 @@
-import { Penalty, PenaltyTypes } from './penalty-filling-out.types';
+import {
+  Penalty,
+  PenaltyReasonType,
+  PenaltyState,
+  PenaltyTypes,
+} from './penalty-filling-out.types';
 
 export const dataConfig: Penalty[] = [
   {
@@ -67,7 +72,14 @@ export const specialAngles = [
   { label: '>90', value: 100 },
 ];
 
+export const penaltyReasons = [
+  { label: 'OF: Omission of a figure', value: PenaltyReasonType.OF },
+  { label: 'AF: Added figure', value: PenaltyReasonType.AF },
+  { label: 'IS: Incorrect Series', value: PenaltyReasonType.IS },
+];
+
 export const HEADER_CARD_COLOR = '#004ab4a6';
+export const PENALTY_HEADER_CARD_COLOR = '#e53935a6';
 export const HEADER_CARD_TEXT_COLOR = '#ffffff';
 
 export const titleMapping: { [key: string]: string } = {
@@ -79,7 +91,7 @@ export const titleMapping: { [key: string]: string } = {
   '2 сальто': '2_BACK_LOOP',
 };
 
-export const initialState = {
+export const initialState: PenaltyState = {
   '1_TURN': {
     arrowPenalty: 0,
     dPenalty: 0,

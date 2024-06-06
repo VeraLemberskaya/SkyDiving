@@ -1,6 +1,9 @@
 import { Card, Flex, List, Select } from 'antd';
 
-import { Penalty, PenaltyTypes } from '../../penalty-filling-out.types';
+import {
+  PenaltyItemProps,
+  PenaltyTypes,
+} from '../../penalty-filling-out.types';
 import {
   HEADER_CARD_COLOR,
   HEADER_CARD_TEXT_COLOR,
@@ -9,16 +12,11 @@ import {
 import styles from './penalty-item.module.scss';
 import { getAngleSelectOptions, getPenaltyLabel } from './penalty-item.lib';
 
-interface PenaltyItemProps {
-  penalty: Penalty;
-  onPenaltySelect: (title: string, type: PenaltyTypes, angle: number) => void;
-}
-
-export const PenaltyItem = ({ penalty, onPenaltySelect }: PenaltyItemProps) => {
+export const PenaltyItem = ({ penalty, onSelect }: PenaltyItemProps) => {
   const { title, types } = penalty;
 
-  const handlePenaltySelect = (type: PenaltyTypes) => (value: number) => {
-    onPenaltySelect(title, type, value);
+  const handleAngleSelect = (type: PenaltyTypes) => (value: number) => {
+    onSelect(title, type, value);
   };
 
   return (
@@ -45,7 +43,7 @@ export const PenaltyItem = ({ penalty, onPenaltySelect }: PenaltyItemProps) => {
                 allowClear
                 className={styles.card_select}
                 placeholder="Выбрать"
-                onChange={handlePenaltySelect(type)}
+                onChange={handleAngleSelect(type)}
               >
                 {getAngleSelectOptions(type)}
               </Select>

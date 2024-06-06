@@ -1,5 +1,4 @@
 import { Flex, List, Typography } from 'antd';
-import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 
 import { formatDate } from '@utils/format-date';
