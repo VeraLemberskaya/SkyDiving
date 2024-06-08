@@ -25,6 +25,7 @@ const CompetitionsRefereeing = lazy(
 );
 const Timing = lazy(() => import('@pages/timing'));
 const Competition = lazy(() => import('@pages/competition'));
+const Penalty = lazy(() => import('@pages/penalty'));
 
 const {
   LOGIN,
@@ -37,6 +38,7 @@ const {
   COMPETITIONS_REFEREEING,
   REFEREEING_TIMER,
   COMPETITION,
+  PENALTY,
 } = routes;
 
 export const Router = () => {
@@ -81,6 +83,7 @@ export const Router = () => {
               path={COMPETITIONS_REFEREEING}
             />
             <Route element={<Timing />} path={REFEREEING_TIMER} />
+            <Route element={<Penalty />} path={PENALTY} />
           </Route>
         </Route>
       </Routes>
