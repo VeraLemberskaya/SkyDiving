@@ -5,6 +5,6 @@ export const getParticipantsOptions = (participants: Sportsman[]) =>
   participants.map(
     ({ id, firstName, secondName, patronymic, serialNumber }) => ({
       value: id,
-      label: `${getFullName(firstName, secondName, patronymic)} (№ ${serialNumber})`,
+      label: `${getFullName({ firstName, secondName, patronymic })} (№ ${serialNumber})`,
     }),
   );

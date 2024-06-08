@@ -6,6 +6,7 @@ export interface State {
 }
 
 export interface Actions {
-  login: (role: Role) => void;
+  login: () => void;
   logout: () => void;
+  setRole: (role: Role) => void;
 }

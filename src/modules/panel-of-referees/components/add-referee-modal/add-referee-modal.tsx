@@ -35,7 +35,7 @@ export const AddRefereeModal = ({ isOpen, onClose }: AddRefereeModalProps) => {
   const selectOptions = referees.map(
     ({ id, firstName, secondName, patronymic, category }) => ({
       value: id,
-      label: `${getFullName(firstName, secondName, patronymic)} (${category})`,
+      label: `${getFullName({ firstName, secondName, patronymic })} (${category})`,
     }),
   );
 

@@ -20,6 +20,6 @@ export const mapRefereesToTableData = (
       serialNumber,
       work,
       category,
-      fullName: getFullName(firstName, secondName, patronymic),
+      fullName: getFullName({ firstName, secondName, patronymic }),
     }),
   );

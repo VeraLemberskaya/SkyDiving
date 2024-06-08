@@ -73,12 +73,15 @@ export const Router = () => {
             <Route element={<UserManagement />} path={USER_MANAGEMENT} />
           </Route>
         </Route>
-        <Route element={<RefereeLayout />}>
-          <Route
-            element={<CompetitionsRefereeing />}
-            path={COMPETITIONS_REFEREEING}
-          />
-          <Route element={<Timing />} path={REFEREEING_TIMER} />
+
+        <Route element={<AuthRoute roles={[Role.REFEREE]} />}>
+          <Route element={<RefereeLayout />}>
+            <Route
+              element={<CompetitionsRefereeing />}
+              path={COMPETITIONS_REFEREEING}
+            />
+            <Route element={<Timing />} path={REFEREEING_TIMER} />
+          </Route>
         </Route>
       </Routes>
     </Suspense>

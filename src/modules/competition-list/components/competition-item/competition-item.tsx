@@ -57,13 +57,6 @@ export const CompetitionItem = ({ competition }: CompetitionItemProps) => {
           <Typography.Text strong>
             {startDate} - {finishDate}
           </Typography.Text>
-          <Flex>
-            <EditButton />
-            <DeletePopConfirm
-              size="middle"
-              title="Вы уверены, что хотите удалить соревнование?"
-            />
-          </Flex>
         </Flex>
       </Flex>
     </List.Item>

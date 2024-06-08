@@ -21,7 +21,7 @@ export const mapSportsmenToTableData = (
       key: id,
       serialNumber,
       sportDegree,
-      fullName: getFullName(firstName, secondName, patronymic),
+      fullName: getFullName({ firstName, secondName, patronymic }),
       isInternal: isInternal,
       gender,
     }),
