@@ -15,3 +15,11 @@ export interface SignInResponse {
   userRole: Role;
   accessToken: string;
 }
+
+export interface UserInfo {
+  id: number;
+  firstName: string;
+  secondName: string;
+  patronymic: string;
+  role: Role;
+}

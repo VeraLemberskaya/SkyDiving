@@ -21,6 +21,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+//TODO: error notification
 api.interceptors.response.use(
   (config) => config,
   (error: AxiosError) => {
@@ -50,7 +51,7 @@ export const request = async <T>({
   headers?: AxiosRequestConfig['headers'];
   responseType?: AxiosRequestConfig['responseType'];
   paramsSerializer?: AxiosRequestConfig['paramsSerializer'];
-}): Promise<{ data: T }> => {
+}): Promise<T> => {
   try {
     const result = await api({
       url,
@@ -62,7 +63,7 @@ export const request = async <T>({
       paramsSerializer,
     });
 
-    return { data: result.data };
+    return result.data;
   } catch (axiosError) {
     const err = axiosError as AxiosError;
     const error = {

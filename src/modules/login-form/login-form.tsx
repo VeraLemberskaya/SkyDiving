@@ -2,15 +2,15 @@ import { Button, Flex } from 'antd';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { useLogin } from '@app/auth';
 import { InputField, PasswordField } from '@components/form-fields';
 import { Credentials } from '@api/types';
 
 import styles from './login-form.module.scss';
 import { defaultValues, loginSchema } from './login-form.config';
-import { useLoginMutation } from './login-form.hooks';
 
 export const LoginForm = () => {
-  const { mutate: signIn, isPending } = useLoginMutation();
+  const { login, isPending } = useLogin();
 
   const { handleSubmit, control } = useForm<Credentials>({
     defaultValues,
@@ -18,7 +18,7 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: Credentials) => signIn(data);
+  const onSubmit = async (data: Credentials) => login(data);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>

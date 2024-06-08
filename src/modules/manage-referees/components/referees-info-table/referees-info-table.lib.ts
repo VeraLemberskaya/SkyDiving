@@ -12,6 +12,6 @@ export const mapRefereesToTableData = (
       key: id,
       serialNumber,
       category,
-      fullName: getFullName(firstName, secondName, patronymic),
+      fullName: getFullName({ firstName, secondName, patronymic }),
     }),
   );

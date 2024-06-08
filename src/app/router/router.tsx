@@ -2,10 +2,14 @@ import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Spin } from 'antd';
 
+import { Home } from '@pages/home';
 import { AssistantLayout } from '@layouts/assistant-layout';
 import { AdminLayout } from '@layouts/admin-layout';
 import { RefereeLayout } from '@layouts/referee-layout';
+import { Role } from '@api/types';
 import { routes } from '@constants/routes';
+
+import { AuthRoute, GuestRoute } from './guards';
 
 const Login = lazy(() => import('@pages/login'));
 const NewCompetition = lazy(() => import('@pages/new-competition'));
@@ -41,31 +45,46 @@ export const Router = () => {
   return (
     <Suspense fallback={<Spin fullscreen size="large" />}>
       <Routes>
-        <Route element={<Login />} path={LOGIN} />
-        <Route element={<AssistantLayout />}>
-          <Route element={<NewCompetition />} path={NEW_COMPETITION} />
-          <Route
-            element={<CompetitionReferees />}
-            path={COMPETITION_REFEREES}
-          />
-          <Route element={<Competitions />} path={COMPETITIONS} />
-          <Route
-            element={<CompetitionParticipants />}
-            path={COMPETITION_PARTICIPANTS}
-          />
-          <Route element={<ManageParticipants />} path={PARTICIPANTS} />
-          <Route element={<Competition />} path={COMPETITION} />
+        <Route element={<GuestRoute />}>
+          <Route element={<Login />} path={LOGIN} />
         </Route>
-        <Route element={<AdminLayout />}>
-          <Route element={<UserManagement />} path={USER_MANAGEMENT} />
+
+        <Route element={<AuthRoute />}>
+          <Route element={<Home />} path="/" />
         </Route>
-        <Route element={<RefereeLayout />}>
-          <Route
-            element={<CompetitionsRefereeing />}
-            path={COMPETITIONS_REFEREEING}
-          />
-          <Route element={<Timing />} path={REFEREEING_TIMER} />
-          <Route element={<Penalty />} path={PENALTY} />
+
+        <Route element={<AuthRoute roles={[Role.SECRETARY]} />}>
+          <Route element={<AssistantLayout />}>
+            <Route element={<NewCompetition />} path={NEW_COMPETITION} />
+            <Route element={<ManageParticipants />} path={PARTICIPANTS} />
+            <Route element={<Competitions />} path={COMPETITIONS} />
+            <Route element={<Competition />} path={COMPETITION} />
+            <Route
+              element={<CompetitionReferees />}
+              path={COMPETITION_REFEREES}
+            />
+            <Route
+              element={<CompetitionParticipants />}
+              path={COMPETITION_PARTICIPANTS}
+            />
+          </Route>
+        </Route>
+
+        <Route element={<AuthRoute roles={[Role.ADMIN]} />}>
+          <Route element={<AdminLayout />}>
+            <Route element={<UserManagement />} path={USER_MANAGEMENT} />
+          </Route>
+        </Route>
+
+        <Route element={<AuthRoute roles={[Role.REFEREE]} />}>
+          <Route element={<RefereeLayout />}>
+            <Route
+              element={<CompetitionsRefereeing />}
+              path={COMPETITIONS_REFEREEING}
+            />
+            <Route element={<Timing />} path={REFEREEING_TIMER} />
+            <Route element={<Penalty />} path={PENALTY} />
+          </Route>
         </Route>
       </Routes>
     </Suspense>
