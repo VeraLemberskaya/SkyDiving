@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 
-import { useLogout } from '@app/store';
+import { useLogout } from '@app/auth';
 import { Header } from '@components/header';
 import { Sider } from '@components/sider';
 

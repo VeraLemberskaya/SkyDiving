@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { useAuthStore, useCurrentUser } from '@app/store';
+import { useAuthStore, useCurrentUser } from '@app/auth';
 import { Role } from '@api/types';
 import { routes } from '@constants/routes';
 

@@ -2,7 +2,7 @@ import { Button, Flex } from 'antd';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useLogin } from '@app/store';
+import { useLogin } from '@app/auth';
 import { InputField, PasswordField } from '@components/form-fields';
 import { Credentials } from '@api/types';
 

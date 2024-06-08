@@ -2,8 +2,18 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
 import { getToken } from '@api/token';
+import { Role } from '@api/types';
 
-import { Actions, State } from './auth.types';
+export interface State {
+  isLogin: boolean;
+  role: Role | null;
+}
+
+export interface Actions {
+  login: () => void;
+  logout: () => void;
+  setRole: (role: Role) => void;
+}
 
 const initialState: State = {
   isLogin: Boolean(getToken()),
