@@ -1,9 +1,8 @@
-export interface CreateCompetitionData {
+export interface CompetitionData {
   name: string;
   beginDate: string;
   endDate: string;
   place: string;
-  numberOfStages: number;
 }
 
 interface RefereeData {

@@ -1,0 +1,8 @@
+@import "@app/styles/mixins";
+@import "@app/styles/vars";
+
+.content {
+  @include main-template;
+  padding: $sp-4;
+  min-height: 75vh;
+}

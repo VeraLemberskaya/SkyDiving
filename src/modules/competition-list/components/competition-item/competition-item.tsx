@@ -26,7 +26,7 @@ export const CompetitionItem = ({ competition }: CompetitionItemProps) => {
 
   const handleEdit: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
-    //edit logic
+    navigate(routes.EDIT_COMPETITION_BY_ID(competition.id));
   };
 
   const actions: ReactNode[] = [

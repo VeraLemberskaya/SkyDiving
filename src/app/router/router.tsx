@@ -18,8 +18,9 @@ const ManageParticipants = lazy(() => import('@pages/manage-participants'));
 const CompetitionParticipants = lazy(
   () => import('@pages/competition-participants'),
 );
-const UserManagement = lazy(() => import('@pages/user-management'));
 const Competitions = lazy(() => import('@pages/competitions'));
+const EditCompetition = lazy(() => import('@pages/edit-competition'));
+const UserManagement = lazy(() => import('@pages/user-management'));
 const CompetitionsRefereeing = lazy(
   () => import('@pages/competition-refereeing'),
 );
@@ -38,6 +39,7 @@ const {
   COMPETITIONS_REFEREEING,
   REFEREEING_TIMER,
   COMPETITION,
+  EDIT_COMPETITION,
   PENALTY,
 } = routes;
 
@@ -59,6 +61,7 @@ export const Router = () => {
             <Route element={<ManageParticipants />} path={PARTICIPANTS} />
             <Route element={<Competitions />} path={COMPETITIONS} />
             <Route element={<Competition />} path={COMPETITION} />
+            <Route element={<EditCompetition />} path={EDIT_COMPETITION} />
             <Route
               element={<CompetitionReferees />}
               path={COMPETITION_REFEREES}

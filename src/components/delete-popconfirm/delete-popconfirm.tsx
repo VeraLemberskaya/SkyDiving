@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { MouseEvent } from 'react';
 import { DeleteTwoTone } from '@ant-design/icons';
 import { Button, Popconfirm, theme } from 'antd';
 
@@ -15,7 +15,17 @@ export const DeletePopConfirm = ({
 
   const color = disabled ? token.colorBorder : token.colorError;
 
-  const handleClick: MouseEventHandler = (e) => {
+  const handleConfirm = (e?: MouseEvent<HTMLElement>) => {
+    e?.stopPropagation();
+    onConfirm && onConfirm();
+  };
+
+  const handleCancel = (e?: MouseEvent<HTMLElement>) => {
+    e?.stopPropagation();
+    onCancel && onCancel();
+  };
+
+  const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.stopPropagation();
   };
 
@@ -25,8 +35,8 @@ export const DeletePopConfirm = ({
       icon={null}
       placement="topRight"
       title={title}
-      onCancel={onCancel}
-      onConfirm={onConfirm}
+      onCancel={handleCancel}
+      onConfirm={handleConfirm}
     >
       <Button
         disabled={disabled}

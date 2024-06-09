@@ -1,6 +1,6 @@
 import { Typography } from 'antd';
 
-import { CreateCompetitionForm } from '@modules/create-competition';
+import { CreateCompetitionForm } from '@modules/competition-form';
 
 import styles from './new-competition.module.scss';
 

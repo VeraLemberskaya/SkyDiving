@@ -8,6 +8,7 @@ const COMPETITION_ROUTES = [
   routes.COMPETITION_REFEREES,
   routes.COMPETITION_PARTICIPANTS,
   routes.COMPETITIONS,
+  routes.EDIT_COMPETITION,
 ];
 
 export const getSelectedKey = (pathname: string) => {

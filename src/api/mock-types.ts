@@ -67,7 +67,6 @@ export interface Competition {
   beginDate: string;
   endDate: string;
   place: string;
-  numberOfStages: number;
 }
 
 export interface CompetitionRefereeing {

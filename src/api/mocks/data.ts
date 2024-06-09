@@ -274,7 +274,6 @@ export const competitions: Competition[] = [
     place: 'Гродно',
     beginDate: '2024-05-14',
     endDate: '2024-05-24',
-    numberOfStages: 2,
   },
   {
     id: 2,
@@ -282,7 +281,6 @@ export const competitions: Competition[] = [
     place: 'Минск',
     beginDate: '2024-04-14',
     endDate: '2024-04-16',
-    numberOfStages: 2,
   },
   {
     id: 3,
@@ -290,7 +288,6 @@ export const competitions: Competition[] = [
     place: 'Барановичи',
     beginDate: '2024-03-14',
     endDate: '2024-04-16',
-    numberOfStages: 2,
   },
 ];
 
@@ -303,7 +300,6 @@ export const competitionsRefereeing: CompetitionRefereeing[] = [
       place: 'Гродно',
       beginDate: '2024-05-14',
       endDate: '2024-05-24',
-      numberOfStages: 2,
     },
     roundNumber: 1,
     seriesNumber: 1,
@@ -316,7 +312,6 @@ export const competitionsRefereeing: CompetitionRefereeing[] = [
       place: 'Минск',
       beginDate: '2024-04-14',
       endDate: '2024-04-16',
-      numberOfStages: 2,
     },
     roundNumber: 1,
     seriesNumber: 1,
