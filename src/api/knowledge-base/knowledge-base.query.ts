@@ -17,3 +17,7 @@ export const useKnowledgeBaseQuery = <T>(select: SelectFn<T>) => {
 export const useSportRanks = () => {
   return useKnowledgeBaseQuery(({ sportRanks }) => sportRanks);
 };
+
+export const useRefereeCategories = () => {
+  return useKnowledgeBaseQuery(({ refereeCategory }) => refereeCategory);
+};

@@ -16,6 +16,7 @@ export const mapRefereesToTableData = (
       refereeNumber,
       category,
     }) => ({
+      id,
       key: id,
       refereeNumber,
       workPerformed,

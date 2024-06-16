@@ -1,13 +1,12 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 import {
+  addRefereeToCompetition,
   createCompetition,
-  createCompetitionCollegium,
   deleteCompetition,
   getCompetitionById,
   getCompetitions,
   updateCompetition,
-  updateCompetitionCollegium,
 } from './competitions.api';
 import { GetCompetitionsParams } from './types';
 
@@ -31,12 +30,8 @@ export const useCompetitionQuery = (id?: number) => {
   });
 };
 
-export const useCreateCompetitionCollegiumMutation = () => {
-  return useMutation({ mutationFn: createCompetitionCollegium });
-};
-
-export const useUpdateCompetitionCollegiumMutation = () => {
-  return useMutation({ mutationFn: updateCompetitionCollegium });
+export const useAddRefereeToCompetitionMutation = () => {
+  return useMutation({ mutationFn: addRefereeToCompetition });
 };
 
 export const useCreateCompetitionMutation = () => {

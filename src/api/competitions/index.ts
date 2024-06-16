@@ -4,7 +4,7 @@ import {
   useCreateCompetitionMutation,
   useUpdateCompetitionMutation,
   useDeleteCompetitionMutation,
-  useCreateCompetitionCollegiumMutation,
+  useAddRefereeToCompetitionMutation,
 } from './competitions.query';
 
 export const competitions = {
@@ -13,5 +13,5 @@ export const competitions = {
   useCreateCompetitionMutation,
   useUpdateCompetitionMutation,
   useDeleteCompetitionMutation,
-  useCreateCompetitionCollegiumMutation,
+  useAddRefereeToCompetitionMutation,
 };

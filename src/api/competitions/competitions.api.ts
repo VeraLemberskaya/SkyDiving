@@ -3,12 +3,11 @@ import { request } from '@api/client';
 import { Pagination } from '../types/common';
 
 import {
+  AddRefereeToCompetitionRequest,
   CollegiumResponse,
   Competition,
-  CreateCollegiumRequest,
   CreateCompetitionRequest,
   GetCompetitionsParams,
-  UpdateCollegiumRequest,
   UpdateCompetitionRequest,
 } from './types';
 
@@ -16,8 +15,6 @@ const COMPETITIONS_URL = '/competitions';
 const CREATE_COMPETITION_URL = `${COMPETITIONS_URL}/initial`;
 
 const COMPETITION_BY_ID_URL = (id: number) => `${COMPETITIONS_URL}/${id}`;
-const COMPETITION_COLLEGIUM_URL = (id: number) =>
-  `${COMPETITIONS_URL}/${id}/collegium`;
 
 export const getCompetitions = (params: GetCompetitionsParams) => {
   return request<Pagination<Competition>>({
@@ -42,6 +39,20 @@ export const createCompetition = (data: CreateCompetitionRequest) => {
   });
 };
 
+export const addRefereeToCompetition = ({
+  id,
+  data,
+}: {
+  id: number;
+  data: AddRefereeToCompetitionRequest;
+}) => {
+  return request<CollegiumResponse>({
+    url: COMPETITION_BY_ID_URL(id),
+    method: 'post',
+    data,
+  });
+};
+
 export const updateCompetition = ({
   id,
   data,
@@ -60,33 +71,5 @@ export const deleteCompetition = (id: number) => {
   return request<void>({
     url: COMPETITION_BY_ID_URL(id),
     method: 'delete',
-  });
-};
-
-export const createCompetitionCollegium = ({
-  competitionId,
-  data,
-}: {
-  competitionId: number;
-  data: CreateCollegiumRequest;
-}) => {
-  return request<CollegiumResponse>({
-    url: COMPETITION_COLLEGIUM_URL(competitionId),
-    method: 'post',
-    data,
-  });
-};
-
-export const updateCompetitionCollegium = ({
-  competitionId,
-  data,
-}: {
-  competitionId: number;
-  data: UpdateCollegiumRequest;
-}) => {
-  return request<CollegiumResponse>({
-    url: COMPETITION_COLLEGIUM_URL(competitionId),
-    method: 'put',
-    data,
   });
 };

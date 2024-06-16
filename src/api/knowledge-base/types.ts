@@ -19,6 +19,13 @@ export const enum SportRank {
   MASTER_OF_SPORT_OF_REPUBLIC_OF_BELARUS_AMONG_DISABLED = 'MASTER_OF_SPORT_OF_REPUBLIC_OF_BELARUS_AMONG_DISABLED',
 }
 
+export const enum RefereeCategory {
+  SPORT_REFEREE = 'SPORT_REFEREE',
+  SPORT_REFEREE_OF_FIRST_CATEGORY = 'SPORT_REFEREE_OF_FIRST_CATEGORY',
+  SPORT_REFEREE_OF_NATIONAL_CATEGORY = 'SPORT_REFEREE_OF_NATIONAL_CATEGORY',
+  SPORT_REFEREE_OF_HIGHEST_NATIONAL_CATEGORY = 'SPORT_REFEREE_OF_HIGHEST_NATIONAL_CATEGORY',
+}
+
 export interface EnumModel<T> {
   id: number;
   name: T;
@@ -27,4 +34,5 @@ export interface EnumModel<T> {
 
 export interface KnowledgeBaseResponse {
   sportRanks: EnumModel<SportRank>[];
+  refereeCategory: EnumModel<RefereeCategory>[];
 }

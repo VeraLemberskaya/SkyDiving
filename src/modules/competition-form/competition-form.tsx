@@ -15,15 +15,20 @@ import { getValues } from './competition-form.lib';
 
 export const CompetitionForm = ({
   competition,
+  loading,
   onSubmit: onCompetitionSubmit,
 }: CompetitionFormProps) => {
-  const { handleSubmit, control } = useForm<CompetitionValues>({
+  const {
+    handleSubmit,
+    control,
+    formState: { isValid, isDirty },
+  } = useForm<CompetitionValues>({
     values: getValues(competition),
     mode: 'onChange',
     resolver: zodResolver(competitionSchema),
   });
 
-  const onSubmit = ({ name, place, period }: CompetitionValues) => {
+  const onSubmit = async ({ name, place, period }: CompetitionValues) => {
     const data: CompetitionData = {
       name,
       place,
@@ -65,7 +70,12 @@ export const CompetitionForm = ({
           name="period"
         />
       </Flex>
-      <Button htmlType="submit" type="primary">
+      <Button
+        disabled={!isValid || !isDirty}
+        htmlType="submit"
+        loading={loading}
+        type="primary"
+      >
         Продолжить
       </Button>
     </form>

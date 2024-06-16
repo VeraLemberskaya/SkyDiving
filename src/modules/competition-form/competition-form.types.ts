@@ -11,6 +11,7 @@ export interface CompetitionData {
 
 export interface CompetitionFormProps {
   competition?: Competition;
+  loading?: boolean;
   onSubmit: (data: CompetitionData) => void;
 }
 

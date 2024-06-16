@@ -1,16 +1,39 @@
-import { competitions } from '@api/mocks';
+import { useQueryClient } from '@tanstack/react-query';
+
+import { API } from '@api/index';
 
 import { CompetitionForm } from './competition-form';
-import { EditCompetitionFormProps } from './competition-form.types';
+import {
+  CompetitionData,
+  EditCompetitionFormProps,
+} from './competition-form.types';
 
 export const EditCompetitionForm = ({
   competitionId,
 }: EditCompetitionFormProps) => {
-  const competition = competitions.find(({ id }) => id === competitionId);
+  const { data } = API.competitions.useCompetitionQuery(competitionId);
+  const queryClient = useQueryClient();
+  const { mutate: update, isPending } =
+    API.competitions.useUpdateCompetitionMutation();
 
-  const handleSubmit = () => {
-    //edit
+  const handleSubmit = (data: CompetitionData) => {
+    update(
+      { id: competitionId, data },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: ['competitions', competitionId],
+          });
+        },
+      },
+    );
   };
 
-  return <CompetitionForm competition={competition} onSubmit={handleSubmit} />;
+  return (
+    <CompetitionForm
+      competition={data}
+      loading={isPending}
+      onSubmit={handleSubmit}
+    />
+  );
 };

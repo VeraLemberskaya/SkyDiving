@@ -1,6 +1,11 @@
-import { useKnowledgeBaseQuery, useSportRanks } from './knowledge-base.query';
+import {
+  useKnowledgeBaseQuery,
+  useSportRanks,
+  useRefereeCategories,
+} from './knowledge-base.query';
 
 export const knowledgeBase = {
   useKnowledgeBaseQuery,
   useSportRanks,
+  useRefereeCategories,
 };

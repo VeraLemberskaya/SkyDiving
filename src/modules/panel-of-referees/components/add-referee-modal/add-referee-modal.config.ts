@@ -7,10 +7,10 @@ import { AddRefereeFormValues } from '../../panel-of-referees.types';
 const { REQUIRED } = validationMessages;
 
 export const defaultValues: AddRefereeFormValues = {
-  work: '',
+  workPerformed: '',
 };
 
 export const addRefereeSchema = z.object({
   refereeId: z.number({ required_error: REQUIRED }),
-  work: z.string().min(1, REQUIRED),
+  workPerformed: z.string().min(1, REQUIRED),
 });

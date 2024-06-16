@@ -101,6 +101,7 @@ export const ExternalSportsmanModal = ({
               options: sportRankOptions,
               placeholder: 'Выберите спортивное звание',
               label: 'Спортивное звание',
+              required: true,
             }}
             control={control}
             name="sportRank"

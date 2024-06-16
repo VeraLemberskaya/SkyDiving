@@ -24,7 +24,7 @@ export const NewCompetitionForm = () => {
     navigate(routes.COMPETITION_REFEREES_BY_ID(id));
   };
 
-  const handleSubmit = (data: CompetitionData) => {
+  const handleSubmit = async (data: CompetitionData) => {
     if (!competitionId) {
       create(data, { onSuccess: navigateToCompetitionReferees });
     } else {

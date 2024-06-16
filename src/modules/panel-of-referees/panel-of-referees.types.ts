@@ -1,4 +1,4 @@
-import { CompetitionReferee } from '@api/types';
+import { CompetitionReferee, Referee } from '@api/types';
 
 export interface PanelOfRefereesProps {
   competitionId: number;
@@ -7,7 +7,7 @@ export interface PanelOfRefereesProps {
 export interface RefereeInfoDataType
   extends Pick<
     CompetitionReferee,
-    'workPerformed' | 'category' | 'refereeNumber'
+    'id' | 'workPerformed' | 'category' | 'refereeNumber'
   > {
   key: string | number;
   fullName: string;
@@ -15,16 +15,21 @@ export interface RefereeInfoDataType
 
 export interface AddRefereeFormValues {
   refereeId?: number;
-  work: string;
+  workPerformed: string;
 }
 
 export interface AddRefereeModalProps {
   isOpen: boolean;
+  referees?: Referee[];
   onClose: () => void;
+  onSubmit: (data: AddRefereeFormValues) => void;
 }
 
 export interface RefereesTableProps {
+  competitionId: number;
   data: CompetitionReferee[];
   title: string;
   onAddReferee: () => void;
 }
+
+export type CollegiumType = 'main' | 'regular';

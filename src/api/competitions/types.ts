@@ -23,21 +23,11 @@ export interface UpdateCompetitionRequest {
   place: string;
 }
 
-interface CollegiumReferee {
+export interface AddRefereeToCompetitionRequest {
   refereeId: number;
   refereeNumber: number;
   workPerformed: string;
-}
-
-export interface CreateCollegiumRequest {
-  mainCollegium: CollegiumReferee[];
-  collegium: CollegiumReferee[];
-}
-
-export interface UpdateCollegiumRequest {
-  collegiumId: number;
-  mainCollegium: CollegiumReferee[];
-  collegium: CollegiumReferee[];
+  isMainCollegium: boolean;
 }
 
 export interface CollegiumResponse {
