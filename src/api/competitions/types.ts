@@ -1,22 +1,50 @@
-export interface CompetitionData {
+import { PaginationParams } from '../types/common';
+
+export interface Competition {
+  id: number;
+  name: string;
+  beginDate: string;
+  endDate: string;
+  place: string;
+  status: string;
+}
+
+export interface CreateCompetitionRequest {
   name: string;
   beginDate: string;
   endDate: string;
   place: string;
 }
 
-interface RefereeData {
+export interface UpdateCompetitionRequest {
+  name: string;
+  beginDate: string;
+  endDate: string;
+  place: string;
+}
+
+interface CollegiumReferee {
   refereeId: number;
+  refereeNumber: number;
   workPerformed: string;
 }
 
-export interface CreateStageData {
-  mainCollegium: RefereeData[];
-  collegium: RefereeData[];
-  stageNumber: number;
+export interface CreateCollegiumRequest {
+  mainCollegium: CollegiumReferee[];
+  collegium: CollegiumReferee[];
 }
 
-export interface StageResponse {
+export interface UpdateCollegiumRequest {
+  collegiumId: number;
+  mainCollegium: CollegiumReferee[];
+  collegium: CollegiumReferee[];
+}
+
+export interface CollegiumResponse {
   competitionId: number;
-  stageId: number;
+  collegiumId: number;
+}
+
+export interface GetCompetitionsParams extends PaginationParams {
+  isCompleted: boolean;
 }

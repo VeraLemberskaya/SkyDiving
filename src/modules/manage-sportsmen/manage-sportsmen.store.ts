@@ -8,7 +8,10 @@ const initialState: State = {
     isOpen: false,
     type: 'add',
   },
+  sportsmanId: undefined,
+  search: undefined,
   filter: null,
+  page: 1
 };
 
 export const useManageSportsmenStore = create<State & Actions>()(
@@ -35,5 +38,8 @@ export const useManageSportsmenStore = create<State & Actions>()(
       set((state) => {
         state.search = value;
       }),
+    setPage: (page) => set((state) => {
+      state.page = page;
+    })
   })),
 );

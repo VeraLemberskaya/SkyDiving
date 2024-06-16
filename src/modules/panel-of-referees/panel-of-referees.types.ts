@@ -1,10 +1,16 @@
-import { CompetitionReferee } from '@api/mock-types';
+import { CompetitionReferee } from '@api/types';
+
+export interface PanelOfRefereesProps {
+  competitionId: number;
+}
 
 export interface RefereeInfoDataType
-  extends Pick<CompetitionReferee, 'serialNumber' | 'category'> {
+  extends Pick<
+    CompetitionReferee,
+    'workPerformed' | 'category' | 'refereeNumber'
+  > {
   key: string | number;
   fullName: string;
-  work: string;
 }
 
 export interface AddRefereeFormValues {

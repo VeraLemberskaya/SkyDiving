@@ -1,49 +1,36 @@
-import { MouseEventHandler, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Flex, List, Typography } from 'antd';
-import { useNavigate } from 'react-router-dom';
 
 import { EditButton } from '@components/edit-button';
 import { DeletePopConfirm } from '@components/delete-popconfirm';
 import { formatDate } from '@utils/format-date';
-import { routes } from '@constants/routes';
 
 import { CompetitionItemProps } from '../../competition-list.types';
 import { AcrobaticsButton } from '../acrobatics-button';
 
 import styles from './competition-item.module.scss';
+import { useCompetitionItem } from './competition-item.hooks';
 
 export const CompetitionItem = ({ competition }: CompetitionItemProps) => {
-  const { beginDate, endDate, name, place } = competition;
+  const { id, beginDate, endDate, name, place } = competition;
 
-  const navigate = useNavigate();
+  const { handleEdit, handleDelete, handleSelect } = useCompetitionItem(id);
 
   const startDate = formatDate(beginDate);
   const finishDate = formatDate(endDate);
-
-  const handleCompetitionClick = () => {
-    navigate(routes.COMPETITION_BY_ID(competition.id));
-  };
-
-  const handleEdit: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.stopPropagation();
-    navigate(routes.EDIT_COMPETITION_BY_ID(competition.id));
-  };
 
   const actions: ReactNode[] = [
     <EditButton key="edit" onClick={handleEdit} />,
     <DeletePopConfirm
       key="delete"
       title="Вы уверены, что хотите удалить соревнование?"
+      onConfirm={handleDelete}
     />,
     <AcrobaticsButton competitionId={competition.id} key="acrobatics" />,
   ];
 
   return (
-    <List.Item
-      actions={actions}
-      className={styles.item}
-      onClick={handleCompetitionClick}
-    >
+    <List.Item actions={actions} className={styles.item} onClick={handleSelect}>
       <Flex
         align="center"
         className={styles.item__content}

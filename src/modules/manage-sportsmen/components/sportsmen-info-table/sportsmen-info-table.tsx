@@ -1,10 +1,12 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Badge, Button, Flex, Table, TableProps } from 'antd';
 import { FilterTwoTone, PlusOutlined } from '@ant-design/icons';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { EditButton } from '@components/edit-button';
 import { DeletePopConfirm } from '@components/delete-popconfirm';
-import { paginationConfig } from '@constants/pagination';
+import { API } from '@api/index';
+import { DEFAULT_SIZE } from '@constants/pagination';
 
 import { useManageSportsmenStore } from '../../manage-sportsmen.store';
 import {
@@ -15,36 +17,51 @@ import { SportsmenSearch } from '../sportsmen-search';
 
 import { mapSportsmenToTableData } from './sportsmen-info-table.lib';
 
-const { current, pageSize } = paginationConfig;
-
 export const SportsmenInfoTable = ({
   start,
   loading,
   data,
+  total,
   disableActionsForInternal = false,
 }: SportsmenInfoTableProps) => {
-  const [currentPage, setCurrentPage] = useState<number>(current);
+  const { data: sportRanks } = API.knowledgeBase.useSportRanks();
+  const { mutate: deleteSkydiver } = API.skydivers.useDeleteSkydiverMutation();
+
+  const queryClient = useQueryClient();
 
   const filter = useManageSportsmenStore((state) => state.filter);
+  const page = useManageSportsmenStore((state) => state.page);
   const openModal = useManageSportsmenStore((state) => state.openModal);
+  const setPage = useManageSportsmenStore((state) => state.setPage);
   const setSportsmanId = useManageSportsmenStore(
     (state) => state.setSportsmanId,
   );
 
   const handleAddClick = () => openModal('add');
   const handleFilterClick = () => openModal('filter');
+
   const handleEditClick = (data: SportsmenInfoDataType) => () => {
     setSportsmanId(data.id);
     openModal('edit');
   };
 
+  const handleDelete = (data: SportsmenInfoDataType) => () => {
+    deleteSkydiver(data.id, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ['skydivers'],
+        });
+      },
+    });
+  };
+
   const handleTableChange: TableProps['onChange'] = ({ current }) => {
-    if (current) setCurrentPage(current);
+    if (current) setPage(current);
   };
 
   const tableData: SportsmenInfoDataType[] = useMemo(
-    () => mapSportsmenToTableData(data),
-    [data],
+    () => mapSportsmenToTableData(page, data),
+    [data, page],
   );
 
   return (
@@ -53,9 +70,10 @@ export const SportsmenInfoTable = ({
       dataSource={tableData}
       loading={loading}
       pagination={{
-        current: currentPage,
-        pageSize,
+        current: page,
+        pageSize: DEFAULT_SIZE,
         size: 'default',
+        total,
       }}
       size="small"
       onChange={handleTableChange}
@@ -84,7 +102,7 @@ export const SportsmenInfoTable = ({
           </Flex>
         }
       >
-        <Table.Column dataIndex="serialNumber" key="serialNumber" title="№" />
+        <Table.Column dataIndex="number" key="number" title="№" />
         <Table.Column<SportsmenInfoDataType>
           dataIndex="fullName"
           key="fullName"
@@ -97,14 +115,15 @@ export const SportsmenInfoTable = ({
           title="ФИО"
         />
         <Table.Column<SportsmenInfoDataType>
-          dataIndex="sportDegree"
-          key="sportDegree"
+          dataIndex="sportRank"
+          key="sportRank"
           render={(value, record) => {
             const disabled = disableActionsForInternal && record.isInternal;
+            const sportRank = sportRanks?.find(({ name }) => name === value);
 
             return (
               <Flex align="center" justify="space-between">
-                {value}
+                {sportRank?.description}
                 <Flex gap="small">
                   <EditButton
                     disabled={disabled}
@@ -114,6 +133,7 @@ export const SportsmenInfoTable = ({
                     disabled={disabled}
                     size="middle"
                     title="Вы уверены что хотите удалить спортсмена?"
+                    onConfirm={handleDelete(record)}
                   />
                 </Flex>
               </Flex>

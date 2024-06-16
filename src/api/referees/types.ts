@@ -1,21 +1,30 @@
+import { PaginationParams } from '../types/common';
+
+//TODO: make enum
 export interface Referee {
   id: number;
-  firstName: number;
-  secondName: number;
-  patronymic: number;
+  firstName: string;
+  secondName: string;
+  patronymic: string;
   category: string | null;
 }
 
 export interface CompetitionReferee extends Referee {
   workPerformed: string;
+  refereeNumber: number;
 }
 
-export interface RefereesCollegiums {
+export interface CompetitionCollegiumResponse {
+  id: number;
   mainCollegium: CompetitionReferee[];
   collegium: CompetitionReferee[];
 }
 
-export interface DeleteRefereeFromStageParams {
+export interface DeleteRefereeFromCompetitionParams {
   refereeId: number;
-  stageId: number;
+  competitionId: number;
+}
+
+export interface GetRefereesParams extends PaginationParams {
+  name?: string;
 }

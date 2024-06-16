@@ -31,8 +31,12 @@ export const RefereesTable = ({
           </Flex>
         }
       >
-        <Table.Column dataIndex="serialNumber" key="serialNumber" title="№" />
-        <Table.Column dataIndex="work" key="work" title="Выполняемая работа" />
+        <Table.Column dataIndex="refereeNumber" key="refereeNumber" title="№" />
+        <Table.Column
+          dataIndex="workPerformed"
+          key="workPerformed"
+          title="Выполняемая работа"
+        />
         <Table.Column dataIndex="fullName" key="fullName" title="ФИО" />
         <Table.Column
           dataIndex="category"

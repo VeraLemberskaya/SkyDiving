@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 
-import { Competition } from '@api/mock-types';
+import { Competition } from '@api/types';
 
-export const getDefaultValues = (competition?: Competition) => {
+export const getValues = (competition?: Competition) => {
   const beginDate = competition?.beginDate;
   const endDate = competition?.endDate;
 

@@ -1,7 +1,7 @@
 import { SportsmenFilter } from '../../manage-sportsmen.types';
 
 export const getDefaultValues = (filter: SportsmenFilter | null) => ({
-  sportDegree: filter?.sportDegree ?? null,
-  gender: filter?.gender ?? null,
-  isInternal: filter?.isInternal ?? null,
+  sportRank: filter?.sportRank,
+  gender: filter?.gender,
+  isInternal: filter?.isInternal,
 });

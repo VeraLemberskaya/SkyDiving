@@ -1,7 +1,8 @@
-import { Competition } from '@api/mock-types';
+import { Competition } from '@api/types';
 
 export interface CompetitionListProps {
   title: string;
+  completed?: boolean;
 }
 
 export interface CompetitionItemProps {

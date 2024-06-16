@@ -1,5 +1,7 @@
 //TODO: temporary here
 
+import { Competition } from './types';
+
 export interface Participant {
   id: number;
   fullName: string;
@@ -55,19 +57,7 @@ export interface SkydivingClubMember
   homeAddress?: string;
 }
 
-export interface CompetitionReferee extends Referee {
-  work: string;
-}
-
 export type Gender = 'male' | 'female';
-
-export interface Competition {
-  id: number;
-  name: string;
-  beginDate: string;
-  endDate: string;
-  place: string;
-}
 
 export interface CompetitionRefereeing {
   trickSerieId: number;

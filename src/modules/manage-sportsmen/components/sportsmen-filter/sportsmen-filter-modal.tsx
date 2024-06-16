@@ -6,7 +6,8 @@ import {
   RadioGroupField,
   SelectField,
 } from '@components/form-fields';
-import { degreeOptions, genderOptions } from '@constants/options';
+import { API } from '@api/index';
+import { genderOptions } from '@constants/options';
 
 import { ModalProps, SportsmenFilter } from '../../manage-sportsmen.types';
 import { useManageSportsmenStore } from '../../manage-sportsmen.store';
@@ -15,6 +16,7 @@ import styles from './sportsmen-filter-modal.module.scss';
 import { getDefaultValues } from './sportsmen-filter-modal.lib';
 
 export const SportsmenFilterModal = ({ isOpen, onClose }: ModalProps) => {
+  const { data: sportRanks } = API.knowledgeBase.useSportRanks();
   const filter = useManageSportsmenStore((state) => state.filter);
   const setFilter = useManageSportsmenStore((state) => state.setFilter);
 
@@ -27,18 +29,23 @@ export const SportsmenFilterModal = ({ isOpen, onClose }: ModalProps) => {
 
   const onSubmit = (values: SportsmenFilter) => {
     setFilter(values);
-    //submit
     onClose();
   };
 
   const resetFilter = () => {
     reset(getDefaultValues(null));
     setFilter(null);
+    onClose();
   };
 
   const isDisabled = Object.values(filterValues).every(
     (value) => value === null,
   );
+
+  const sportRankOptions = sportRanks?.map((sportRank) => ({
+    value: sportRank.name,
+    label: sportRank.description,
+  }));
 
   return (
     <Modal
@@ -67,17 +74,16 @@ export const SportsmenFilterModal = ({ isOpen, onClose }: ModalProps) => {
           <SelectField
             componentProps={{
               showSearch: true,
-              options: degreeOptions,
+              options: sportRankOptions,
               placeholder: 'Выберите спортивное звание',
               label: 'Спортивное звание',
             }}
             control={control}
-            name="sportDegree"
+            name="sportRank"
           />
           <RadioGroupField
             componentProps={{
               label: 'Пол',
-              required: true,
               options: genderOptions,
             }}
             control={control}
