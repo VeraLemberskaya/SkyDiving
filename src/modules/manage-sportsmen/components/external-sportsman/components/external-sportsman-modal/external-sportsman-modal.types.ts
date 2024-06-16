@@ -1,9 +1,9 @@
-import { Gender } from '@api/mock-types';
+import { Gender, SportRank } from '@api/types';
 
 export interface SportsmanFormValues {
   firstName: string;
   secondName: string;
   patronymic: string;
-  sportDegree: string;
+  sportRank?: SportRank;
   gender?: Gender;
 }

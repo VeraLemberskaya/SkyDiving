@@ -1,24 +1,35 @@
-import { CompetitionReferee } from '@api/mock-types';
+import { CompetitionReferee, Referee } from '@api/types';
+
+export interface PanelOfRefereesProps {
+  competitionId: number;
+}
 
 export interface RefereeInfoDataType
-  extends Pick<CompetitionReferee, 'serialNumber' | 'category'> {
+  extends Pick<
+    CompetitionReferee,
+    'id' | 'workPerformed' | 'category' | 'refereeNumber'
+  > {
   key: string | number;
   fullName: string;
-  work: string;
 }
 
 export interface AddRefereeFormValues {
   refereeId?: number;
-  work: string;
+  workPerformed: string;
 }
 
 export interface AddRefereeModalProps {
   isOpen: boolean;
+  referees?: Referee[];
   onClose: () => void;
+  onSubmit: (data: AddRefereeFormValues) => void;
 }
 
 export interface RefereesTableProps {
+  competitionId: number;
   data: CompetitionReferee[];
   title: string;
   onAddReferee: () => void;
 }
+
+export type CollegiumType = 'main' | 'regular';

@@ -1,10 +1,17 @@
 import { Dayjs } from 'dayjs';
 
-import { Competition } from '@api/mock-types';
-import { CompetitionData } from '@api/types';
+import { Competition } from '@api/types';
+
+export interface CompetitionData {
+  name: string;
+  beginDate: string;
+  endDate: string;
+  place: string;
+}
 
 export interface CompetitionFormProps {
   competition?: Competition;
+  loading?: boolean;
   onSubmit: (data: CompetitionData) => void;
 }
 

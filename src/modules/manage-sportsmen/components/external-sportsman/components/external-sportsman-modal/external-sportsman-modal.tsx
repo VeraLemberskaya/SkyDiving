@@ -4,8 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, SelectField } from '@components/form-fields';
 import { RadioGroupField } from '@components/form-fields';
-import { sportsmenData } from '@api/mocks';
-import { degreeOptions, genderOptions } from '@constants/options';
+import { API } from '@api/index';
+import { genderOptions } from '@constants/options';
 
 import { SportsmanModalProps } from '../../../../manage-sportsmen.types';
 
@@ -17,20 +17,20 @@ import styles from './external-sportsman-modal.module.scss';
 export const ExternalSportsmanModal = ({
   title,
   isOpen,
-  sportsmanId,
+  sportsman,
   onClose,
   onSubmit: onFormSubmit,
 }: SportsmanModalProps<SportsmanFormValues>) => {
-  const sportsman = sportsmenData.find(({ id }) => id === sportsmanId);
+  const { data: sportRanks } = API.knowledgeBase.useSportRanks();
 
   const { handleSubmit, reset, control } = useForm<SportsmanFormValues>({
-    defaultValues: getDefaultValues(sportsman),
+    values: getDefaultValues(sportsman),
     mode: 'onChange',
     resolver: zodResolver(sportsmanSchema),
   });
 
-  const onSubmit = (values: SportsmanFormValues) => {
-    onFormSubmit(values);
+  const onSubmit = async (values: SportsmanFormValues) => {
+    await onFormSubmit(values);
     reset();
     onClose();
   };
@@ -39,6 +39,11 @@ export const ExternalSportsmanModal = ({
     reset();
     onClose();
   };
+
+  const sportRankOptions = sportRanks?.map((sportRank) => ({
+    value: sportRank.name,
+    label: sportRank.description,
+  }));
 
   return (
     <Modal
@@ -93,12 +98,13 @@ export const ExternalSportsmanModal = ({
           <SelectField
             componentProps={{
               showSearch: true,
-              options: degreeOptions,
+              options: sportRankOptions,
               placeholder: 'Выберите спортивное звание',
               label: 'Спортивное звание',
+              required: true,
             }}
             control={control}
-            name="sportDegree"
+            name="sportRank"
           />
         </Flex>
       </form>

@@ -17,7 +17,7 @@ export const Competitions = () => {
         </Link>
       </Flex>
       <CompetitionList title="Актуальные соревнования:" />
-      <CompetitionList title="Прошедшие соревнования:" />
+      <CompetitionList completed title="Прошедшие соревнования:" />
     </Flex>
   );
 };

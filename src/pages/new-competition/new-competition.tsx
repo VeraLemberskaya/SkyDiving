@@ -1,6 +1,6 @@
 import { Typography } from 'antd';
 
-import { CreateCompetitionForm } from '@modules/competition-form';
+import { NewCompetitionForm } from '@modules/competition-form';
 
 import styles from './new-competition.module.scss';
 
@@ -9,7 +9,7 @@ export const NewCompetition = () => {
     <>
       <Typography.Title level={5}>Новое соревнование</Typography.Title>
       <div className={styles.content}>
-        <CreateCompetitionForm />
+        <NewCompetitionForm />
       </div>
     </>
   );

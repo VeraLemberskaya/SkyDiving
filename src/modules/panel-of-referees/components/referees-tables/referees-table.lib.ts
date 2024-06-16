@@ -1,4 +1,4 @@
-import { CompetitionReferee } from '@api/mock-types';
+import { CompetitionReferee } from '@api/types';
 import { getFullName } from '@utils/get-fullname';
 
 import { RefereeInfoDataType } from '../../panel-of-referees.types';
@@ -12,13 +12,14 @@ export const mapRefereesToTableData = (
       firstName,
       secondName,
       patronymic,
-      work,
-      serialNumber,
+      workPerformed,
+      refereeNumber,
       category,
     }) => ({
+      id,
       key: id,
-      serialNumber,
-      work,
+      refereeNumber,
+      workPerformed,
       category,
       fullName: getFullName({ firstName, secondName, patronymic }),
     }),

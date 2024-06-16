@@ -2,32 +2,33 @@ import { ReactNode } from 'react';
 import { Dayjs } from 'dayjs';
 import { Control } from 'react-hook-form';
 
-import { Gender, Sportsman } from '@api/mock-types';
+import { Gender, SkyDiver, SportRank } from '@api/types';
 
 export interface ManageSportsmenProps {
   onlyExternal?: boolean;
   onManageCredential?: (sportsmanId: number) => void;
 }
 
-export interface SportsmenInfoDataType
-  extends Omit<Sportsman, 'firstName' | 'secondName' | 'patronymic'> {
+export interface SportsmenInfoDataType extends Omit<SkyDiver, 'name'> {
   key: string | number;
   fullName: string;
+  number: number;
 }
 
 export interface SportsmenInfoTableProps {
-  data: Sportsman[];
+  data?: SkyDiver[];
   loading?: boolean;
   disableActionsForInternal?: boolean;
+  total?: number;
   start?: (sportsmanId: number) => ReactNode;
 }
 
 export interface SportsmanModalProps<Values> {
   title: string;
   isOpen: boolean;
-  sportsmanId?: number;
+  sportsman?: SkyDiver;
   onClose: () => void;
-  onSubmit: (values: Values) => void;
+  onSubmit: (values: Values) => Promise<void>;
 }
 
 export interface SportsmanFormValues {
@@ -62,6 +63,10 @@ export interface ModalProps {
   onClose: () => void;
 }
 
+export interface EditModalProps extends ModalProps {
+  sportsman: SkyDiver;
+}
+
 export type ModalType = 'edit' | 'add' | 'filter';
 
 export interface Modal {
@@ -70,9 +75,9 @@ export interface Modal {
 }
 
 export interface SportsmenFilter {
-  sportDegree: string | null;
-  gender: Gender | null;
-  isInternal: boolean | null;
+  sportRank?: SportRank;
+  gender?: Gender;
+  isInternal?: boolean;
 }
 
 export interface State {
@@ -80,6 +85,7 @@ export interface State {
   sportsmanId?: number;
   filter: SportsmenFilter | null;
   search?: string;
+  page: number;
 }
 
 export interface Actions {
@@ -88,6 +94,7 @@ export interface Actions {
   setSportsmanId: (id: number) => void;
   setSearch: (value: string) => void;
   setFilter: (filter: SportsmenFilter | null) => void;
+  setPage: (page: number) => void;
 }
 
 export interface SportsmanFormControlProps {

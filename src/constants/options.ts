@@ -1,13 +1,14 @@
 import { categories, sportDegrees } from '@api/mocks';
-import { Gender } from '@api/mock-types';
+import { Gender } from '@api/types';
 
+//TODO: check later
 export const genderOptions: { value: Gender; label: string }[] = [
   {
-    value: 'male',
+    value: Gender.MALE,
     label: 'Мужской',
   },
   {
-    value: 'female',
+    value: Gender.FEMALE,
     label: 'Женский',
   },
 ];

@@ -1,6 +1,5 @@
 /* eslint-disable max-lines */
 import {
-  Competition,
   CompetitionRefereeing,
   SkydivingClubMember,
   Referee,
@@ -8,6 +7,7 @@ import {
   Referring,
   Jumping,
 } from '@api/mock-types';
+import { Competition } from '@api/types';
 
 export const refereeData: Referee[] = [
   {

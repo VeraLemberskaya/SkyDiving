@@ -14,6 +14,8 @@ export const routes = {
   PENALTY: '/penalty/:refereeingId',
   COMPETITION_BY_ID: (id: number) => `/competition/${id}`,
   COMPETITION_REFEREES_BY_ID: (id: number) => `/competition/${id}/referees`,
+  COMPETITION_PARTICIPANTS_BY_ID: (id: number) =>
+    `/competition/${id}/participants`,
   REFEREEING_TIMER_BY_ID: (refereeingId: number) => `/timing/${refereeingId}`,
   PENALTY_BY_ID: (refereeingId: number) => `/penalty/${refereeingId}`,
   EDIT_COMPETITION_BY_ID: (id: number) => `/competition/${id}/edit`,
