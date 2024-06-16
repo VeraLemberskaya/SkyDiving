@@ -9,3 +9,7 @@ export interface Pagination<T> {
   totalPages: number;
   content: T[];
 }
+
+export interface ResponseData {
+  detail: string;
+}

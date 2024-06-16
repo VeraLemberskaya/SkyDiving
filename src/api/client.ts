@@ -1,8 +1,10 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { notification } from 'antd';
 
 import { env } from '@constants/env';
 
 import { getToken, removeToken } from './token';
+import { ResponseData } from './types/common';
 
 const api = axios.create({
   baseURL: env.API_URL,
@@ -21,15 +23,20 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-//TODO: error notification
 api.interceptors.response.use(
   (config) => config,
-  (error: AxiosError) => {
+  (error: AxiosError<ResponseData>) => {
     const status = error.response?.status;
+    const errorMessage = error.response?.data?.detail;
 
     if (status === 401) {
       removeToken();
     }
+
+    notification.error({
+      message: 'Ошибка!',
+      description: errorMessage,
+    });
 
     return Promise.reject(error);
   },
