@@ -1,6 +1,6 @@
-import { Team } from '@api/mock-types';
+import { Team } from '@api/types';
 
 export const getDefaultValues = (team?: Team) => ({
   name: team?.name ?? '',
-  participantIds: team?.participants.map(({ id }) => id) ?? [],
+  skydiversIds: team?.members.map(({ skydiverId }) => skydiverId) ?? [],
 });

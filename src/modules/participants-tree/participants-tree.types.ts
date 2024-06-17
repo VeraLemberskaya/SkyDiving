@@ -1,4 +1,4 @@
-import { Participant, Team } from '@api/mock-types';
+import { CompetitionMember, Team } from '@api/types';
 
 export interface ParticipantTreeOptions {
   selectTeams?: boolean;
@@ -8,25 +8,35 @@ export interface ParticipantTreeOptions {
 }
 
 export interface ParticipantsTreeProps {
+  competitionId: number;
   selectedTeamId?: number;
   selectedParticipantId?: number;
   options?: ParticipantTreeOptions;
   onSelect: (args: { id: number; type: 'team' | 'participant' }) => void;
   onAddTeam?: () => void;
   onAddParticipant?: () => void;
+  onDeleteTeam?: () => void;
 }
 
 export interface ParticipantNodeProps {
-  participant: Participant;
+  participant: CompetitionMember;
+  competitionId: number;
   deletable?: boolean;
 }
 
 export interface TeamNodeProps {
   team: Team;
+  competitionId: number;
   deletable?: boolean;
+  onDelete?: () => void;
 }
 
 export interface TreeHeaderProps {
   title: string;
   onAdd?: () => void;
+}
+
+export interface NoDataTextProps {
+  show: boolean;
+  text: string;
 }

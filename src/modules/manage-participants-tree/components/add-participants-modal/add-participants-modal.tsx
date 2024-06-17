@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { SelectField } from '@components/form-fields';
-import { participants } from '@api/mocks';
 
 import {
   AddParticipantsModalProps,
@@ -15,19 +14,27 @@ import {
   addParticipantsSchema,
   defaultValues,
 } from './add-participants-modal.config';
+import {
+  useAddIndividuals,
+  useSkydiverOptions,
+} from './add-participants-modal.hooks';
 
 export const AddParticipantsModal = ({
+  competitionId,
   isOpen,
   onClose,
 }: AddParticipantsModalProps) => {
+  const { addIndividuals } = useAddIndividuals(competitionId);
+  const { options } = useSkydiverOptions(competitionId);
+
   const { handleSubmit, reset, control } = useForm<AddParticipantsValues>({
     defaultValues,
     mode: 'onChange',
     resolver: zodResolver(addParticipantsSchema),
   });
 
-  const onSubmit = () => {
-    //submit
+  const onSubmit = (values: AddParticipantsValues) => {
+    addIndividuals(values);
     reset();
     onClose();
   };
@@ -36,11 +43,6 @@ export const AddParticipantsModal = ({
     reset();
     onClose();
   };
-
-  const selectOptions = participants.map((participant) => ({
-    value: participant.id,
-    label: participant.fullName,
-  }));
 
   return (
     <Modal
@@ -57,7 +59,7 @@ export const AddParticipantsModal = ({
           componentProps={{
             mode: 'multiple',
             showSearch: true,
-            options: selectOptions,
+            options,
             placeholder: 'Выберите участников',
             label: 'Участники',
             required: true,

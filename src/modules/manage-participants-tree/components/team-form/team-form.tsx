@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, SelectField } from '@components/form-fields';
-import { participants } from '@api/mocks';
+import { API } from '@api/index';
+import { getFullName } from '@utils/get-fullname';
 
 import {
   TeamFormProps,
@@ -14,20 +15,40 @@ import { getDefaultValues } from './team-form.lib';
 import styles from './team-form.module.scss';
 import { teamSchema } from './team-form.config';
 
-export const TeamForm = ({ team, title }: TeamFormProps) => {
-  const { handleSubmit, control, formState } = useForm<TeamFormValues>({
-    defaultValues: getDefaultValues(team),
+export const TeamForm = ({
+  team,
+  title,
+  competitionId,
+  onSubmit: onFormSubmit,
+}: TeamFormProps) => {
+  const { data: skydivers = [] } =
+    API.skydivers.useAvailableCompetitionSkydiversQuery(competitionId);
+
+  const {
+    handleSubmit,
+    reset,
+    control,
+    formState: { isValid, isDirty },
+  } = useForm<TeamFormValues>({
+    values: getDefaultValues(team),
     mode: 'onChange',
     resolver: zodResolver(teamSchema),
   });
 
-  const onSubmit = () => {
-    //submit
+  const onSubmit = (values: TeamFormValues) => {
+    onFormSubmit(values);
+    reset(team ? values : undefined);
   };
 
-  const participantsOptions = participants.map((participant) => ({
-    value: participant.id,
-    label: participant.fullName,
+  const teamParticipantsOptions =
+    team?.members.map(({ skydiverId, name }) => ({
+      value: skydiverId,
+      label: getFullName(name),
+    })) ?? [];
+
+  const participantsOptions = skydivers.map(({ id, name }) => ({
+    value: id,
+    label: getFullName(name),
   }));
 
   return (
@@ -47,17 +68,21 @@ export const TeamForm = ({ team, title }: TeamFormProps) => {
           <SelectField
             componentProps={{
               mode: 'multiple',
-              options: participantsOptions,
+              options: [...teamParticipantsOptions, ...participantsOptions],
               showSearch: true,
               label: 'Участники',
               required: true,
               placeholder: 'Выберите участника',
             }}
             control={control}
-            name="participantIds"
+            name="skydiversIds"
           />
         </Flex>
-        <Button disabled={!formState.isValid} htmlType="submit" type="primary">
+        <Button
+          disabled={!isValid || !isDirty}
+          htmlType="submit"
+          type="primary"
+        >
           Сохранить
         </Button>
       </form>

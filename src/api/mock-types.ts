@@ -2,17 +2,6 @@
 
 import { Competition } from './types';
 
-export interface Participant {
-  id: number;
-  fullName: string;
-}
-
-export interface Team {
-  id: number;
-  name: string;
-  participants: Participant[];
-}
-
 export interface Referee {
   id: number;
   serialNumber: number;

@@ -1,15 +1,13 @@
-import { useMemo } from 'react';
 import { Space, Tree, TreeProps } from 'antd';
 import { CaretDownFilled } from '@ant-design/icons';
 
-import { participants, teams } from '@api/mocks';
+import { API } from '@api/index';
+import { CompetitionMember, Team } from '@api/types';
 
 import {
   getParticipantIdFromKey,
   getTeamIdFromKey,
   getTreeKeys,
-  mapParticipantsToTreeData,
-  mapTeamsToTreeData,
 } from './participants-tree.lib';
 import styles from './participants-tree.module.scss';
 import { TreeHeader } from './components/tree-header';
@@ -17,6 +15,9 @@ import {
   ParticipantTreeOptions,
   ParticipantsTreeProps,
 } from './participants-tree.types';
+import { NoDataText } from './components/no-data-text';
+import { TeamNode } from './components/team-node';
+import { ParticipantNode } from './components/participant-node';
 
 const defaultOptions: ParticipantTreeOptions = {
   selectParticipants: true,
@@ -26,22 +27,16 @@ const defaultOptions: ParticipantTreeOptions = {
 };
 
 export const ParticipantsTree = ({
+  competitionId,
   selectedTeamId,
   selectedParticipantId,
   options = defaultOptions,
   onSelect,
   onAddTeam,
   onAddParticipant,
+  onDeleteTeam,
 }: ParticipantsTreeProps) => {
-  const teamsTreeData = useMemo(
-    () => mapTeamsToTreeData(teams, options),
-    [options],
-  );
-
-  const participantsTreeData = useMemo(
-    () => mapParticipantsToTreeData(participants, options),
-    [options],
-  );
+  const { data } = API.teams.useCompetitionMembersQuery(competitionId);
 
   const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
     const teamId = getTeamIdFromKey(selectedKeys[0]);
@@ -51,7 +46,40 @@ export const ParticipantsTree = ({
     if (participantId) onSelect({ id: participantId, type: 'participant' });
   };
 
-  const participantKey = `participant${selectedParticipantId}`;
+  const renderParticipants = (data?: CompetitionMember[]) => {
+    return data?.map((participant) => (
+      <Tree.TreeNode
+        key={`participant${participant.id}`}
+        selectable={options.selectParticipants}
+        title={
+          <ParticipantNode
+            competitionId={competitionId}
+            deletable={options.deleteParticipants}
+            participant={participant}
+          />
+        }
+      />
+    ));
+  };
+
+  const renderTeams = (data?: Team[]) => {
+    return data?.map((team) => (
+      <Tree.TreeNode
+        key={`team${team.id}`}
+        selectable={options.selectTeams}
+        title={
+          <TeamNode
+            competitionId={competitionId}
+            deletable={options.deleteTeams}
+            team={team}
+            onDelete={onDeleteTeam}
+          />
+        }
+      >
+        {renderParticipants(team.members)}
+      </Tree.TreeNode>
+    ));
+  };
 
   return (
     <Space className={styles.tree} direction="vertical" size="large">
@@ -60,11 +88,15 @@ export const ParticipantsTree = ({
         <Tree
           blockNode
           showLine
-          defaultExpandedKeys={[`team${teams[0].id}`]}
           selectedKeys={getTreeKeys({ selectedTeamId, selectedParticipantId })}
           switcherIcon={<CaretDownFilled />}
-          treeData={teamsTreeData}
           onSelect={handleSelect}
+        >
+          {renderTeams(data?.teams)}
+        </Tree>
+        <NoDataText
+          show={!data?.teams.length}
+          text="Нет данных по командам соревнования"
         />
       </div>
       <div>
@@ -73,9 +105,14 @@ export const ParticipantsTree = ({
           blockNode
           showLine
           selectable={options.selectParticipants}
-          selectedKeys={[participantKey]}
-          treeData={participantsTreeData}
+          selectedKeys={[`participant${selectedParticipantId}`]}
           onSelect={handleSelect}
+        >
+          {renderParticipants(data?.individuals)}
+        </Tree>
+        <NoDataText
+          show={!data?.individuals.length}
+          text="Нет данных по спортсменам, выступающим вне команд"
         />
       </div>
     </Space>
