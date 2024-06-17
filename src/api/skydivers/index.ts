@@ -1,5 +1,6 @@
 import {
   useSkydiversQuery,
+  useAvailableCompetitionSkydiversQuery,
   useDeleteSkydiverMutation,
   useCreateExternalSkydiverMutation,
   useUpdateExternalSkydiverMutation,
@@ -7,6 +8,7 @@ import {
 
 export const skydivers = {
   useSkydiversQuery,
+  useAvailableCompetitionSkydiversQuery,
   useDeleteSkydiverMutation,
   useCreateExternalSkydiverMutation,
   useUpdateExternalSkydiverMutation,

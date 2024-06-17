@@ -12,9 +12,6 @@ import {
 } from './types';
 
 const COMPETITIONS_URL = '/competitions';
-const CREATE_COMPETITION_URL = `${COMPETITIONS_URL}/initial`;
-
-const COMPETITION_BY_ID_URL = (id: number) => `${COMPETITIONS_URL}/${id}`;
 
 export const getCompetitions = (params: GetCompetitionsParams) => {
   return request<Pagination<Competition>>({
@@ -26,14 +23,14 @@ export const getCompetitions = (params: GetCompetitionsParams) => {
 
 export const getCompetitionById = (id: number) => {
   return request<Competition>({
-    url: COMPETITION_BY_ID_URL(id),
+    url: `${COMPETITIONS_URL}/${id}`,
     method: 'get',
   });
 };
 
 export const createCompetition = (data: CreateCompetitionRequest) => {
   return request<{ id: number }>({
-    url: CREATE_COMPETITION_URL,
+    url: `${COMPETITIONS_URL}/initial`,
     method: 'post',
     data,
   });
@@ -47,7 +44,7 @@ export const addRefereeToCompetition = ({
   data: AddRefereeToCompetitionRequest;
 }) => {
   return request<CollegiumResponse>({
-    url: COMPETITION_BY_ID_URL(id),
+    url: `${COMPETITIONS_URL}/${id}`,
     method: 'post',
     data,
   });
@@ -61,7 +58,7 @@ export const updateCompetition = ({
   data: UpdateCompetitionRequest;
 }) => {
   return request<Competition>({
-    url: COMPETITION_BY_ID_URL(id),
+    url: `${COMPETITIONS_URL}/${id}`,
     method: 'put',
     data,
   });
@@ -69,7 +66,7 @@ export const updateCompetition = ({
 
 export const deleteCompetition = (id: number) => {
   return request<void>({
-    url: COMPETITION_BY_ID_URL(id),
+    url: `${COMPETITIONS_URL}/${id}`,
     method: 'delete',
   });
 };

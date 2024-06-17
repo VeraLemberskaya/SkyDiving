@@ -10,7 +10,8 @@ import { API } from '@api/index';
 import styles from './edit-competition.module.scss';
 
 export const EditCompetition = () => {
-  const competitionId = Number(useParams().id);
+  const { id } = useParams();
+  const competitionId = Number(id);
   const { data } = API.competitions.useCompetitionQuery(competitionId);
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,7 +31,7 @@ export const EditCompetition = () => {
       {
         key: 'acrobatics',
         label: 'Команды и участники',
-        children: <ManageParticipantsTree />,
+        children: <ManageParticipantsTree competitionId={competitionId} />,
       },
     ],
     [competitionId],

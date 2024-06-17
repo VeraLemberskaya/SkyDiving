@@ -4,6 +4,7 @@ import { GetSportsmenParams } from './types';
 import {
   createExternalSkydiver,
   deleteSkydiver,
+  getAvailableCompetitionSkydivers,
   getSkydivers,
   updateExternalSkydiver,
 } from './skydivers.api';
@@ -12,6 +13,15 @@ export const useSkydiversQuery = (params: GetSportsmenParams) => {
   return useQuery({
     queryFn: () => getSkydivers(params),
     queryKey: ['skydivers', { ...params }],
+  });
+};
+
+export const useAvailableCompetitionSkydiversQuery = (
+  competitionId: number,
+) => {
+  return useQuery({
+    queryFn: () => getAvailableCompetitionSkydivers(competitionId),
+    queryKey: ['free-skydivers', competitionId],
   });
 };
 

@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Flex } from 'antd';
 
-import { teams } from '@api/mocks';
+import { API } from '@api/index';
 
 import { ParticipantsTree } from '../participants-tree';
 
-import { Mode } from './manage-participants-tree.types';
+import {
+  ManageParticipantsTreeProps,
+  Mode,
+} from './manage-participants-tree.types';
 import { AddTeamForm } from './components/add-team-form';
 import { EditTeamForm } from './components/edit-team-form';
 import styles from './manage-participants-tree.module.scss';
@@ -18,10 +21,14 @@ const treeOptions = {
   deleteTeams: true,
 };
 
-export const ManageParticipantsTree = () => {
+export const ManageParticipantsTree = ({
+  competitionId,
+}: ManageParticipantsTreeProps) => {
+  const { data } = API.teams.useCompetitionMembersQuery(competitionId);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [teamId, setTeamId] = useState<number | undefined>(teams[0].id);
-  const [mode, setMode] = useState<Mode>('edit');
+  const [teamId, setTeamId] = useState<number | undefined>(data?.teams[0]?.id);
+  const [mode, setMode] = useState<Mode>('add');
 
   const openAddTeamForm = () => setMode('add');
   const openEditTeamForm = () => setMode('edit');
@@ -38,22 +45,35 @@ export const ManageParticipantsTree = () => {
     openAddTeamForm();
   };
 
-  const selectedTeam = teams.find(({ id }) => id === teamId);
+  const handleDeleteTeam = () => {
+    setTeamId(undefined);
+    openAddTeamForm();
+  };
+
+  const selectedTeam = data?.teams.find(({ id }) => id === teamId);
   const isEditing = mode === 'edit' && selectedTeam;
   const isAdding = mode === 'add';
 
   return (
     <Flex className={styles.container}>
       <ParticipantsTree
+        competitionId={competitionId}
         options={treeOptions}
         selectedTeamId={teamId}
         onAddParticipant={openModal}
         onAddTeam={handleAddTeam}
+        onDeleteTeam={handleDeleteTeam}
         onSelect={handleSelect}
       />
-      {isAdding && <AddTeamForm />}
-      {isEditing && <EditTeamForm team={selectedTeam} />}
-      <AddParticipantsModal isOpen={isModalOpen} onClose={closeModal} />
+      {isAdding && <AddTeamForm competitionId={competitionId} />}
+      {isEditing && (
+        <EditTeamForm competitionId={competitionId} team={selectedTeam} />
+      )}
+      <AddParticipantsModal
+        competitionId={competitionId}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </Flex>
   );
 };

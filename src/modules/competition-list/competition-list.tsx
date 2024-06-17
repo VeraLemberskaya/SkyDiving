@@ -14,7 +14,7 @@ export const CompetitionList = ({
 }: CompetitionListProps) => {
   const [page, setPage] = useState(1);
 
-  const { data, isSuccess, isPending } = API.competitions.useCompetitionsQuery({
+  const { data, isPending } = API.competitions.useCompetitionsQuery({
     isCompleted: completed,
     number: page,
     size: DEFAULT_SIZE,
@@ -22,27 +22,21 @@ export const CompetitionList = ({
 
   const handlePaginationChange = (page: number) => setPage(page);
 
-  if (isSuccess) {
-    const { content, totalPages } = data;
-
-    if (!content.length) return null;
-
-    return (
-      <div>
-        <Typography.Text>{title}</Typography.Text>
-        <List
-          className={styles.list}
-          dataSource={content}
-          loading={isPending}
-          renderItem={(item) => <CompetitionItem competition={item} />}
-        />
-        <Pagination
-          className={styles.pagination}
-          current={page}
-          total={totalPages * DEFAULT_SIZE}
-          onChange={handlePaginationChange}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Typography.Text>{title}</Typography.Text>
+      <List
+        className={styles.list}
+        dataSource={data?.content}
+        loading={isPending}
+        renderItem={(item) => <CompetitionItem competition={item} />}
+      />
+      <Pagination
+        className={styles.pagination}
+        current={page}
+        total={data ? data.totalPages * DEFAULT_SIZE : undefined}
+        onChange={handlePaginationChange}
+      />
+    </div>
+  );
 };
