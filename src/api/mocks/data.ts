@@ -5,7 +5,6 @@ import {
   Referee,
   Sportsman,
   Referring,
-  Jumping,
 } from '@api/mock-types';
 import { Competition } from '@api/types';
 
@@ -714,26 +713,5 @@ export const participants = [
   {
     id: 24,
     fullName: 'Грищук Егор Андреевич',
-  },
-];
-
-export const jumpingList: Jumping[] = [
-  {
-    id: 1,
-    jumpingNumber: 1,
-    accuracy: 5,
-    date: '2024-05-14',
-  },
-  {
-    id: 2,
-    jumpingNumber: 2,
-    accuracy: 7,
-    date: '2024-05-14',
-  },
-  {
-    id: 3,
-    jumpingNumber: 3,
-    accuracy: 4,
-    date: '2024-05-14',
   },
 ];

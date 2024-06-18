@@ -12,6 +12,7 @@ export interface ParticipantsTreeProps {
   selectedTeamId?: number;
   selectedParticipantId?: number;
   options?: ParticipantTreeOptions;
+  defaultExpandedTeamId?: number;
   onSelect: (args: { id: number; type: 'team' | 'participant' }) => void;
   onAddTeam?: () => void;
   onAddParticipant?: () => void;

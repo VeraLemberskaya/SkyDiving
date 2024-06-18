@@ -1,36 +1,33 @@
 import { Dayjs } from 'dayjs';
 
-import { Jumping, Participant } from '@api/mock-types';
+import { CompetitionMember, Jumping } from '@api/types';
 
 export interface JumpingFormValues {
   jumpingNumber: number;
-  date?: Dayjs;
+  performanceDate: Dayjs;
   accuracy?: number;
 }
 
 export interface JumpingListProps {
+  data: Jumping[];
   onItemEdit: (jumping: Jumping) => void;
+  onDelete: (jumpingId: number) => void;
 }
 
 export interface JumpingItemProps {
   jumping: Jumping;
   deletable: boolean;
   onEdit: () => void;
+  onDelete: (jumpingId: number) => void;
 }
 
-export interface ModalProps {
+export interface JumpingModalProps {
   isOpen: boolean;
-  onClose: () => void;
-}
-
-export interface JumpingModalProps extends ModalProps {
+  nextJumpingNumber?: number;
   jumping?: Jumping;
   title: string;
+  onClose: () => void;
   onSubmit: (values: JumpingFormValues) => void;
-}
-
-export interface EditJumpingModalProps extends ModalProps {
-  jumping: Jumping;
 }
 
 type ModalType = 'add' | 'edit';
@@ -41,5 +38,9 @@ export interface Modal {
 }
 
 export interface ParticipantJumpingProps {
-  participant: Participant;
+  participant: CompetitionMember;
+}
+
+export interface LandingAccuracyProps {
+  competitionId: number;
 }

@@ -31,12 +31,12 @@ api.interceptors.response.use(
 
     if (status === 401) {
       removeToken();
+    } else {
+      notification.error({
+        message: 'Ошибка!',
+        description: errorMessage,
+      });
     }
-
-    notification.error({
-      message: 'Ошибка!',
-      description: errorMessage,
-    });
 
     return Promise.reject(error);
   },

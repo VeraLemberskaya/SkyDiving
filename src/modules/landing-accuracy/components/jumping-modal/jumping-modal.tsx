@@ -19,19 +19,25 @@ import {
 import { getDefaultValues } from './jumping-modal.lib';
 
 export const JumpingModal = ({
+  nextJumpingNumber,
   jumping,
   isOpen,
   title,
   onClose,
-  onSubmit,
+  onSubmit: onFormSubmit,
 }: JumpingModalProps) => {
-  const { control, handleSubmit } = useForm<JumpingFormValues>({
-    defaultValues: getDefaultValues(jumping),
+  const { control, reset, handleSubmit } = useForm<JumpingFormValues>({
+    defaultValues: getDefaultValues(jumping, nextJumpingNumber),
     mode: 'onChange',
     resolver: zodResolver(validationSchema),
   });
 
-  //TODO: сделать ограничение датой соревнований
+  const onSubmit = (values: JumpingFormValues) => {
+    onFormSubmit(values);
+    reset();
+    onClose();
+  };
+
   return (
     <Modal
       centered
@@ -50,7 +56,7 @@ export const JumpingModal = ({
               required: true,
             }}
             control={control}
-            name="date"
+            name="performanceDate"
           />
           <InputNumberField
             componentProps={{

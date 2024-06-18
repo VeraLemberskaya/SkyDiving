@@ -31,6 +31,7 @@ export const ParticipantsTree = ({
   selectedTeamId,
   selectedParticipantId,
   options = defaultOptions,
+  defaultExpandedTeamId,
   onSelect,
   onAddTeam,
   onAddParticipant,
@@ -39,11 +40,13 @@ export const ParticipantsTree = ({
   const { data } = API.teams.useCompetitionMembersQuery(competitionId);
 
   const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
-    const teamId = getTeamIdFromKey(selectedKeys[0]);
-    const participantId = getParticipantIdFromKey(selectedKeys[0]);
+    if (selectedKeys.length) {
+      const teamId = getTeamIdFromKey(selectedKeys[0]);
+      const participantId = getParticipantIdFromKey(selectedKeys[0]);
 
-    if (teamId) onSelect({ id: teamId, type: 'team' });
-    if (participantId) onSelect({ id: participantId, type: 'participant' });
+      if (teamId) onSelect({ id: teamId, type: 'team' });
+      if (participantId) onSelect({ id: participantId, type: 'participant' });
+    }
   };
 
   const renderParticipants = (data?: CompetitionMember[]) => {
@@ -81,6 +84,10 @@ export const ParticipantsTree = ({
     ));
   };
 
+  const defaultExpandedKeys = defaultExpandedTeamId
+    ? [`team${defaultExpandedTeamId}`]
+    : undefined;
+
   return (
     <Space className={styles.tree} direction="vertical" size="large">
       <div>
@@ -88,6 +95,7 @@ export const ParticipantsTree = ({
         <Tree
           blockNode
           showLine
+          defaultExpandedKeys={defaultExpandedKeys}
           selectedKeys={getTreeKeys({ selectedTeamId, selectedParticipantId })}
           switcherIcon={<CaretDownFilled />}
           onSelect={handleSelect}

@@ -5,6 +5,7 @@ import { knowledgeBase } from './knowledge-base';
 import { skydivers } from './skydivers';
 import { teams } from './teams';
 import { individuals } from './individuals';
+import { jumping } from './jumping';
 
 export const API = {
   auth,
@@ -14,4 +15,5 @@ export const API = {
   knowledgeBase,
   teams,
   individuals,
+  jumping,
 };
