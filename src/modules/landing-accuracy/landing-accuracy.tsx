@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import { Flex } from 'antd';
 
 import { ParticipantsTree } from '@modules/participants-tree';
-import { participants } from '@api/mocks';
 
 import styles from './landing-accuracy.module.scss';
 import { ParticipantJumping } from './components/participant-jumping';
+import { LandingAccuracyProps } from './landing-accuracy.types';
+import { useParticipant } from './landing-accuracy.hooks';
 
 const options = {
   selectTeams: false,
@@ -14,28 +14,23 @@ const options = {
   deleteTeams: false,
 };
 
-export const LandingAccuracy = () => {
-  const [participantId, setParticipantId] = useState<number>(
-    participants[0].id,
-  );
-
-  const handleSelect = ({ id }: { id: number }) => {
-    setParticipantId(id);
-  };
-
-  const selectedParticipant = participants.find(
-    ({ id }) => id === participantId,
-  );
+export const LandingAccuracy = ({ competitionId }: LandingAccuracyProps) => {
+  const { participantId, selectedParticipant, handleSelect } =
+    useParticipant(competitionId);
 
   return (
     <Flex className={styles.jumping}>
-      <ParticipantsTree
-        options={options}
-        selectedParticipantId={participantId}
-        onSelect={handleSelect}
-      />
       {selectedParticipant && (
-        <ParticipantJumping participant={selectedParticipant} />
+        <>
+          <ParticipantsTree
+            competitionId={competitionId}
+            defaultExpandedTeamId={selectedParticipant?.teamId}
+            options={options}
+            selectedParticipantId={participantId}
+            onSelect={handleSelect}
+          />
+          <ParticipantJumping participant={selectedParticipant} />
+        </>
       )}
     </Flex>
   );

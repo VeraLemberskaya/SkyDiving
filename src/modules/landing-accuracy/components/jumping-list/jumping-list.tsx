@@ -1,20 +1,23 @@
 import { List, Typography } from 'antd';
 
-import { jumpingList } from '@api/mocks';
-
 import { JumpingItem } from '../jumping-item';
 import { JumpingListProps } from '../../landing-accuracy.types';
 
-export const JumpingList = ({ onItemEdit }: JumpingListProps) => {
+export const JumpingList = ({
+  data,
+  onItemEdit,
+  onDelete,
+}: JumpingListProps) => {
   return (
     <>
       <Typography.Title level={5}>Прыжки:</Typography.Title>
       <List
-        dataSource={jumpingList}
+        dataSource={data}
         renderItem={(item, index) => (
           <JumpingItem
-            deletable={index === jumpingList.length - 1}
+            deletable={index === data.length - 1}
             jumping={item}
+            onDelete={onDelete}
             onEdit={() => onItemEdit(item)}
           />
         )}

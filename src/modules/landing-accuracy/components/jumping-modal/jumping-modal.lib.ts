@@ -1,9 +1,14 @@
 import dayjs from 'dayjs';
 
-import { Jumping } from '@api/mock-types';
+import { Jumping } from '@api/types';
 
-export const getDefaultValues = (jumping?: Jumping) => ({
-  jumpingNumber: jumping?.jumpingNumber ?? 1,
+export const getDefaultValues = (
+  jumping?: Jumping,
+  nextJumpingNumber?: number,
+) => ({
+  jumpingNumber: jumping?.number ?? nextJumpingNumber ?? 1,
   accuracy: jumping?.accuracy ?? undefined,
-  date: jumping?.date ? dayjs(jumping.date) : dayjs(),
+  performanceDate: jumping?.performanceDate
+    ? dayjs(jumping.performanceDate)
+    : dayjs(),
 });

@@ -12,8 +12,9 @@ export const JumpingItem = ({
   jumping,
   deletable,
   onEdit,
+  onDelete,
 }: JumpingItemProps) => {
-  const { jumpingNumber, accuracy, date } = jumping;
+  const { id, number, accuracy, performanceDate } = jumping;
 
   const actions = [
     <EditButton key="edit" onClick={onEdit} />,
@@ -21,6 +22,7 @@ export const JumpingItem = ({
       disabled={!deletable}
       key="delete"
       title="Вы уверены, что хотите удалить данные о прыжке?"
+      onConfirm={() => onDelete(id)}
     />,
   ];
 
@@ -34,14 +36,14 @@ export const JumpingItem = ({
         <Space direction="vertical">
           <Typography.Text className={styles.item__description}>
             Номер прыжка:
-            <span> {jumpingNumber}</span>
+            <span> {number}</span>
           </Typography.Text>
           <Typography.Text className={styles.item__description}>
             Точность:
             <span> {accuracy}</span>
           </Typography.Text>
         </Space>
-        <Typography.Text>{formatDate(date)}</Typography.Text>
+        <Typography.Text>{formatDate(performanceDate)}</Typography.Text>
       </Flex>
     </List.Item>
   );
