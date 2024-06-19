@@ -1,8 +1,6 @@
 import { Button, Flex } from 'antd';
-import { useNavigate } from 'react-router-dom';
 
 import { API } from '@api/index';
-import { routes } from '@constants/routes';
 
 import { RefereesTable } from './components/referees-tables';
 import { AddRefereeModal } from './components/add-referee-modal';
@@ -13,10 +11,13 @@ import {
 } from './panel-of-referees.hooks';
 import styles from './panel-of-referees.module.scss';
 
-export const PanelOfReferees = ({ competitionId }: PanelOfRefereesProps) => {
+export const PanelOfReferees = ({
+  competitionId,
+  confirmButtonText,
+  onConfirm,
+}: PanelOfRefereesProps) => {
   const { data, isSuccess } =
     API.referees.useCompetitionRefereesQuery(competitionId);
-  const navigate = useNavigate();
 
   const mainCollegium = data?.mainCollegium ?? [];
   const collegium = data?.collegium ?? [];
@@ -32,10 +33,6 @@ export const PanelOfReferees = ({ competitionId }: PanelOfRefereesProps) => {
     collegium,
     competitionId,
   });
-
-  const handleNavigateToParticipants = () => {
-    navigate(routes.COMPETITION_PARTICIPANTS_BY_ID(competitionId));
-  };
 
   const referees = useFilteredReferees({ mainCollegium, collegium });
   const hasData = mainCollegium?.length || collegium?.length;
@@ -56,14 +53,16 @@ export const PanelOfReferees = ({ competitionId }: PanelOfRefereesProps) => {
             title="Судейская коллегия"
             onAddReferee={handleAddRefereeToRegularCollegium}
           />
-          <Button
-            className={styles.button}
-            disabled={!hasData}
-            type="primary"
-            onClick={handleNavigateToParticipants}
-          >
-            Продолжить
-          </Button>
+          {onConfirm && (
+            <Button
+              className={styles.button}
+              disabled={!hasData}
+              type="primary"
+              onClick={onConfirm}
+            >
+              {confirmButtonText}
+            </Button>
+          )}
         </Flex>
         <AddRefereeModal
           isOpen={isModalOpen}

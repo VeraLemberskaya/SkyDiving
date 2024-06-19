@@ -2,6 +2,8 @@ import { CompetitionReferee, Referee } from '@api/types';
 
 export interface PanelOfRefereesProps {
   competitionId: number;
+  confirmButtonText?: string;
+  onConfirm?: () => void;
 }
 
 export interface RefereeInfoDataType

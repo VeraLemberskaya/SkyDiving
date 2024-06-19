@@ -1,10 +1,19 @@
-import { Sportsman } from '@api/mock-types';
+import { CompetitionMember, CompetitionMembersResponse } from '@api/types';
 import { getFullName } from '@utils/get-fullname';
 
-export const getParticipantsOptions = (participants: Sportsman[]) =>
-  participants.map(
-    ({ id, firstName, secondName, patronymic, serialNumber }) => ({
-      value: id,
-      label: `${getFullName({ firstName, secondName, patronymic })} (№ ${serialNumber})`,
-    }),
-  );
+export const getCompetitionMembers = (data?: CompetitionMembersResponse) => {
+  if (data) {
+    const { teams, individuals } = data;
+    const teamsMembers = teams.flatMap(({ members }) => members);
+
+    return [...teamsMembers, ...individuals];
+  }
+
+  return [];
+};
+
+export const getParticipantsOptions = (participants: CompetitionMember[]) =>
+  participants.map(({ skydiverId, name, memberNumber }) => ({
+    value: skydiverId,
+    label: `${getFullName(name)} (№ ${memberNumber})`,
+  }));

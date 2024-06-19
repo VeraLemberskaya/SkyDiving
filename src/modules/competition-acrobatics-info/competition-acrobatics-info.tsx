@@ -1,17 +1,28 @@
 import { useState } from 'react';
 import { Button, Flex, Typography } from 'antd';
 
-import { refereeingResults } from '@api/mocks';
+import { CompetitionRefereeing } from '@api/types';
 
 import { CompetitionAcrobaticsInfoProps } from './competition-acrobatics-info.types';
 import styles from './competition-acrobatics-info.module.scss';
 import { text } from './competition-acrobatics-info.config';
 import { StartRefereeingModal } from './components/start-refereeing-modal';
 import { AcrobaticsTable } from './components/acrobatics-table';
+import { useCompetitionRefereeingSeries } from './competition-acrobatics-info.hooks';
+
+const getTableKey = ({
+  memberNumber,
+  serieNumber,
+  roundNumber,
+}: CompetitionRefereeing) => {
+  return `${memberNumber}${roundNumber}${serieNumber}`;
+};
 
 export const CompetitionAcrobaticsInfo = ({
   competitionId,
 }: CompetitionAcrobaticsInfoProps) => {
+  const { data } = useCompetitionRefereeingSeries(competitionId);
+
   const [isStartModalOpen, setIsStartModalOpen] = useState(false);
 
   const openModal = () => setIsStartModalOpen(true);
@@ -25,7 +36,7 @@ export const CompetitionAcrobaticsInfo = ({
 
   return (
     <>
-      {!refereeingResults ? (
+      {!data?.length ? (
         <>
           <Typography.Text className={styles.text} type="secondary">
             {text}
@@ -36,9 +47,13 @@ export const CompetitionAcrobaticsInfo = ({
         <>
           <Flex justify="end">{startButton}</Flex>
           <Flex vertical gap="middle">
-            <AcrobaticsTable round={1} series={1} />
-            <AcrobaticsTable round={2} series={1} />
-            <AcrobaticsTable round={3} series={1} />
+            {data.map((competitionRefereeing) => (
+              <AcrobaticsTable
+                competitionId={competitionId}
+                data={competitionRefereeing}
+                key={getTableKey(competitionRefereeing)}
+              />
+            ))}
           </Flex>
         </>
       )}

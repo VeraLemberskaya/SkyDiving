@@ -1,31 +1,70 @@
+/* eslint-disable max-lines */
 import { Button, Divider, Flex, Table, Typography } from 'antd';
+import { useQueryClient } from '@tanstack/react-query';
 
-import { refereeingResults } from '@api/mocks';
-import { Referring } from '@api/mock-types';
-
+import { API } from '@api/index';
 import {
-  ArrowPenalty,
-  DPenalty,
-  MinusPenalty,
-  PlusMinusPenalty,
-  SPenalty,
-} from '../penalty-row';
+  RefereeingResult,
+  UpdateRefereeingSeriesTimeRequest,
+} from '@api/types';
+
 import { AcrobaticsTableProps } from '../../competition-acrobatics-info.types';
 import { TableTitle } from '../table-title';
+import { PenaltyRow } from '../penalty-row';
 
 import styles from './acrobatics-table.module.scss';
 
-export const AcrobaticsTable = ({ round, series }: AcrobaticsTableProps) => {
+export const AcrobaticsTable = ({
+  data,
+  competitionId,
+}: AcrobaticsTableProps) => {
+  const {
+    memberNumber,
+    roundNumber,
+    serieNumber,
+    totalScore,
+    refereeingResults,
+  } = data;
+
+  const { mutate } =
+    API.trickRefereeing.useUpdateRefereeingSeriesTimeMutation();
+  const queryClient = useQueryClient();
+
+  const updateTime = (data: UpdateRefereeingSeriesTimeRequest) => {
+    mutate(data, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ['competition-refereeing-series', competitionId],
+        });
+      },
+    });
+  };
+
+  const handleReplayTime = (trickSerieId: number) => () => {
+    updateTime({
+      trickSerieId,
+      timeWithoutPenalty: 0,
+      isTimeSubmitted: false,
+    });
+  };
+
+  const handleSubmitTime = (trickSerieId: number) => () => {
+    updateTime({
+      trickSerieId,
+      isTimeSubmitted: true,
+    });
+  };
+
   return (
     <Flex vertical className={styles.table} gap="small">
-      <TableTitle round={round} series={series} />
+      <TableTitle round={roundNumber} series={serieNumber} />
       <Table
         bordered
         dataSource={refereeingResults}
         pagination={false}
         size="small"
         onRow={({ isTimeSubmitted }) => {
-          if (!isTimeSubmitted) {
+          if (isTimeSubmitted === null) {
             return {
               className: styles.table_active,
             };
@@ -47,28 +86,31 @@ export const AcrobaticsTable = ({ round, series }: AcrobaticsTableProps) => {
           align="center"
           title={
             <Typography.Title className={styles.title} level={4}>
-              110
+              {memberNumber}
             </Typography.Title>
           }
         >
-          <Table.Column<Referring>
+          <Table.Column<RefereeingResult>
             align="center"
             dataIndex="timeWithoutPenalty"
             key="timeWithoutPenalty"
-            render={(value, { isTimeSubmitted }) => {
-              if (isTimeSubmitted) return value;
+            render={(value, { isTimeSubmitted, timeWithoutPenalty, id }) => {
+              if (isTimeSubmitted === null && timeWithoutPenalty !== null)
+                return (
+                  <Flex vertical align="center" gap="small">
+                    {value ?? 0}
+                    {!isTimeSubmitted && (
+                      <Flex gap="small">
+                        <Button onClick={handleReplayTime(id)}>Заново</Button>
+                        <Button type="primary" onClick={handleSubmitTime(id)}>
+                          ОK
+                        </Button>
+                      </Flex>
+                    )}
+                  </Flex>
+                );
 
-              return (
-                <Flex vertical align="center" gap="small">
-                  {value}
-                  {!isTimeSubmitted && (
-                    <Flex gap="small">
-                      <Button>Заново</Button>
-                      <Button type="primary">ОK</Button>
-                    </Flex>
-                  )}
-                </Flex>
-              );
+              return value ?? '-';
             }}
             title="Время"
           />
@@ -87,125 +129,180 @@ export const AcrobaticsTable = ({ round, series }: AcrobaticsTableProps) => {
         <Table.ColumnGroup title="1 спираль">
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'firstSpiral']}
+            dataIndex={[
+              'trickAttempts',
+              'TURN_1',
+              'penalties',
+              'ARROW_PENALTY',
+            ]}
             key="firstSpiral.arrow"
-            render={(value) => <ArrowPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="🡕"
           />
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'firstSpiral']}
+            dataIndex={['trickAttempts', 'TURN_1', 'penalties', 'D_PENALTY']}
             key="firstSpiral.d"
-            render={(value) => <DPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="D"
           />
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'firstSpiral']}
+            dataIndex={[
+              'trickAttempts',
+              'TURN_1',
+              'penalties',
+              'MINUS_PENALTY',
+            ]}
             key="firstSpiral.minus"
-            render={(value) => <MinusPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="-"
           />
         </Table.ColumnGroup>
         <Table.ColumnGroup title="2 спираль">
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'secondSpiral']}
+            dataIndex={['trickAttempts', 'TURN_2', 'penalties', 'D_PENALTY']}
             key="secondSpiral.d"
-            render={(value) => <DPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="D"
           />
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'secondSpiral']}
+            dataIndex={[
+              'trickAttempts',
+              'TURN_2',
+              'penalties',
+              'MINUS_PENALTY',
+            ]}
             key="secondSpiral.minus"
-            render={(value) => <MinusPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="-"
           />
         </Table.ColumnGroup>
         <Table.ColumnGroup title="1 сальто">
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'firstFlip']}
+            dataIndex={[
+              'trickAttempts',
+              'BACK_LOOP_1',
+              'penalties',
+              'D_PENALTY',
+            ]}
             key="firstFlip.d"
-            render={(value) => <DPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="D"
           />
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'firstFlip']}
+            dataIndex={[
+              'trickAttempts',
+              'BACK_LOOP_1',
+              'penalties',
+              'PLUS_MINUS_PENALTY',
+            ]}
             key="firstFlip.plusMinus"
-            render={(value) => <PlusMinusPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="-/+"
           />
         </Table.ColumnGroup>
         <Table.ColumnGroup title="3 спираль">
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'thirdSpiral']}
+            dataIndex={[
+              'trickAttempts',
+              'TURN_3',
+              'penalties',
+              'ARROW_PENALTY',
+            ]}
             key="thirdSpiral.arrow"
-            render={(value) => <ArrowPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="🡕"
           />
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'thirdSpiral']}
+            dataIndex={['trickAttempts', 'TURN_3', 'penalties', 'D_PENALTY']}
             key="thirdSpiral.d"
-            render={(value) => <DPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="D"
           />
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'thirdSpiral']}
+            dataIndex={[
+              'trickAttempts',
+              'TURN_3',
+              'penalties',
+              'MINUS_PENALTY',
+            ]}
             key="thirdSpiral.minus"
-            render={(value) => <MinusPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="-"
           />
         </Table.ColumnGroup>
         <Table.ColumnGroup title="4 спираль">
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'foursSpiral']}
+            dataIndex={['trickAttempts', 'TURN_4', 'penalties', 'D_PENALTY']}
             key="foursSpiral.d"
-            render={(value) => <DPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="D"
           />
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'foursSpiral']}
+            dataIndex={[
+              'trickAttempts',
+              'TURN_4',
+              'penalties',
+              'MINUS_PENALTY',
+            ]}
             key="foursSpiral.minus"
-            render={(value) => <MinusPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="-"
           />
         </Table.ColumnGroup>
         <Table.ColumnGroup title="2 сальто">
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'secondFlip']}
+            dataIndex={[
+              'trickAttempts',
+              'BACK_LOOP_2',
+              'penalties',
+              'D_PENALTY',
+            ]}
             key="secondFlip.d"
-            render={(value) => <DPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="D"
           />
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'secondFlip']}
+            dataIndex={[
+              'trickAttempts',
+              'BACK_LOOP_2',
+              'penalties',
+              'PLUS_MINUS_PENALTY',
+            ]}
             key="secondFlip.plusMinus"
-            render={(value) => <PlusMinusPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="-/+"
           />
           <Table.Column
             align="center"
-            dataIndex={['trickAttempts', 'secondFlip']}
+            dataIndex={[
+              'trickAttempts',
+              'BACK_LOOP_2',
+              'penalties',
+              'S_PENALTY',
+            ]}
             key="secondFlip.s"
-            render={(value) => <SPenalty trick={value} />}
+            render={(value) => <PenaltyRow penalty={value} />}
             title="S"
           />
         </Table.ColumnGroup>
         <Table.ColumnGroup
-          align="right"
+          align="center"
           title={
             <Typography.Title className={styles.title} level={4}>
-              14.85
+              {totalScore || '-'}
             </Typography.Title>
           }
         >
@@ -217,8 +314,9 @@ export const AcrobaticsTable = ({ round, series }: AcrobaticsTableProps) => {
           />
           <Table.Column
             align="center"
-            dataIndex="score"
-            key="score"
+            dataIndex="totalTime"
+            key="totalTime"
+            render={(value) => value || '-'}
             title="Итого"
           />
         </Table.ColumnGroup>

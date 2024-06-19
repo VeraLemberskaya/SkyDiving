@@ -32,8 +32,8 @@ export const CompetitionForm = ({
     const data: CompetitionData = {
       name,
       place,
-      beginDate: period[0].toISOString(),
-      endDate: period[1].toISOString(),
+      beginDate: period[0].format('YYYY-MM-DD'),
+      endDate: period[1].format('YYYY-MM-DD'),
     };
 
     onCompetitionSubmit(data);

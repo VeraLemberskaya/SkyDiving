@@ -77,7 +77,7 @@ export const useSkydiverJumping = (skydiver: CompetitionMember) => {
     const data = {
       id: jumpingId,
       accuracy: Number(accuracy),
-      performanceDate: performanceDate?.toISOString(),
+      performanceDate: performanceDate?.format('YYYY-MM-DD'),
       memberNumber,
     };
 
@@ -101,7 +101,7 @@ export const useSkydiverJumping = (skydiver: CompetitionMember) => {
     const data = {
       accuracy: Number(accuracy),
       jumpingNumber,
-      performanceDate: performanceDate?.toISOString(),
+      performanceDate: performanceDate?.format('YYYY-MM-DD'),
       memberNumber,
     };
 

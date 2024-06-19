@@ -1,4 +1,4 @@
-import { TrickAttempt } from '@api/mock-types';
+import { CompetitionRefereeing, Penalty } from '@api/types';
 
 export interface CompetitionAcrobaticsInfoProps {
   competitionId: number;
@@ -11,30 +11,18 @@ export interface StartRefereeingModalProps {
 }
 
 export interface StartRefereeingValues {
-  round: number | null;
-  series: number | null;
-  participantId: number | null;
+  roundNumber: number | null;
+  serieNumber: number | null;
+  skydiverId: number | null;
 }
 
 export interface PenaltyRowProps {
-  trick: TrickAttempt;
-  penaltyKey:
-    | 'sPenalty'
-    | 'dPenalty'
-    | 'plusMinusPenalty'
-    | 'minusPenalty'
-    | 'arrowPenalty';
-  penaltyTimeKey:
-    | 'sPenaltyTime'
-    | 'dPenaltyTime'
-    | 'plusMinusPenaltyTime'
-    | 'minusPenaltyTime'
-    | 'arrowPenaltyTime';
+  penalty?: Penalty;
 }
 
 export interface AcrobaticsTableProps {
-  round: number;
-  series: number;
+  competitionId: number;
+  data: CompetitionRefereeing;
 }
 
 export interface TableTitleProps {

@@ -4,16 +4,12 @@ import { PenaltyRowProps } from '../../competition-acrobatics-info.types';
 
 import styles from './penalty-row.module.scss';
 
-export const PenaltyRow = ({
-  trick,
-  penaltyKey,
-  penaltyTimeKey,
-}: PenaltyRowProps) => {
+export const PenaltyRow = ({ penalty }: PenaltyRowProps) => {
   return (
     <Flex vertical>
-      <Typography.Text>{trick[penaltyKey]}</Typography.Text>
+      <Typography.Text>{penalty?.penaltyValue || '-'}</Typography.Text>
       <Divider className={styles.divider} />
-      <Typography.Text>{trick[penaltyTimeKey]}</Typography.Text>
+      <Typography.Text>{penalty?.penaltyValueTime || '-'}</Typography.Text>
     </Flex>
   );
 };
