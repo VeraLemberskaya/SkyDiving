@@ -5,3 +5,4 @@ export * from '../skydivers/types';
 export * from '../knowledge-base/types';
 export * from '../teams/types';
 export * from '../jumping/types';
+export * from '../trick-refereeing/types';

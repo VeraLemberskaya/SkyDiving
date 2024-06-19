@@ -6,6 +6,7 @@ import { skydivers } from './skydivers';
 import { teams } from './teams';
 import { individuals } from './individuals';
 import { jumping } from './jumping';
+import { trickRefereeing } from './trick-refereeing';
 
 export const API = {
   auth,
@@ -16,4 +17,5 @@ export const API = {
   teams,
   individuals,
   jumping,
+  trickRefereeing,
 };
