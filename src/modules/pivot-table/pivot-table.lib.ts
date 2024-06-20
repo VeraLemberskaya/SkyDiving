@@ -13,13 +13,13 @@ export const mapMembersToTableData = (data: PivotTable): PivotTableRow[] => {
 };
 
 export const getJumpingAccuracy = (row: PivotTableRow, num: number) => {
-  const jumping = row.jumping.find(({ number }) => number === num);
+  const jumping = row.jumping.find(({ number }) => number === num + 1);
 
   return jumping?.accuracy;
 };
 
 export const getAcrobaticsTime = (row: PivotTableRow, num: number) => {
-  const acrobatics = row.acrobatics.find(({ number }) => number === num);
+  const acrobatics = row.acrobatics.find(({ number }) => number === num + 1);
 
   return acrobatics?.time;
 };
