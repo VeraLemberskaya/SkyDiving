@@ -77,6 +77,7 @@ export const ParticipantJumping = ({
         </Flex>
         {nextJumpingNumber && (
           <JumpingModal
+            competitionId={competitionId}
             isOpen={isAddModalOpen}
             key={nextJumpingNumber}
             nextJumpingNumber={nextJumpingNumber}
@@ -87,6 +88,7 @@ export const ParticipantJumping = ({
         )}
         {jumping && (
           <JumpingModal
+            competitionId={competitionId}
             isOpen={isEditModalOpen}
             jumping={jumping}
             title="Редактирование прыжка:"

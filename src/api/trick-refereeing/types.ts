@@ -82,6 +82,7 @@ export interface CompetitionRefereeing {
   serieNumber: number;
   roundNumber: number;
   totalScore: number;
+  isCompleted: boolean;
   refereeingResults: RefereeingResult[];
 }
 

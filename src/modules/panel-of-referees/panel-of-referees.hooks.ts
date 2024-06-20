@@ -83,14 +83,18 @@ export const useAddRefereeToCompetition = ({
   };
 
   const handleAddReferee = (values: AddRefereeFormValues) => {
-    const refereeNumber =
-      collegiumType === 'main' ? mainCollegium?.length : collegium?.length;
+    let refereeNumber = 1;
+    [...mainCollegium, ...collegium].forEach((referee) => {
+      if (referee.refereeNumber >= refereeNumber) {
+        refereeNumber = referee.refereeNumber + 1;
+      }
+    });
 
     const data = {
       refereeId: Number(values.refereeId),
       workPerformed: values.workPerformed,
       isMainCollegium: collegiumType === 'main',
-      refereeNumber: refereeNumber || 1,
+      refereeNumber: refereeNumber,
     };
 
     addReferee(

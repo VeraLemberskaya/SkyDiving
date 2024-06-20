@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { InputField, RangeField } from '@components/form-fields';
+import { isPastDate } from '@utils/is-past-date';
 
 import styles from './competition-form.module.scss';
 import {
@@ -64,6 +65,7 @@ export const CompetitionForm = ({
           componentProps={{
             placeholder: ['Начало', 'Конец'],
             label: 'Период соревнования',
+            disabledDate: isPastDate,
             required: true,
           }}
           control={control}

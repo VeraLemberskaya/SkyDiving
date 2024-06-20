@@ -10,7 +10,7 @@ export const useCompetitionRefereeingSeries = (competitionId: number) => {
 
   useEffect(() => {
     if (!isFetching && isSuccess) {
-      const hasActiveRefereeing = data.some(({ totalScore }) => !totalScore);
+      const hasActiveRefereeing = data.some(({ isCompleted }) => !isCompleted);
       const refetch = hasActiveRefereeing ? true : false;
 
       setRefetch(refetch);

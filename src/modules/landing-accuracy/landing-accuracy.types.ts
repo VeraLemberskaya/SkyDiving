@@ -22,6 +22,7 @@ export interface JumpingItemProps {
 }
 
 export interface JumpingModalProps {
+  competitionId: number;
   isOpen: boolean;
   nextJumpingNumber?: number;
   jumping?: Jumping;

@@ -1,8 +1,10 @@
 import { Flex, Modal } from 'antd';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import dayjs from 'dayjs';
 
 import { DatePickerField, InputNumberField } from '@components/form-fields';
+import { API } from '@api/index';
 
 import {
   JumpingModalProps,
@@ -19,6 +21,7 @@ import {
 import { getDefaultValues } from './jumping-modal.lib';
 
 export const JumpingModal = ({
+  competitionId,
   nextJumpingNumber,
   jumping,
   isOpen,
@@ -26,8 +29,15 @@ export const JumpingModal = ({
   onClose,
   onSubmit: onFormSubmit,
 }: JumpingModalProps) => {
+  const { data: competition } =
+    API.competitions.useCompetitionQuery(competitionId);
+
   const { control, reset, handleSubmit } = useForm<JumpingFormValues>({
-    defaultValues: getDefaultValues(jumping, nextJumpingNumber),
+    defaultValues: getDefaultValues(
+      jumping,
+      nextJumpingNumber,
+      dayjs(competition?.beginDate),
+    ),
     mode: 'onChange',
     resolver: zodResolver(validationSchema),
   });
@@ -54,6 +64,8 @@ export const JumpingModal = ({
             componentProps={{
               label: 'Дата прыжка',
               required: true,
+              minDate: competition ? dayjs(competition.beginDate) : undefined,
+              maxDate: dayjs(),
             }}
             control={control}
             name="performanceDate"

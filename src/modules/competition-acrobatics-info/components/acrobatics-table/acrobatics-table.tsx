@@ -310,13 +310,14 @@ export const AcrobaticsTable = ({
             align="center"
             dataIndex="totalPenalty"
             key="totalPenalty"
+            render={(value) => value?.toFixed(2)}
             title="Штраф"
           />
           <Table.Column
             align="center"
             dataIndex="totalTime"
             key="totalTime"
-            render={(value) => value || '-'}
+            render={(value) => value?.toFixed(2) || '-'}
             title="Итого"
           />
         </Table.ColumnGroup>
