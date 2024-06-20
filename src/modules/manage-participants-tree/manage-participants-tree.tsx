@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Flex } from 'antd';
+import { Button, Flex } from 'antd';
 
 import { API } from '@api/index';
 
@@ -23,6 +23,8 @@ const treeOptions = {
 
 export const ManageParticipantsTree = ({
   competitionId,
+  confirmationText,
+  onConfirm,
 }: ManageParticipantsTreeProps) => {
   const { data } = API.teams.useCompetitionMembersQuery(competitionId);
 
@@ -53,27 +55,40 @@ export const ManageParticipantsTree = ({
   const selectedTeam = data?.teams.find(({ id }) => id === teamId);
   const isEditing = mode === 'edit' && selectedTeam;
   const isAdding = mode === 'add';
+  const isFilled = data?.individuals.length || data?.teams.length;
 
   return (
-    <Flex className={styles.container}>
-      <ParticipantsTree
-        competitionId={competitionId}
-        options={treeOptions}
-        selectedTeamId={teamId}
-        onAddParticipant={openModal}
-        onAddTeam={handleAddTeam}
-        onDeleteTeam={handleDeleteTeam}
-        onSelect={handleSelect}
-      />
-      {isAdding && <AddTeamForm competitionId={competitionId} />}
-      {isEditing && (
-        <EditTeamForm competitionId={competitionId} team={selectedTeam} />
+    <Flex vertical>
+      <Flex className={styles.container}>
+        <ParticipantsTree
+          competitionId={competitionId}
+          options={treeOptions}
+          selectedTeamId={teamId}
+          onAddParticipant={openModal}
+          onAddTeam={handleAddTeam}
+          onDeleteTeam={handleDeleteTeam}
+          onSelect={handleSelect}
+        />
+        {isAdding && <AddTeamForm competitionId={competitionId} />}
+        {isEditing && (
+          <EditTeamForm competitionId={competitionId} team={selectedTeam} />
+        )}
+        <AddParticipantsModal
+          competitionId={competitionId}
+          isOpen={isModalOpen}
+          onClose={closeModal}
+        />
+      </Flex>
+      {onConfirm && (
+        <Button
+          className={styles.button}
+          disabled={!isFilled}
+          type="primary"
+          onClick={onConfirm}
+        >
+          {confirmationText}
+        </Button>
       )}
-      <AddParticipantsModal
-        competitionId={competitionId}
-        isOpen={isModalOpen}
-        onClose={closeModal}
-      />
     </Flex>
   );
 };

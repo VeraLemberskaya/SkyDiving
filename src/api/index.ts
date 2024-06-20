@@ -7,6 +7,7 @@ import { teams } from './teams';
 import { individuals } from './individuals';
 import { jumping } from './jumping';
 import { trickRefereeing } from './trick-refereeing';
+import { pivotTable } from './pivot-table';
 
 export const API = {
   auth,
@@ -18,4 +19,5 @@ export const API = {
   individuals,
   jumping,
   trickRefereeing,
+  pivotTable,
 };

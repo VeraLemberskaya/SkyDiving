@@ -4,6 +4,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 import { CompetitionAcrobaticsInfo } from '@modules/competition-acrobatics-info';
 import { LandingAccuracy } from '@modules/landing-accuracy';
+import { PivotTable } from '@modules/pivot-table';
 import { API } from '@api/index';
 
 import styles from './competition.module.scss';
@@ -20,7 +21,7 @@ export const Competition = () => {
       {
         key: 'pivot-table',
         label: 'Сводная таблица',
-        children: <div>Сводная таблица</div>,
+        children: <PivotTable competitionId={competitionId} />,
       },
       {
         key: 'landing-accuracy',
@@ -47,6 +48,7 @@ export const Competition = () => {
       <Typography.Title level={4}>{data?.name}</Typography.Title>
       <div className={styles.content}>
         <Tabs
+          destroyInactiveTabPane
           activeKey={activeKey ?? undefined}
           items={items}
           onTabClick={handleTabClick}

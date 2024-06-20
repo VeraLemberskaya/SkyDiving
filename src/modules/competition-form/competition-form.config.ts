@@ -6,6 +6,7 @@ import { validationMessages } from '@constants/validation';
 const { REQUIRED } = validationMessages;
 
 //TODO: вылидация периода чекнуть
+//TODO: не раньше чем завтр. день
 export const competitionSchema = z.object({
   name: z.string().min(1, REQUIRED),
   place: z.string().min(1, REQUIRED),

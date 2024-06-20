@@ -2,6 +2,8 @@ import { Team } from '@api/types';
 
 export interface ManageParticipantsTreeProps {
   competitionId: number;
+  confirmationText?: string;
+  onConfirm?: () => void;
 }
 
 export interface TeamFormProps {
