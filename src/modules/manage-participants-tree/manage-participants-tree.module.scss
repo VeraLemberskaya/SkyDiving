@@ -1,5 +1,13 @@
-@import "@app/styles/vars.scss";
+@import "@app/styles/vars";
+
 
 .container {
   gap: $sp-8;
+}
+
+.button {
+  margin-top: $sp-6;
+  margin-right: 250px;
+  width: fit-content;
+  align-self: flex-end;
 }
