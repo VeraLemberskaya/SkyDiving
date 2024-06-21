@@ -1,0 +1,6 @@
+@import "@app/styles/mixins";
+
+.content {
+  @include main-template;
+  min-height: 75vh;
+}

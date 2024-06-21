@@ -1,0 +1,9 @@
+@import '@app/styles/mixins';
+@import '@app/styles/vars.scss';
+
+.content {
+  @include main-template;
+
+  padding-top: $sp-1;
+  width: fit-content;
+}

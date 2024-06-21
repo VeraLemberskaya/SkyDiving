@@ -1,0 +1,12 @@
+@import "@app/styles/mixins";
+@import "@app/styles/vars";
+
+.list {
+  @include main-template;
+}
+
+.pagination {
+  width: fit-content;
+  margin-left: auto;
+  margin-top: $sp-1;
+}

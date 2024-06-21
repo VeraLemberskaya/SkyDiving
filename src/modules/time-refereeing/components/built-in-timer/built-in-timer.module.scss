@@ -1,0 +1,14 @@
+.timerContainer {
+  width: 325px;
+
+  &_input {
+    font-size: xx-large;
+    text-align: center;
+    height: 70px;
+  }
+}
+
+.button {
+  width: 50%;
+  align-self: flex-end;
+}

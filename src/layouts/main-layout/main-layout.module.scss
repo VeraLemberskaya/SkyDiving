@@ -1,0 +1,9 @@
+@import "@app/styles/vars.scss";
+
+.layout {
+  min-height: 100vh;
+}
+
+.content {
+  padding: $sp-3 $sp-5 $sp-5 $sp-5;
+}

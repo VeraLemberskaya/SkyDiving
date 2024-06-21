@@ -1,0 +1,19 @@
+@import "@app/styles/vars.scss";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+
+  &__user {
+    color: $white;
+  }
+}
+
+.logoutButton {
+  box-shadow: none;
+}
+
+.avatar {
+  background-color: rgba($color: $white, $alpha: 0.2);
+}
